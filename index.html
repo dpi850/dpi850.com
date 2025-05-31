@@ -11,7 +11,7 @@
   <style>
     body {
       font-family: 'Roboto', sans-serif;
-      background: #fff;
+      background: #f4f4f4;
       color: #222;
       line-height: 1.6;
       margin: 0;
@@ -27,9 +27,9 @@
       align-items: center;
       padding: 1rem 2rem;
       border-bottom: 1px solid #eee;
+      background: #fff;
       position: sticky;
       top: 0;
-      background: #fff;
       z-index: 100;
     }
 
@@ -55,14 +55,37 @@
 
     main {
       flex-grow: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 1.5rem;
-      font-weight: 700;
-      color: #FF6600;
       padding: 2rem;
-      text-align: center;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: auto;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 6px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+
+    .content h1 {
+      color: #333;
+      font-size: 2rem;
+      margin-top: 0;
+    }
+
+    .content p {
+      margin-top: 1rem;
+      font-size: 1rem;
+    }
+
+    .content a {
+      color: #FF6600;
+      text-decoration: none;
+      font-weight: 500;
+    }
+
+    .content a:hover {
+      text-decoration: underline;
     }
 
     footer {
@@ -71,21 +94,26 @@
       border-top: 1px solid #eee;
       color: #777;
       font-size: 0.9rem;
+      background: #fff;
     }
   </style>
 </head>
 <body>
   <header>
-    <a href="#" class="logo">DPI850.com</a>
+    <a href="index.html" class="logo">DPI850.com</a>
     <nav>
-      <a href="#">Home</a>
+      <a href="index.html">Home</a>
       <a href="#">About</a>
       <a href="#">Contact</a>
     </nav>
   </header>
 
   <main>
-    Site Under Construction
+    <div class="content">
+      <h1>Welcome to My Blog</h1>
+      <p>This is the first post on my new blog hosted at dpi850.com. Stay tuned for more updates!</p>
+      <p><a href="#">← Back to blog</a></p>
+    </div>
   </main>
 
   <footer>
