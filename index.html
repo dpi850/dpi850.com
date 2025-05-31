@@ -14,8 +14,8 @@
       line-height: 1.6;
     }
     header {
-      background: #007ACC;  /* brighter blue */
-      color: #fff; 
+      background: #007ACC;
+      color: #fff;
       padding: 1.5rem 1rem;
       text-align: center;
       font-weight: 700;
@@ -30,21 +30,24 @@
       background: #fff;
       border-radius: 8px;
       box-shadow: 0 4px 16px rgb(0 0 0 / 0.1);
+      box-sizing: border-box;
     }
     article {
       margin-bottom: 2.5rem;
-      border-left: 4px solid #FF6F61;  /* coral accent */
+      border-left: 4px solid #FF6F61;
       padding-left: 1rem;
     }
     h2 {
       color: #007ACC;
       margin-bottom: 0.3rem;
       font-weight: 700;
+      font-size: 1.6rem;
     }
     a {
       color: #007ACC;
       text-decoration: none;
       transition: color 0.3s ease;
+      word-break: break-word;
     }
     a:hover {
       color: #FF6F61;
@@ -55,6 +58,28 @@
       font-size: 1.1rem;
       color: #444;
     }
+
+    /* Responsive tweaks */
+    @media (max-width: 600px) {
+      header {
+        font-size: 1.5rem;
+        padding: 1rem 0.5rem;
+      }
+      .container {
+        margin: 1rem;
+        padding: 1.2rem 1rem;
+      }
+      h2 {
+        font-size: 1.3rem;
+      }
+      p {
+        font-size: 1rem;
+      }
+      article {
+        padding-left: 0.7rem;
+        border-left-width: 3px;
+      }
+    }
   </style>
 </head>
 <body>
@@ -63,10 +88,10 @@
   </header>
   <div class="container">
     <article>
-      <h2><a href="posts/welcome.html">Welcome</a></h2>
-      <p></p>
+      <h2><a href="posts/welcome.html">Welcome to My Blog</a></h2>
+      <p>This is the first post on my blog. Click the title to read more.</p>
     </article>
   </div>
 </body>
 </html>
-</html>
+
