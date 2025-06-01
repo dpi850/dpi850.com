@@ -35,7 +35,7 @@
       justify-content: space-between;
       align-items: center;
       padding: 1rem 2rem;
-      background: linear-gradient(to right, #cc5500, #ff8800); /* Darker orange to brighter orange */
+      background: linear-gradient(to right, #cc5500, #ff8800);
       border-bottom: var(--border-glow);
       position: sticky;
       top: 0;
@@ -46,14 +46,14 @@
     .logo {
       font-family: 'Share Tech Mono', monospace;
       font-size: 1.5rem;
-      color: #ffffff; /* White to offset the orange gradient */
+      color: #ffffff;
       text-decoration: none;
       letter-spacing: 1px;
-      text-shadow: 0 0 5px rgba(255, 255, 255, 0.7); /* Subtle white glow */
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
     }
 
     nav a {
-      color: #ffffff; /* Changed to white for better visibility against orange nav bar */
+      color: #ffffff;
       text-decoration: none;
       margin-left: 1.5rem;
       font-weight: 500;
@@ -68,7 +68,7 @@
       bottom: -2px;
       width: 100%;
       height: 2px;
-      background: #ffffff; /* Changed to white for the underline */
+      background: #ffffff;
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.3s ease;
@@ -79,7 +79,7 @@
     }
 
     nav a:hover {
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.8); /* Changed to white glow */
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
     }
 
     main {
@@ -109,9 +109,8 @@
       font-size: 2rem;
       white-space: nowrap;
       overflow: hidden;
-      /* Removed border-right to stop the blinking cursor */
       width: 0;
-      animation: typing 2.5s steps(18, end) forwards; /* Added forwards to keep the final state */
+      animation: typing 2.5s steps(18, end) forwards;
     }
 
     .content p {
@@ -139,7 +138,7 @@
 
     @keyframes typing {
       from { width: 0; }
-      to { width: 18ch; } /* optional for clarity; steps handles it too */
+      to { width: 18ch; }
     }
 
     @keyframes fadeIn {
@@ -153,7 +152,7 @@
     <a href="index.html" class="logo">DPI850.com</a>
     <nav>
       <a href="index.html">Home</a>
-      <a href="#">About</a>
+      <a href="about.html">About</a>
       <a href="#">Contact</a>
     </nav>
   </header>
@@ -162,7 +161,6 @@
     <div class="content">
       <h1>Welcome</h1>
       <p>This is the first post on my new blog hosted at dpi850.com. Stay tuned for more updates!</p>
-      <p><a href="#">← Back</a></p>
     </div>
   </main>
 
