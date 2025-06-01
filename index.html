@@ -67,36 +67,36 @@
       text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
     }
 
-    nav a {
-      color: #ffffff;
-      text-decoration: none;
-      margin-left: 1.5rem;
-      font-weight: 500;
-      position: relative;
-      transition: 0.3s ease;
-    }
+nav a {
+  color: #ffffff;
+  text-decoration: none;
+  margin-left: 1.5rem;
+  font-weight: 500;
+  position: relative;
+  transition: color 0.3s ease, text-shadow 0.3s ease;
+}
 
-    nav a::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: -2px;
-      width: 100%;
-      height: 2px;
-      background: #ffffff;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.3s ease;
-    }
+nav a::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 2px;
+  background: #ffffff; /* white underline */
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
 
-    nav a:hover::after {
-      transform: scaleX(1);
-    }
+nav a:hover {
+  color: #cc5500; /* darker orange */
+  text-shadow: 0 0 8px rgba(204, 85, 0, 0.8);
+}
 
-    nav a:hover {
-      text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
-    }
-
+nav a:hover::after {
+  transform: scaleX(1);
+}
     main {
       flex-grow: 1;
       position: relative;
