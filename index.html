@@ -99,50 +99,68 @@
 
     main {
       flex-grow: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 2rem;
       position: relative;
       z-index: 1;
     }
 
-    .content {
-      max-width: 800px;
-      width: 100%;
-      background: var(--glass-bg);
-      border: var(--border-glow);
-      padding: 2rem;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(255, 102, 0, 0.1);
-      backdrop-filter: blur(10px);
-      animation: fadeIn 1s ease-in-out;
+    /* New banner style */
+    .banner {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: transparent; /* Let starfield show */
+      color: var(--accent);
+      text-align: center;
+      user-select: none;
+      padding: 0 2rem;
     }
 
-    .content h1 {
+    .banner h1 {
       font-family: 'Share Tech Mono', monospace;
-      color: var(--accent);
-      margin-bottom: 1rem;
-      font-size: 2rem;
+      font-size: 6rem;
+      margin-bottom: 0.2rem;
+      text-shadow: 0 0 10px rgba(255, 102, 0, 0.7);
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 0.3s;
       white-space: nowrap;
       overflow: hidden;
-      width: 0;
-      animation: typing 2.5s steps(18, end) forwards;
+      max-width: 90vw;
+      text-overflow: ellipsis;
     }
 
-    .content p {
-      margin-top: 1rem;
-      line-height: 1.7;
+    .banner p {
+      font-family: 'Roboto', sans-serif;
+      font-weight: 300;
+      font-size: 1.8rem;
+      color: rgba(255, 136, 0, 0.8);
+      opacity: 0;
+      animation: fadeInUp 1s ease forwards;
+      animation-delay: 1s;
+      max-width: 600px;
     }
 
-    .content a {
-      color: var(--accent);
-      text-decoration: none;
-      font-weight: 500;
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(25px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
-    .content a:hover {
-      text-shadow: 0 0 6px var(--accent-glow);
+    @media (max-width: 600px) {
+      .banner h1 {
+        font-size: 3.8rem;
+      }
+
+      .banner p {
+        font-size: 1.3rem;
+      }
     }
 
     footer {
@@ -153,16 +171,6 @@
       background: #0a0a0a;
       position: relative;
       z-index: 1;
-    }
-
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 18ch; }
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
@@ -179,11 +187,10 @@
   </header>
 
   <main>
-    <article class="content" role="main">
-      <h1>Welcome</h1>
-      <p>This is the first post on my new blog hosted at dpi850.com. 
-	  Stay tuned for more updates!</p>
-    </article>
+    <section class="banner" role="banner">
+      <h1>dpi850</h1>
+      <p>Precision &amp; purpose in code and design</p>
+    </section>
   </main>
 
   <footer>
