@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Projects — DPI850.com</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg-color: #0d0d0d;
+      --text-color: #e0e0e0;
+      --accent: #ff6600;
+      --accent-glow: rgba(255, 102, 0, 0.6);
+      --glass-bg: rgba(255, 255, 255, 0.05);
+      --border-glow: 1px solid rgba(255, 102, 0, 0.3);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Roboto', sans-serif;
+      background: var(--bg-color);
+      color: var(--text-color);
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 2rem;
+      background: linear-gradient(to right, #cc5500, #ff8800);
+      border-bottom: var(--border-glow);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(6px);
+    }
+
+    .logo {
+      font-family: 'Share Tech Mono', monospace;
+      font-size: 1.5rem;
+      color: #ffffff;
+      text-decoration: none;
+      letter-spacing: 1px;
+      text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
+    }
+
+    nav a {
+      color: #ffffff;
+      text-decoration: none;
+      margin-left: 1.5rem;
+      font-weight: 500;
+      position: relative;
+      transition: 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -2px;
+      width: 100%;
+      height: 2px;
+      background: #ffffff;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.3s ease;
+    }
+
+    nav a:hover::after {
+      transform: scaleX(1);
+    }
+
+    nav a:hover {
+      color: #cc5500;
+      text-shadow: 0 0 8px rgba(204, 85, 0, 0.8);
+    }
+
+    main {
+      flex-grow: 1;
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .content {
+      max-width: 900px;
+      width: 100%;
+      background: var(--glass-bg);
+      border: var(--border-glow);
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 102, 0, 0.1);
+      backdrop-filter: blur(10px);
+      animation: fadeIn 1s ease-in-out;
+      overflow-wrap: break-word;
+    }
+
+    .content h1 {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+      font-size: 2.5rem;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+      animation: typing 2.5s steps(8, end) forwards;
+    }
+
+    .project {
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid rgba(255, 102, 0, 0.15);
+    }
+
+    .project h2 {
+      font-family: 'Share Tech Mono', monospace;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      font-size: 1.6rem;
+    }
+
+    .project p {
+      line-height: 1.6;
+      margin-bottom: 1rem;
+    }
+
+    .project a {
+      color: var(--accent);
+      font-weight: 600;
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border-color 0.3s ease;
+    }
+
+    .project a:hover {
+      border-color: #fff;
+      text-shadow: 0 0 6px var(--accent-glow);
+    }
+
+    footer {
+      text-align: center;
+      padding: 1.5rem;
+      border-top: var(--border-glow);
+      font-size: 0.9rem;
+      background: #0a0a0a;
+      position: relative;
+      z-index: 1;
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 8ch; }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* YouTube lazy-load styles */
+    .youtube-container {
+      position: relative;
+      width: 100%;
+      max-width: 560px;
+      padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+      margin: 1rem 0 2rem;
+      cursor: pointer;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 0 12px rgba(255, 102, 0, 0.2);
+      border: 1px solid rgba(255, 102, 0, 0.3);
+      background-color: #000;
+    }
+
+    .youtube-container img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      top: 0;
+      left: 0;
+      filter: brightness(0.8);
+      transition: filter 0.3s ease;
+    }
+
+    .youtube-container:hover img {
+      filter: brightness(1);
+    }
+
+    .play-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 68px;
+      height: 48px;
+      background: url('https://i.imgur.com/TxzC70f.png') no-repeat;
+      background-size: contain;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+  </style>
+</head>
+<body>
+
+  <header>
+    <a href="index.html" class="logo" aria-label="DPI850 homepage">DPI850.com</a>
+    <nav role="navigation" aria-label="Main navigation">
+      <a href="index.html">Home</a>
+      <a href="projects.html" aria-current="page">Projects</a>
+	  <a href="about.html">About</a>
+
+    </nav>
+  </header>
+
+  <main>
+    <article class="content" role="main">
+      <h1>Projects</h1>
+
+      <section class="project">
+        <h2>Python Network Utility</h2>
+        <p>A user-level tool for network diagnostics featuring port checks, DNS/ARP cache display, and more.</p>
+        <a href="https://github.com/dpi850/network-utilityv1" target="_blank" rel="noopener noreferrer">View on GitHub</a>
+      </section>
+
+
+      <p><a href="index.html">← Back</a></p>
+    </article>
+  </main>
+
+  <footer>
+    &copy; 2025 DPI850.com. Designed by dpi850. All rights reserved.
+  </footer>
+  <script>
+    const container = document.getElementById('yt-player');
+    container.addEventListener('click', () => {
+      const videoId = 'iM8GiMlAqzQ';
+      const iframe = document.createElement('iframe');
+      iframe.setAttribute('src', `https://www.youtube.com/embed/${videoId}?rel=0&showinfo=0&autoplay=1`);
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('allow', 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture');
+      iframe.setAttribute('allowfullscreen', '');
+      iframe.style.width = '';
+      iframe.style.height = '';
+      container.innerHTML = '';
+      container.appendChild(iframe);
+    });
+  </script>
+
+</body>
+</html>
+
