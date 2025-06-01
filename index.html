@@ -33,66 +33,16 @@
       overflow-x: hidden;
     }
 
-    /* Centered faint holographic background text */
-    .background-text {
+    /* Starfield background */
+    #starfield {
       position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: #ffffff20;
-      user-select: none;
-      pointer-events: none;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
       z-index: 0;
-      white-space: nowrap;
-    }
-
-    .background-text::before,
-    .background-text::after {
-      content: attr(data-text);
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      filter: blur(8px);
-      opacity: 0.15;
-      animation: hologlow 4s ease-in-out infinite alternate;
-      mix-blend-mode: screen;
-    }
-
-    .background-text::after {
-      filter: blur(20px);
-      animation-delay: 2s;
-      opacity: 0.1;
-    }
-
-    @keyframes hologlow {
-      0% {
-        color: #00f0ff50;
-        text-shadow:
-          0 0 20px #00f0ff80,
-          0 0 40px #ff00ff80,
-          0 0 80px #ff00ff80;
-        transform: translateX(0) translateY(0);
-      }
-      50% {
-        color: #ff00ff50;
-        text-shadow:
-          0 0 30px #ff00ffaa,
-          0 0 50px #00f0ffaa,
-          0 0 100px #00f0ffaa;
-        transform: translateX(3px) translateY(-3px);
-      }
-      100% {
-        color: #00f0ff50;
-        text-shadow:
-          0 0 20px #00f0ff80,
-          0 0 40px #ff00ff80,
-          0 0 80px #ff00ff80;
-        transform: translateX(0) translateY(0);
-      }
+      pointer-events: none;
+      background: black;
     }
 
     header {
@@ -218,7 +168,7 @@
 </head>
 <body>
 
-  <div class="background-text" aria-hidden="true" data-text="dpi850.com">dpi850.com</div>
+  <canvas id="starfield"></canvas>
 
   <header>
     <a href="index.html" class="logo" aria-label="DPI850 homepage">DPI850.com</a>
@@ -232,13 +182,65 @@
   <main>
     <article class="content" role="main">
       <h1>Welcome</h1>
-      <p>This is the first post on my new blog hosted at dpi850.com. Stay tuned for more updates!</p>
+      <p>This is the first post on my new blog hosted at dpi850.com. 
+	  Stay tuned for more updates!</p>
     </article>
   </main>
 
   <footer>
-    <p>&copy; 2025 DPI850.com. All rights reserved.</p>
+    <p>&copy; 2025 DPI850.com. Designed by dpi850. All rights reserved.</p>
   </footer>
+
+  <script>
+    // Starfield animation moving top to bottom
+    const canvas = document.getElementById('starfield');
+    const ctx = canvas.getContext('2d');
+    let stars = [];
+    const numStars = 52;
+
+    function resize() {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function createStar() {
+      return {
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: Math.random() * 1.5 + 0.5,
+        speed: Math.random() * 0.3 + 0.2
+      };
+    }
+
+    for(let i = 0; i < numStars; i++) {
+      stars.push(createStar());
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = 'white';
+
+      stars.forEach(star => {
+        ctx.beginPath();
+        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
+        ctx.fill();
+
+        star.y += star.speed;
+        if(star.y > canvas.height) {
+          star.y = 0;
+          star.x = Math.random() * canvas.width;
+          star.size = Math.random() * 1.5 + 0.5;
+          star.speed = Math.random() * 0.5 + 0.2;
+        }
+      });
+
+      requestAnimationFrame(animate);
+    }
+
+    animate();
+  </script>
 
 </body>
 </html>
