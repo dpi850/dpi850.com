@@ -109,9 +109,9 @@
       font-size: 2rem;
       white-space: nowrap;
       overflow: hidden;
-      border-right: 2px solid var(--accent);
+      /* Removed border-right to stop the blinking cursor */
       width: 0;
-      animation: typing 2.5s steps(18, end) forwards;
+      animation: typing 2.5s steps(18, end) forwards; /* Added forwards to keep the final state */
     }
 
     .content p {
