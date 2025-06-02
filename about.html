@@ -10,7 +10,7 @@
     href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600&display=swap"
     rel="stylesheet"
   />
-  <!-- Share Tech Mono for headings/logo -->
+  <!-- Share Tech Mono for navigation and headings -->
   <link
     href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
     rel="stylesheet"
@@ -60,7 +60,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 2rem;
+      padding: 1rem 1.5rem;
       background: linear-gradient(to right, #cc5500, #ff8800);
       border-bottom: var(--border-glow);
       position: sticky;
@@ -71,20 +71,28 @@
 
     .logo {
       font-family: 'Share Tech Mono', monospace;
-      font-size: 1.5rem;
+      font-size: 1.75rem;
       color: #ffffff;
       text-decoration: none;
       letter-spacing: 1px;
       text-shadow: 0 0 5px rgba(255, 255, 255, 0.7);
     }
 
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+
     nav a {
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: 500;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
       color: #ffffff;
       text-decoration: none;
-      margin-left: 1.5rem;
-      font-weight: 500;
       position: relative;
       transition: color 0.3s ease, text-shadow 0.3s ease;
+      padding: 0.4rem 0;
     }
 
     nav a::after {
@@ -105,8 +113,8 @@
     }
 
     nav a:hover {
-      text-shadow: 0 0 10px var(--accent-glow);
       color: var(--accent);
+      text-shadow: 0 0 6px var(--accent-glow);
     }
 
     main {
@@ -114,7 +122,7 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding: 2rem;
+      padding: 2rem 1.5rem;
       position: relative;
       z-index: 1;
     }
@@ -171,7 +179,7 @@
 
     footer {
       text-align: center;
-      padding: 1.5rem;
+      padding: 1.2rem;
       border-top: var(--border-glow);
       font-size: 0.9rem;
       background: #0a0a0a;
@@ -198,6 +206,69 @@
         transform: translateY(0);
       }
     }
+
+    /* Responsive adjustments */
+    @media (max-width: 800px) {
+      header {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 0.8rem 1rem;
+      }
+
+      .logo {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      nav {
+        flex: 1 1 100%;
+        justify-content: center;
+        gap: 1.2rem;
+        margin-bottom: 0.8rem;
+      }
+
+      nav a {
+        font-size: 0.9rem;
+        padding: 0.3rem 0;
+      }
+
+      .content {
+        padding: 1.5rem;
+      }
+
+      .content h1 {
+        font-size: 1.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      header {
+        padding: 0.6rem 0.8rem;
+      }
+
+      .logo {
+        font-size: 1.3rem;
+        margin-bottom: 0.4rem;
+      }
+
+      nav {
+        gap: 0.8rem;
+      }
+
+      nav a {
+        font-size: 0.85rem;
+        letter-spacing: 0.03em;
+        padding: 0.25rem 0;
+      }
+
+      .content {
+        padding: 1rem;
+      }
+
+      .content h1 {
+        font-size: 1.6rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -217,9 +288,18 @@
     <div class="content">
       <h1>About dpi850</h1>
       <p><strong>dpi850.com</strong> Personal site of dpi850</p>
-      <p>The name comes from gaming roots—850 DPI was the sweet spot. Fast enough to compete, precise enough to stay in control. That mindset now drives the code: efficient, intentional, and lightweight.</p>
+      <p>
+        The name comes from gaming roots—850 DPI was the sweet spot.
+        Fast enough to compete, precise enough to stay in control.
+        That mindset now drives the code: efficient, intentional,
+        and lightweight.
+      </p>
       <p><strong>What You'll Find Here</strong></p>
-      <p>If your values are clarity over clutter, speed over bloat, results over hype, clean code, and nothing but free useful tools, you’ll feel at home here.</p>
+      <p>
+        If your values are clarity over clutter, speed over bloat,
+        results over hype, clean code, and nothing but free useful
+        tools, you’ll feel at home here.
+      </p>
       <p>Check out my YouTube channel for video content and tutorials:</p>
       <a
         href="https://youtube.com/@dpi-850?feature=shared"
@@ -236,6 +316,5 @@
   <footer>
     &copy; 2025 DPI850.com. Designed by dpi850. All rights reserved.
   </footer>
-
 </body>
 </html>
