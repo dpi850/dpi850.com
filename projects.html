@@ -152,7 +152,6 @@
     }
 
     .project p {
-      /* Inherits Alegreya from body */
       margin-bottom: 1rem;
     }
 
@@ -168,6 +167,21 @@
     .project a:hover {
       border-color: #fff;
       text-shadow: 0 0 6px var(--accent-glow);
+    }
+
+    .project-image {
+      width: 100%;
+      max-width: 600px;
+      margin: 1rem auto;
+      overflow: hidden;
+      border-radius: 8px;
+    }
+
+    .project-image img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border: 1px solid rgba(255, 102, 0, 0.15);
     }
 
     footer {
@@ -200,7 +214,6 @@
       }
     }
 
-    /* Responsive adjustments */
     @media (max-width: 800px) {
       header {
         flex-wrap: wrap;
@@ -299,15 +312,12 @@
           rel="noopener noreferrer"
           >View on GitHub</a
         >
-        <p>
+        <div class="project-image">
           <img
             src="https://raw.githubusercontent.com/dpi850/site/refs/heads/main/images/networkutil_1.PNG"
-            alt="Real Image"
-            width="400"
-            height="250"
-            style="display: inline-block; margin-top: 1rem;"
+            alt="Network Utility Screenshot"
           />
-        </p>
+        </div>
       </section>
 
       <p><a href="index.html">← Back</a></p>
