@@ -4,7 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>About — DPI850.com</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Alegreya for body text -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <!-- Share Tech Mono for headings/logo -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
     :root {
       --bg-color: #0d0d0d;
@@ -22,7 +33,9 @@
     }
 
     body {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Alegreya', serif;
+      font-weight: 400;
+      line-height: 1.6;
       background: var(--bg-color);
       color: var(--text-color);
       display: flex;
@@ -81,7 +94,7 @@
       bottom: -2px;
       width: 100%;
       height: 2px;
-      background: #ffffff; /* white underline */
+      background: #ffffff;
       transform: scaleX(0);
       transform-origin: left;
       transition: transform 0.3s ease;
@@ -92,8 +105,8 @@
     }
 
     nav a:hover {
-      text-shadow: 0 0 10px var(--accent-glow); /* orange glow */
-      color: var(--accent); /* optional: tint orange */
+      text-shadow: 0 0 10px var(--accent-glow);
+      color: var(--accent);
     }
 
     main {
@@ -167,13 +180,23 @@
     }
 
     @keyframes typing {
-      from { width: 0; }
-      to { width: 13ch; }
+      from {
+        width: 0;
+      }
+      to {
+        width: 13ch;
+      }
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
@@ -184,20 +207,26 @@
   <header>
     <a href="index.html" class="logo">DPI850.com</a>
     <nav>
-      <a href="index.html">Home</a>      
-	  <a href="projects.html">Projects</a>
-      <a href="about.html">About</a>
+      <a href="index.html">Home</a>
+      <a href="projects.html">Projects</a>
+      <a href="about.html" aria-current="page">About</a>
     </nav>
   </header>
 
   <main>
     <div class="content">
       <h1>About dpi850</h1>
+      <p><strong>dpi850.com</strong> Personal site of dpi850</p>
       <p>The name comes from gaming roots—850 DPI was the sweet spot. Fast enough to compete, precise enough to stay in control. That mindset now drives the code: efficient, intentional, and lightweight.</p>
       <p><strong>What You'll Find Here</strong></p>
       <p>If your values are clarity over clutter, speed over bloat, results over hype, clean code, and nothing but free useful tools, you’ll feel at home here.</p>
       <p>Check out my YouTube channel for video content and tutorials:</p>
-      <a href="https://youtube.com/@dpi-850?feature=shared" target="_blank" rel="noopener noreferrer" class="youtube-link">
+      <a
+        href="https://youtube.com/@dpi-850?feature=shared"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="youtube-link"
+      >
         Visit DPI850 on YouTube
       </a>
       <p><a href="index.html">← Back</a></p>
@@ -207,56 +236,6 @@
   <footer>
     &copy; 2025 DPI850.com. Designed by dpi850. All rights reserved.
   </footer>
-
-  <script>
-    const canvas = document.getElementById('starfield');
-    const ctx = canvas.getContext('2d');
-    let stars = [];
-    const numStars = 52;
-
-    function resize() {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    }
-    window.addEventListener('resize', resize);
-    resize();
-
-    function createStar() {
-      return {
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        size: Math.random() * 1.5 + 0.5,
-        speed: Math.random() * 0.3 + 0.2
-      };
-    }
-
-    for (let i = 0; i < numStars; i++) {
-      stars.push(createStar());
-    }
-
-    function animate() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = 'white';
-
-      stars.forEach(star => {
-        ctx.beginPath();
-        ctx.arc(star.x, star.y, star.size, 0, Math.PI * 2);
-        ctx.fill();
-
-        star.y += star.speed;
-        if (star.y > canvas.height) {
-          star.y = 0;
-          star.x = Math.random() * canvas.width;
-          star.size = Math.random() * 1.5 + 0.5;
-          star.speed = Math.random() * 0.5 + 0.2;
-        }
-      });
-
-      requestAnimationFrame(animate);
-    }
-
-    animate();
-  </script>
 
 </body>
 </html>

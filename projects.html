@@ -4,10 +4,21 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projects — DPI850.com</title>
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Alegreya for body text -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <!-- Share Tech Mono for headings/logo -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
+    rel="stylesheet"
+  />
+
   <style>
     :root {
-  --bg-color: #000000;
+      --bg-color: #000000;
       --text-color: #e0e0e0;
       --accent: #ff6600;
       --accent-glow: rgba(255, 102, 0, 0.6);
@@ -22,7 +33,9 @@
     }
 
     body {
-      font-family: 'Roboto', sans-serif;
+      font-family: 'Alegreya', serif;
+      font-weight: 400;
+      line-height: 1.6;
       background: var(--bg-color);
       color: var(--text-color);
       display: flex;
@@ -131,11 +144,12 @@
     }
 
     .project p {
-      line-height: 1.6;
+      /* Inherits Alegreya from body */
       margin-bottom: 1rem;
     }
 
     .project a {
+      font-family: 'Alegreya', serif;
       color: var(--accent);
       font-weight: 600;
       text-decoration: none;
@@ -159,13 +173,23 @@
     }
 
     @keyframes typing {
-      from { width: 0; }
-      to { width: 8ch; }
+      from {
+        width: 0;
+      }
+      to {
+        width: 8ch;
+      }
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     /* YouTube lazy-load styles */
@@ -198,18 +222,6 @@
       filter: brightness(1);
     }
 
-    .play-button {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      width: 68px;
-      height: 48px;
-      background: url('https://i.imgur.com/TxzC70f.png') no-repeat;
-      background-size: contain;
-      transform: translate(-50%, -50%);
-      pointer-events: none;
-    }
-
   </style>
 </head>
 <body>
@@ -219,8 +231,7 @@
     <nav role="navigation" aria-label="Main navigation">
       <a href="index.html">Home</a>
       <a href="projects.html" aria-current="page">Projects</a>
-	  <a href="about.html">About</a>
-
+      <a href="about.html">About</a>
     </nav>
   </header>
 
@@ -230,15 +241,27 @@
 
       <section class="project">
         <h2>Python Network Utility</h2>
-        <p>A user-level tool for network diagnostics featuring port checks, DNS/ARP cache display, and more.</p>	
-        <a href="https://github.com/dpi850/network-utilityv1" target="_blank" rel="noopener noreferrer">View on GitHub</a>
-        <!-- Blank image placeholder with fixed size -->	
-	<p><img src="https://raw.githubusercontent.com/dpi850/site/refs/heads/main/images/networkutil_1.PNG" alt="Real Image" width="200" height="150" style="display: inline-block;">
-</p>
-
-      
-
-	  </section>
+        <p>
+          A user-level tool for network diagnostics featuring port
+          checks, DNS/ARP cache display, and more.
+        </p>
+        <a
+          href="https://github.com/dpi850/network-utilityv1"
+          target="_blank"
+          rel="noopener noreferrer"
+          >View on GitHub</a
+        >
+        <!-- Blank image placeholder with fixed size -->
+        <p>
+          <img
+            src="https://raw.githubusercontent.com/dpi850/site/refs/heads/main/images/networkutil_1.PNG"
+            alt="Real Image"
+            width="400"
+            height="250"
+            style="display: inline-block;"
+          />
+        </p>
+      </section>
 
       <p><a href="index.html">← Back</a></p>
     </article>
