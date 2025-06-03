@@ -9,6 +9,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 
+  <!-- Locomotive Scroll CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.css" />
+
   <style>
     :root {
       --bg: #0d0d0d;
@@ -18,25 +21,18 @@
       --glass: rgba(255, 255, 255, 0.03);
     }
 
-    html {
-      font-size: 18px;
-    }
-
+    html { font-size: 18px; }
     body {
       font-family: 'Alegreya', serif;
       background: var(--bg);
       color: var(--text);
       line-height: 1.75;
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
       margin: 0;
       overflow-x: hidden;
     }
 
     header {
-      /* Changed from gradient to solid black */
-      background: #000000;
+      background: #000;
       display: flex;
       justify-content: space-between;
       align-items: center;
@@ -93,7 +89,6 @@
     }
 
     main {
-      flex: 1;
       display: flex;
       justify-content: center;
       align-items: flex-start;
@@ -108,7 +103,6 @@
       border-radius: 12px;
       backdrop-filter: blur(12px);
       box-shadow: 0 0 25px rgba(255, 102, 0, 0.1);
-      animation: fadeIn 1s ease-in-out;
     }
 
     .content h1 {
@@ -156,9 +150,16 @@
       background: #0a0a0a;
     }
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to   { opacity: 1; transform: translateY(0); }
+    /* Scroll animation */
+    [data-scroll] {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    [data-scroll].is-inview {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     @media (max-width: 768px) {
@@ -188,24 +189,24 @@
     </nav>
   </header>
 
-  <main>
-    <article class="content">
-      <h1>About dpi850</h1>
+  <main data-scroll-container>
+    <article class="content" data-scroll-section>
+      <h1 data-scroll data-scroll-class="is-inview">About dpi850</h1>
 
-      <section>
+      <section data-scroll data-scroll-class="is-inview">
         <p>
           The name comes from gaming roots—850 DPI was the sweet spot. Fast enough to compete, precise enough to control. That mindset now drives the code: <strong>efficient, intentional, lightweight.</strong>
         </p>
       </section>
 
-      <section>
+      <section data-scroll data-scroll-class="is-inview">
         <h2 style="font-family: 'Share Tech Mono', monospace; color: var(--accent); font-size: 1.5rem; margin-bottom: 1rem;">What You'll Find Here</h2>
         <p>
           If you value clarity over clutter, speed over bloat, and results over hype — this is your place. Everything here is driven by a love of clean code, simplicity, and sharing free tools that just work.
         </p>
       </section>
 
-      <section>
+      <section data-scroll data-scroll-class="is-inview">
         <h2 style="font-family: 'Share Tech Mono', monospace; color: var(--accent); font-size: 1.5rem; margin-bottom: 1rem;">Skills</h2>
         <ul>
           <li>Python development (PyQt5, CLI tooling)</li>
@@ -214,22 +215,34 @@
         </ul>
       </section>
 
-      <section>
+      <section data-scroll data-scroll-class="is-inview">
         <h2 style="font-family: 'Share Tech Mono', monospace; color: var(--accent); font-size: 1.5rem; margin-bottom: 1rem;">Videos</h2>
-        <p>
-          Check out always free videos and walkthroughs.
-        </p>
+        <p>Check out always free videos and walkthroughs.</p>
         <p>
           <a href="https://youtube.com/@dpi-850?feature=shared" target="_blank" rel="noopener noreferrer">Visit DPI850</a>
         </p>
       </section>
 
-      <p><a href="index.html">← Back</a></p>
+      <p data-scroll data-scroll-class="is-inview"><a href="index.html">← Back</a></p>
     </article>
   </main>
 
   <footer>
     &copy; 2025 DPI850.com. Designed by dpi850.
   </footer>
+
+  <!-- Locomotive Scroll JS -->
+  <script src="https://cdn.jsdelivr.net/npm/locomotive-scroll@4.1.4/dist/locomotive-scroll.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      new LocomotiveScroll({
+        el: document.querySelector("[data-scroll-container]"),
+        smooth: true,
+        smartphone: { smooth: true },
+        tablet: { smooth: true },
+      });
+    });
+  </script>
 </body>
 </html>
+
