@@ -6,15 +6,9 @@
   <title>Projects — DPI850.com</title>
 
   <!-- Alegreya for body text -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600&display=swap" rel="stylesheet" />
   <!-- Share Tech Mono for navigation and headings -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
 
   <style>
     :root {
@@ -184,6 +178,27 @@
       border: 1px solid rgba(255, 102, 0, 0.15);
     }
 
+    .video-wrapper {
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      width: 100%;
+      max-width: 720px;
+      margin: 1.5rem auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(255, 102, 0, 0.2);
+    }
+
+    .video-wrapper iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 1px solid rgba(255, 102, 0, 0.15);
+    }
+
     footer {
       text-align: center;
       padding: 1.2rem;
@@ -195,23 +210,13 @@
     }
 
     @keyframes typing {
-      from {
-        width: 0;
-      }
-      to {
-        width: 8ch;
-      }
+      from { width: 0; }
+      to { width: 8ch; }
     }
 
     @keyframes fadeIn {
-      from {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 800px) {
@@ -247,7 +252,7 @@
       }
 
       .project h2 {
-        font-size: 1.4rem;
+        font-size: 1.5rem;
       }
     }
 
@@ -272,15 +277,15 @@
       }
 
       .content {
-        padding: 1rem;
+        padding: 2rem;
       }
 
       .content h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
       }
 
       .project h2 {
-        font-size: 1.2rem;
+        font-size: 1.5rem;
       }
     }
   </style>
@@ -299,39 +304,35 @@
   <main>
     <article class="content" role="main">
       <h1>5302025</h1>
-
       <section class="project">
         <h2>Python Network Utility</h2>
-        <p>
-          A user-level tool for network diagnostics featuring port
-          checks, DNS/ARP cache display, and more.
-        </p>
-        <a
-          href="https://github.com/dpi850/network-utilityv1"
-          target="_blank"
-          rel="noopener noreferrer"
-          >View on GitHub</a
-        >
+        <p>A user-level tool for network diagnostics featuring port checks, DNS/ARP cache display, and more.</p>
+        <a href="https://github.com/dpi850/network-utilityv1" target="_blank" rel="noopener noreferrer">View on GitHub</a>
         <div class="project-image">
-          <img
-            src="https://raw.githubusercontent.com/dpi850/site/refs/heads/main/images/networkutil_1.PNG"
-            alt="Network Utility Screenshot"
-          />
-        </div>
-                <div class="project-image">
-          <img
-            src="https://raw.githubusercontent.com/dpi850/site/refs/heads/main/images/networkutil_2.PNG"
-            alt="Network Utility Screenshot"
-          />
+          <img src="https://raw.githubusercontent.com/dpi850/site/refs/heads/main/images/networkutil_1.PNG" alt="Network Utility Screenshot" />
         </div>
       </section>
 
-      <p><a href="index.html">← Back</a></p>
+      <h1>6122025</h1>
+      <section class="project">
+        <h2>BrowseTXT</h2>
+        <p>Browse the Internet with no frills, no ads, no video with BrowseTXT.</p>
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/iM8GiMlAqzQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+        </div>
+        <p><strong>What makes BrowseTXT unique than any browser you've tried?</strong><br>
+        No images, no ads, no clutter — just clean text. Navigate websites using simple numbers. Go back with a single command. Download files. Focuses on the main content. Built with Python. Changes color on reload for a fresh look.</p>
+        <p><strong>Simple Commands:</strong><br>
+        open "website.com" | link 3 | back | download "link.com" | exit</p>
+        <p><strong>Who Is It For?</strong><br>
+        Developers, command-line fans, users with slow internet, or even your cat or dog… if they know how to type</p>
+        <p><strong>Try It Out:</strong><br>
+        🔗 <a href="https://www.python.org/" target="_blank">Python</a><br>
+        📂 <a href="https://github.com/dpi850/BrowseTXT" target="_blank">Source code</a><br>
+        📄 Licensed under GNU Public License</p>
+        <p>If you like this project, feel free to like or subscribe for more tech demos and tools.</p>
+
+        <p><a href="index.html">← Back</a></p>
+      </section>
     </article>
   </main>
-
-  <footer>
-    &copy; 2025 DPI850.com. Designed by dpi850. All rights reserved.
-  </footer>
-</body>
-</html>
