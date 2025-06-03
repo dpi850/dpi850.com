@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>DPI850.com - Official Site</title>
-  <link rel="icon" href="/favicon.ico" type="image/x-icon">
+  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <meta name="description" content="Welcome to DPI850.com." />
 
   <!-- Favicon -->
@@ -17,10 +17,19 @@
   <meta name="theme-color" content="#0d0d0d" />
 
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600&display=swap"
+    rel="stylesheet"
+  />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+  />
 
   <style>
     :root {
@@ -61,6 +70,7 @@
       z-index: 0;
       pointer-events: none;
       background: black;
+      animation: float 12s ease-in-out infinite;
     }
 
     header {
@@ -232,6 +242,19 @@
       padding: 0 0.5rem;
     }
 
+    /* Scroll animation styles */
+    .animate-on-scroll {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+      will-change: opacity, transform;
+    }
+
+    .animate-on-scroll.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
     @keyframes fadeInUp {
       from {
         opacity: 0;
@@ -243,16 +266,14 @@
       }
     }
 
-    .letter {
-      display: inline-block;
-      opacity: 0;
-      transform: translateY(20px);
-      transition: all 0.4s ease-out;
-    }
-
-    .stagger-letters.in-view .letter {
-      opacity: 1;
-      transform: translateY(0);
+    @keyframes float {
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+      50% {
+        transform: translateY(8px);
+      }
     }
 
     footer {
@@ -296,34 +317,69 @@
 <body>
   <div data-barba="wrapper">
     <header>
-      <a href="index.html" class="logo" aria-label="DPI850 homepage" style="display:inline-block; width:320px; height:80px;">
+      <a
+        href="index.html"
+        class="logo"
+        aria-label="DPI850 homepage"
+        style="display:inline-block; width:320px; height:80px;"
+      >
         <svg
-          width="320" height="80" viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg"
-          role="img" aria-label="DPI850.com logo"
+          width="320"
+          height="80"
+          viewBox="0 0 320 80"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          role="img"
+          aria-label="DPI850.com logo"
           style="display:block; width:100%; height:100%;"
         >
           <defs>
             <linearGradient id="gradBlueOrange" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#1A73E8"/>
-              <stop offset="100%" stop-color="#FF5722"/>
+              <stop offset="0%" stop-color="#1A73E8" />
+              <stop offset="100%" stop-color="#FF5722" />
             </linearGradient>
-            <filter id="dropShadow" x="-10%" y="-10%" width="120%" height="120%" color-interpolation-filters="sRGB">
-              <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.25"/>
+            <filter
+              id="dropShadow"
+              x="-10%"
+              y="-10%"
+              width="120%"
+              height="120%"
+              color-interpolation-filters="sRGB"
+            >
+              <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.25" />
             </filter>
           </defs>
-          
-          <rect x="10" y="20" width="8" height="8" fill="url(#gradBlueOrange)" filter="url(#dropShadow)" rx="1"/>
-          <rect x="22" y="20" width="8" height="8" fill="#FF5722" rx="1"/>
-          <rect x="10" y="32" width="8" height="8" fill="#1A73E8" rx="1"/>
-          
-          <text x="45" y="50" font-family="'Share Tech Mono', monospace" font-weight="800" font-size="40" fill="url(#gradBlueOrange)" filter="url(#dropShadow)" letter-spacing="2">
+
+          <rect x="10" y="20" width="8" height="8" fill="url(#gradBlueOrange)" filter="url(#dropShadow)" rx="1" />
+          <rect x="22" y="20" width="8" height="8" fill="#FF5722" rx="1" />
+          <rect x="10" y="32" width="8" height="8" fill="#1A73E8" rx="1" />
+
+          <text
+            x="45"
+            y="50"
+            font-family="'Share Tech Mono', monospace"
+            font-weight="800"
+            font-size="40"
+            fill="url(#gradBlueOrange)"
+            filter="url(#dropShadow)"
+            letter-spacing="2"
+          >
             DPI
           </text>
-          
-          <text x="140" y="50" font-family="'Share Tech Mono', monospace" font-weight="600" font-size="40" fill="#FF5722" filter="url(#dropShadow)" letter-spacing="3">
+
+          <text
+            x="140"
+            y="50"
+            font-family="'Share Tech Mono', monospace"
+            font-weight="600"
+            font-size="40"
+            fill="#FF5722"
+            filter="url(#dropShadow)"
+            letter-spacing="3"
+          >
             850
           </text>
-          
+
           <text x="230" y="50" font-family="'Share Tech Mono', monospace" font-weight="400" font-size="20" fill="#666" letter-spacing="1">
             .com
           </text>
@@ -337,30 +393,44 @@
 
     <main data-barba="container" data-barba-namespace="home">
       <section class="banner">
-        <h1>who is dpi850</h1>
-        <p>programmer shaped by a philosophy</p>
-        <p></p>
-        <p></p>
-        <h2>foundations of the code</h2>
-        <p>pre·ci·sion</p>
-        <p>pur·pose</p>
-        <p>clar·i·ty</p>
+        <h1 class="animate-on-scroll">who is dpi850</h1>
+        <p class="animate-on-scroll">programmer shaped by a philosophy</p>
+        <h2 class="animate-on-scroll">foundations of the code</h2>
+        <p class="animate-on-scroll">pre·ci·sion</p>
+        <p class="animate-on-scroll">pur·pose</p>
+        <p class="animate-on-scroll">clar·i·ty</p>
       </section>
     </main>
 
     <footer>
       <div class="footer-socials" role="contentinfo" aria-label="Social media links">
-
-        <a href="https://github.com/dpi850" target="_blank" aria-label="GitHub" rel="noopener noreferrer" class="social-icon">
+        <a
+          href="https://github.com/dpi850"
+          target="_blank"
+          aria-label="GitHub"
+          rel="noopener noreferrer"
+          class="social-icon"
+        >
           <i class="fab fa-github"></i>
         </a>
-        <a href="https://www.youtube.com/@dpi-850" target="_blank" aria-label="YouTube" rel="noopener noreferrer" class="social-icon">
+        <a
+          href="https://www.youtube.com/@dpi-850"
+          target="_blank"
+          aria-label="YouTube"
+          rel="noopener noreferrer"
+          class="social-icon"
+        >
           <i class="fab fa-youtube"></i>
         </a>
-        <a href="https://imgur.com/user/dpi850" target="_blank" aria-label="Imgur" rel="noopener noreferrer" class="social-icon">
+        <a
+          href="https://imgur.com/user/dpi850"
+          target="_blank"
+          aria-label="Imgur"
+          rel="noopener noreferrer"
+          class="social-icon"
+        >
           <i class="fas fa-image"></i>
-        </a>  
-        
+        </a>
       </div>
       <div class="footer-text">© 2025 DPI850.com | All rights reserved.</div>
     </footer>
@@ -405,5 +475,30 @@
       ]
     });
   </script>
+
+  <script>
+    // Animate elements on scroll when they enter the viewport
+    document.addEventListener('DOMContentLoaded', () => {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+      };
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+      });
+    });
+  </script>
 </body>
 </html>
+
