@@ -12,35 +12,19 @@
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
   <link rel="manifest" href="/manifest.webmanifest" />
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff6600" />
   <meta name="theme-color" content="#0d0d0d" />
 
-  <!-- Web Manifest -->
-  <link rel="manifest" href="/manifest.webmanifest" />
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <!-- Alegreya for body text -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  />
-  <!-- Share Tech Mono for navigation and logo/headings -->
-  <link
-    href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-  />
   <style>
     :root {
-      --bg-color: #0d0d0d;
+      --bg-color: #151515;
       --text-color: #e0e0e0;
       --accent: #ff6600;
       --accent-glow: rgba(255, 102, 0, 0.6);
@@ -56,7 +40,7 @@
 
     body {
       font-family: 'Alegreya', serif;
-      font-weight: 300;
+      font-weight: 400;
       line-height: 1.5;
       background: var(--bg-color);
       color: var(--text-color);
@@ -78,7 +62,6 @@
       background: black;
     }
 
-    /* Updated header styles */
     header {
       background: rgba(20, 20, 20, 0.5);
       backdrop-filter: saturate(180%) blur(14px);
@@ -100,7 +83,6 @@
       width: 320px;
       height: 80px;
       color: transparent;
-      letter-spacing: normal;
       font-size: 0;
       user-select: none;
       text-decoration: none;
@@ -268,18 +250,21 @@
       gap: 0.5rem;
     }
 
-    .banner h1 {
+    .banner h1,
+    .banner h3 {
       font-family: 'Share Tech Mono', monospace;
+      text-shadow: 0 0 10px rgba(255, 102, 0, 0.7);
+      max-width: 90vw;
+    }
+
+    .banner h1 {
       font-size: 5rem;
       margin-bottom: 0.6rem;
-      text-shadow: 0 0 10px rgba(255, 102, 0, 0.7);
-      opacity: 0;
-      animation: fadeInUp 1s ease forwards;
-      animation-delay: 0.3s;
-      white-space: nowrap;
-      overflow: hidden;
-      max-width: 90vw;
-      text-overflow: ellipsis;
+    }
+
+    .banner h3 {
+      font-size: 2rem;
+      margin-top: 2rem;
     }
 
     .banner p {
@@ -287,11 +272,8 @@
       font-weight: 300;
       font-size: 1.8rem;
       color: rgba(255, 136, 0, 0.8);
-      opacity: 0;
-      animation: fadeInUp 1s ease forwards;
-      animation-delay: 1s;
       max-width: 600px;
-      margin-bottom: 4rem;
+      margin-bottom: 1rem;
       padding: 0 0.5rem;
     }
 
@@ -304,6 +286,18 @@
         opacity: 1;
         transform: translateY(0);
       }
+    }
+
+    .letter {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.4s ease-out;
+    }
+
+    .stagger-letters.in-view .letter {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     footer {
@@ -321,10 +315,8 @@
   </style>
 </head>
 <body>
-  <canvas id="starfield"></canvas>
-
   <header>
-    <a href="index.html" class="logo" aria-label="DPI850 homepage" style="display:inline-block; width:320px; height:80px;">
+        <a href="index.html" class="logo" aria-label="DPI850 homepage" style="display:inline-block; width:320px; height:80px;">
       <svg
         width="320" height="80" viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg"
         role="img" aria-label="DPI850.com logo"
@@ -376,10 +368,11 @@
 
   <main>
     <section class="banner">
-      <h1>Who is DPI850</h1>
+      <h1>who is dpi850</h1>
       <p>programmer shaped by a philosophy</p>
-      <h3>Foundations of the Code</h3>
-      <p>pre·ci·sion</p>
+      <h3>foundations of the code</h3>
+ 
+	  <p>pre·ci·sion</p>
       <p>pur·pose</p>
       <p>clar·i·ty</p>
     </section>
@@ -388,5 +381,6 @@
   <footer>
     © 2025 DPI850.com | All rights reserved.
   </footer>
+
 </body>
 </html>
