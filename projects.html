@@ -49,7 +49,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 1.5rem;
+      padding: 1rem 1rem;
       position: sticky;
       top: 0;
       z-index: 100;
@@ -256,10 +256,31 @@
 
   <main>
     <article class="content" role="main">
-      <h1>Projects</h1>
 
       <section class="project">
-        <h2>BrowseTXT</h2>
+	  
+		<h1>In the Works: A Windows PDF Reader Built with PyMuPDF</h1>
+	  
+		<p>Reading PDFs on Windows has become a daily routine—whether reviewing documents or reading guides. Unfortunately, most off-the-shelf PDF readers felt bloated or slow, and I wanted fine-grained control over rendering and annotation without pulling in dozens of megabytes of dependencies.
+
+		<p>That’s why I decided to build a pure-Python PDF viewer using PyMuPDF (a.k.a. Fitz) for parsing/rendering, paired with PyQt5 for the UI layer. In this post, I’ll walk through why I chose this stack, how the application is structured, 
+		and lessons learned along the way—all focused on the Windows platform.</P>
+
+		<p>Key Features Overview</p>
+
+		<p>Fast Page Rendering (Windows-optimized). Uses PyMuPDF’s native C backbone to generate bitmaps quickly. Lazy-loads pages: only the current viewport (and optionally the next page) is rendered.</p>
+		<p>Lightweight & Python-Only
+		<p>Pure Python code—no heavyweight Electron or .NET dependencies. Single executable under 15 MB (after packaging with PyInstaller).</p>
+
+		<p>Built with PyQt5 to match native Windows controls (File dialog, menus). Keyboard shortcuts familiar to Windows users: Ctrl+O for open, Ctrl+F for find, Ctrl++/Ctrl– to zoom, PageUp/PageDown to navigate pages.</p>
+
+		<p>One-click search bar builds an on-the-fly inverted index over all pages. Jumps directly to matching page and highlights occurrences.</p>
+		
+		<p>Check back soon for more updates.</p>
+	  
+	 </section>
+
+        <h1>BrowseTXT</h1>
         <p>6/2/2025</p> 
 		<p>BrowseTXT is a minimalist, text-only web browser designed for speed, efficiency, and distraction-free browsing. It strips away all images, scripts, and media to deliver clean, fast-loading web pages focused purely on textual content. Ideal for users who want to save bandwidth, improve accessibility, or enjoy a clutter-free online experience.</p>
 
@@ -282,7 +303,7 @@
       </section>
 
       <section class="project">
-        <h2>Python Network Utility</h2>
+        <h1>Python Network Utility</h1>
         <p>5/30/2025</p> 
 		<p>An all-in-one command-line tool built with Python to streamline network diagnostics and troubleshooting. Features include port scanning, DNS cache display, ARP inspection, and IP management — empowering users with quick and actionable network insights.
         <p>Technologies Used: Python, Socket Programming, CLI</p>
@@ -291,11 +312,9 @@
           <img src="https://raw.githubusercontent.com/dpi850/site/refs/heads/main/images/networkutil_1.PNG" alt="Python Network Utility Screenshot" />
         </div>
       </section>
-
-      <p><a href="index.html">← Back to Home</a></p>
+      <p><a href="index.html">← Back</a></p>
     </article>
   </main>
-
   <footer>
     &copy; 2025 DPI850.com. Designed by dpi850.
   </footer>
