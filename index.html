@@ -29,6 +29,9 @@
   <link
     rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    integrity="sha512-pVUv37Qm6VR9RcyqY6r0zpo+XRBXJztZtFzxJ7qTk6iW0+j+Xg0CkntjxT5P8n0xN+tBJYcXKgqE1tV8FPhOg=="
+    crossorigin="anonymous"
+    referrerpolicy="no-referrer"
   />
 
   <style>
@@ -41,7 +44,7 @@
       --border-glow: 1px solid rgba(255, 102, 0, 1);
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -50,7 +53,7 @@
     body {
       font-family: 'Alegreya', serif;
       font-weight: 400;
-      line-height: 1;
+      line-height: 1.4;
       background: var(--bg-color);
       color: var(--text-color);
       display: flex;
@@ -59,18 +62,6 @@
       position: relative;
       overflow-x: hidden;
       perspective: 1500px; /* Needed for 3D flip */
-    }
-
-    #starfield {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      z-index: 0;
-      pointer-events: none;
-      background: black;
-      animation: float 12s ease-in-out infinite;
     }
 
     header {
@@ -91,12 +82,12 @@
 
     .logo {
       display: inline-block;
-      width: 400px;
-      height: 90px;
-      color: transparent;
-      font-size: 0;
+      width: 320px;
+      height: 80px;
       user-select: none;
       text-decoration: none;
+      color: transparent;
+      font-size: 0;
     }
 
     nav {
@@ -139,14 +130,13 @@
       color: #ff8a33;
       text-shadow: 0 0 10px rgba(255, 138, 51, 0.7);
       transform: scale(1.07);
+      outline-offset: 3px;
     }
 
     nav a:hover::after,
     nav a:focus-visible::after {
       transform: scaleX(1);
     }
-
-    /* Removed .social-icons from header */
 
     @media (max-width: 800px) {
       header {
@@ -170,7 +160,7 @@
 
       nav a {
         font-size: 1rem;
-        padding: 0rem 0;
+        padding: 0;
       }
     }
 
@@ -216,10 +206,12 @@
     }
 
     .banner h1,
-    .banner h3 {
+    .banner h2,
+    .banner p {
       font-family: 'Share Tech Mono', monospace;
       text-shadow: 0 0 10px rgba(255, 102, 0, 0.7);
       max-width: 90vw;
+      margin: 0;
     }
 
     .banner h1 {
@@ -227,7 +219,7 @@
       margin-bottom: 8rem;
     }
 
-    .banner h3 {
+    .banner h2 {
       font-size: 2rem;
       margin-top: 1rem;
     }
@@ -244,7 +236,7 @@
 
     /* Scroll animation styles */
     .animate-on-scroll {
-      opacity: 1;
+      opacity: 0;
       transform: translateY(30px);
       transition: opacity 0.8s ease-out, transform 0.8s ease-out;
       will-change: opacity, transform;
@@ -267,8 +259,7 @@
     }
 
     @keyframes float {
-      0%,
-      100% {
+      0%, 100% {
         transform: translateY(0);
       }
       50% {
@@ -391,8 +382,8 @@
       </nav>
     </header>
 
-    <main data-barba="container" data-barba-namespace="home">
-      <section class="banner">
+    <main data-barba="container" data-barba-namespace="home" tabindex="-1">
+      <section class="banner" aria-label="Introduction banner">
         <h1 class="animate-on-scroll">who is dpi850</h1>
         <p class="animate-on-scroll">programmer shaped by a philosophy</p>
         <h2 class="animate-on-scroll">foundations of the code</h2>
@@ -411,7 +402,7 @@
           rel="noopener noreferrer"
           class="social-icon"
         >
-          <i class="fab fa-github"></i>
+          <i class="fab fa-github" aria-hidden="true"></i>
         </a>
         <a
           href="https://www.youtube.com/@dpi-850"
@@ -420,7 +411,7 @@
           rel="noopener noreferrer"
           class="social-icon"
         >
-          <i class="fab fa-youtube"></i>
+          <i class="fab fa-youtube" aria-hidden="true"></i>
         </a>
         <a
           href="https://imgur.com/user/dpi850"
@@ -429,7 +420,7 @@
           rel="noopener noreferrer"
           class="social-icon"
         >
-          <i class="fas fa-image"></i>
+          <i class="fas fa-image" aria-hidden="true"></i>
         </a>
       </div>
       <div class="footer-text">© 2025 DPI850.com | All rights reserved.</div>
@@ -501,4 +492,5 @@
   </script>
 </body>
 </html>
+
 
