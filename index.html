@@ -31,6 +31,7 @@
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <style>
 :root {
@@ -76,6 +77,11 @@
       /* margin: 0; and padding: 0; are also set above */
     }
 
+    /* Prevent body scrolling when menu is open */
+    body.menu-open {
+        overflow: hidden;
+    }
+
     /* Optional: Add a subtle overlay for better text readability */
     body::before {
       content: '';
@@ -114,34 +120,85 @@
       font-size: 0;
     }
 
-    nav {
-      display: flex;
-      gap: 3rem;
-      flex: 1;
-      justify-content: flex-end;
-      align-items: center;
-      position: relative;
+       /* Hamburger Menu Button - Always visible */
+    .hamburger {
+      display: block; /* Always show the hamburger button */
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 110; /* Ensure it's above the menu overlay */
     }
 
-    nav a {
+    .hamburger .menuIcon,
+    .hamburger .closeIcon {
+      color: var(--accent); /* This will be orange from projects.html's root */
+      font-size: 2.5rem; /* Adjust icon size as needed */
+      filter: drop-shadow(0 0 8px var(--accent-glow)); /* Use accent-glow from projects.html's root */
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .hamburger .closeIcon {
+      display: none; /* Initially hidden */
+    }
+
+    /* Styles when hamburger is active */
+    .hamburger.active .menuIcon {
+      display: none;
+    }
+
+    .hamburger.active .closeIcon {
+      display: block;
+    }
+
+    /* Full-screen Navigation Menu Overlay */
+    nav.menu { /* Changed from just `nav` to `nav.menu` to match JS and avoid conflicts */
+      display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.95); /* Adjusted to match projects.html's header background a bit more, slightly darker */
+      backdrop-filter: saturate(180%) blur(14px); /* Consistent blur with header */
+      box-shadow: 0 0 25px var(--accent-glow); /* Use accent-glow from projects.html */
+      z-index: 105;
+      justify-content: center;
+      align-items: center;
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+      padding: 0;
+      gap: 2rem;
+    }
+
+    /* Styles for when menu is shown */
+    nav.menu.showMenu {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Styles for individual menu items within the overlay */
+    nav.menu a { /* Target links specifically within the menu class */
       font-family: 'Share Tech Mono', monospace;
       font-weight: 600;
-      font-size: 1rem;
-      color: #fff;
+      font-size: 2rem; /* Larger font size for full-screen menu */
+      color: var(--text); /* Use text color from projects.html's root */
       text-decoration: none;
       position: relative;
-      padding: 0.5rem 0;
+      padding: 1rem 0; /* More padding for clickability */
       transition: color 0.35s ease, text-shadow 0.35s ease, transform 0.25s ease;
       user-select: none;
     }
 
-    nav a::after {
+    nav.menu a.menuItem::after {
       content: '';
       position: absolute;
       left: 0;
-      bottom: -4px;
+      bottom: 8px; /* Adjusted position for larger font */
       width: 100%;
-      height: 3px;
+      height: 4px; /* Thicker underline */
       background: linear-gradient(90deg, #ff6600, #ffa64d);
       border-radius: 3px;
       transform: scaleX(0);
@@ -149,43 +206,33 @@
       transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    nav a:hover,
-    nav a:focus-visible {
+    nav.menu a.menuItem:hover,
+    nav.menu a.menuItem:focus-visible {
       color: #ff8a33;
-      text-shadow: 0 0 10px rgba(255, 138, 51, 0.7);
-      transform: scale(1.07);
+      text-shadow: 0 0 15px rgba(255, 138, 51, 0.9); /* Stronger glow */
+      transform: scale(1.1); /* Slightly larger scale on hover */
       outline-offset: 3px;
     }
 
-    nav a:hover::after,
-    nav a:focus-visible::after {
+    nav.menu a.menuItem:hover::after,
+    nav.menu a.menuItem:focus-visible::after {
       transform: scaleX(1);
     }
 
+
+    /* Responsive adjustments for header/logo (unrelated to hamburger display) */
     @media (max-width: 800px) {
       header {
-        flex-wrap: wrap;
+        flex-wrap: nowrap; /* Prevent wrapping for header elements */
         padding: 1rem 1.2rem;
       }
 
       .logo {
         width: 280px;
         height: 70px;
-        margin-bottom: 0.5rem;
+        margin-bottom: 0; /* Ensure no extra margin */
       }
-
-      nav {
-        flex: 1 1 100%;
-        justify-content: center;
-        gap: 1.8rem;
-        position: static;
-        margin-bottom: 0.6rem;
-      }
-
-      nav a {
-        font-size: 1rem;
-        padding: 0;
-      }
+      /* No changes to nav or hamburger display needed here anymore, handled globally */
     }
 
     @media (max-width: 480px) {
@@ -198,15 +245,17 @@
         height: 55px;
       }
 
-      nav {
-        gap: 1.2rem;
+      nav.menu a.menuItem { /* Target links specifically within the overlay */
+        font-size: 1.5rem; /* Slightly smaller for very small screens */
+        padding: 0.75rem 0;
       }
 
-      nav a {
-        font-size: 1rem;
-        padding: 0.35rem 0;
+      nav.menu a.menuItem::after {
+        bottom: 6px;
+        height: 3px;
       }
     }
+
 
     main {
       flex-grow: 1;
@@ -405,10 +454,15 @@
           </text>
         </svg>
       </a>
-      <nav role="navigation" aria-label="Main navigation">
-        <a href="projects.html">Projects</a>
-        <a href="about.html">About</a>
+      <nav class="menu" role="navigation" aria-label="Main navigation">
+      <a href="index.html" class="menuItem">Home</a>
+	  <a href="projects.html" class="menuItem">Projects</a>
+      <a href="about.html" class="menuItem">About</a>
       </nav>
+      <button class="hamburger" aria-label="Toggle navigation menu">
+        <i class="menuIcon material-icons">menu</i>
+        <i class="closeIcon material-icons">close</i>
+      </button>
     </header>
 
     <main data-barba="container" data-barba-namespace="home" tabindex="-1">
@@ -541,6 +595,35 @@
       document.querySelectorAll('.animate-on-scroll').forEach(el => {
         observer.observe(el);
       });
+    });
+
+    // Hamburger Menu JavaScript
+    const menu = document.querySelector(".menu");
+    const hamburger = document.querySelector(".hamburger");
+    const closeIcon = document.querySelector(".closeIcon");
+    const menuIcon = document.querySelector(".menuIcon");
+    const menuItems = document.querySelectorAll(".menuItem");
+
+    function toggleMenu() {
+      if (menu.classList.contains("showMenu")) {
+        menu.classList.remove("showMenu");
+        closeIcon.style.display = "none";
+        menuIcon.style.display = "block";
+        hamburger.classList.remove("active");
+        document.body.classList.remove("menu-open"); // Allow body scrolling
+      } else {
+        menu.classList.add("showMenu");
+        closeIcon.style.display = "block";
+        menuIcon.style.display = "none";
+        hamburger.classList.add("active");
+        document.body.classList.add("menu-open"); // Prevent body scrolling
+      }
+    }
+
+    hamburger.addEventListener("click", toggleMenu);
+
+    menuItems.forEach((menuItem) => {
+      menuItem.addEventListener("click", toggleMenu);
     });
   </script>
 </body>

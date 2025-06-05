@@ -5,8 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Projects — DPI850.com</title>
   
- <!-- Favicon -->
-  <link rel="icon" href="/favicon.png" />
+ <link rel="icon" href="/favicon.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
   <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
@@ -15,9 +14,9 @@
   <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff6600" />
   <meta name="theme-color" content="#0d0d0d" />
 
-  <!-- Typography -->
   <link href="https://fonts.googleapis.com/css2?family=Alegreya:wght@400;500;600&display=swap" rel="stylesheet" />
   <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
   <style>
     :root {
@@ -44,6 +43,11 @@
       overflow-x: hidden;
     }
 
+    /* Prevent body scrolling when menu is open */
+    body.menu-open {
+        overflow: hidden;
+    }
+
     header {
       background: #000000;
       display: flex;
@@ -65,40 +69,103 @@
       text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
     }
 
-    nav {
+    /* Hamburger Menu Button - Always visible */
+    .hamburger {
+      display: block; /* Always show the hamburger button */
+      background: transparent;
+      border: none;
+      cursor: pointer;
+      padding: 10px;
+      z-index: 110; /* Ensure it's above the menu overlay */
+    }
+
+    .hamburger .menuIcon,
+    .hamburger .closeIcon {
+      color: var(--accent); /* This will be orange from projects.html's root */
+      font-size: 2.5rem; /* Adjust icon size as needed */
+      filter: drop-shadow(0 0 8px var(--accent-glow)); /* Use accent-glow from projects.html's root */
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    .hamburger .closeIcon {
+      display: none; /* Initially hidden */
+    }
+
+    /* Styles when hamburger is active */
+    .hamburger.active .menuIcon {
+      display: none;
+    }
+
+    .hamburger.active .closeIcon {
+      display: block;
+    }
+
+    /* Full-screen Navigation Menu Overlay */
+    nav.menu { /* Changed from just `nav` to `nav.menu` to match JS and avoid conflicts */
       display: flex;
+      flex-direction: column;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.95); /* Adjusted to match projects.html's header background a bit more, slightly darker */
+      backdrop-filter: saturate(180%) blur(14px); /* Consistent blur with header */
+      box-shadow: 0 0 25px var(--accent-glow); /* Use accent-glow from projects.html */
+      z-index: 105;
+      justify-content: center;
+      align-items: center;
+      transform: translateY(-100%);
+      opacity: 0;
+      transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+      padding: 0;
       gap: 2rem;
     }
 
-    nav a {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 1rem;
-      color: #fff;
-      text-decoration: none;
-      position: relative;
-      transition: 0.3s;
+    /* Styles for when menu is shown */
+    nav.menu.showMenu {
+      transform: translateY(0);
+      opacity: 1;
     }
 
-    nav a::after {
+    /* Styles for individual menu items within the overlay */
+    nav.menu a { /* Target links specifically within the menu class */
+      font-family: 'Share Tech Mono', monospace;
+      font-weight: 600;
+      font-size: 2rem; /* Larger font size for full-screen menu */
+      color: var(--text); /* Use text color from projects.html's root */
+      text-decoration: none;
+      position: relative;
+      padding: 1rem 0; /* More padding for clickability */
+      transition: color 0.35s ease, text-shadow 0.35s ease, transform 0.25s ease;
+      user-select: none;
+    }
+
+    nav.menu a::after {
       content: '';
       position: absolute;
       left: 0;
-      bottom: -2px;
+      bottom: 8px;
       width: 100%;
-      height: 2px;
-      background: #fff;
+      height: 4px;
+      background: var(--accent); /* Use accent from projects.html's root */
+      border-radius: 3px;
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.3s ease;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    nav a:hover::after {
+    nav.menu a:hover,
+    nav.menu a:focus-visible {
+      color: var(--accent); /* Use accent from projects.html's root */
+      text-shadow: 0 0 15px var(--accent-glow); /* Use accent-glow from projects.html's root */
+      transform: scale(1.1);
+      outline-offset: 3px;
+    }
+
+    nav.menu a:hover::after,
+    nav.menu a:focus-visible::after {
       transform: scaleX(1);
-    }
-
-    nav a:hover {
-      color: var(--accent);
-      text-shadow: 0 0 6px var(--accent-glow);
     }
 
     main {
@@ -196,10 +263,11 @@
       to   { opacity: 1; transform: translateY(0); }
     }
 
+    /* Responsive adjustments for header/nav */
     @media (max-width: 768px) {
-      nav {
-        flex-direction: column;
-        gap: 1rem;
+      header {
+        flex-wrap: nowrap; /* Ensure logo and hamburger stay on one line */
+        padding: 1rem 1.5rem; /* Adjust padding as needed */
       }
 
       .content {
@@ -209,6 +277,22 @@
       .content h1 {
         font-size: 2rem;
       }
+    }
+
+    @media (max-width: 480px) {
+        header {
+          padding: 0.8rem 1rem;
+        }
+
+        nav.menu a { /* Target links specifically within the overlay */
+          font-size: 1.5rem; /* Slightly smaller for very small screens */
+          padding: 0.75rem 0;
+        }
+
+        nav.menu a::after {
+          bottom: 6px;
+          height: 3px;
+        }
     }
   </style>
 </head>
@@ -247,11 +331,15 @@
         </text>
       </svg>
     </a>
-    <nav role="navigation" aria-label="Main navigation">
-      <a href="index.html">Home</a>
-      <a href="projects.html" aria-current="page">Projects</a>
-      <a href="about.html">About</a>
+    <nav class="menu" role="navigation" aria-label="Main navigation">
+      <a href="index.html" class="menuItem">Home</a>
+	  <a href="projects.html" class="menuItem">Projects</a>
+      <a href="about.html" class="menuItem">About</a>
     </nav>
+    <button class="hamburger" aria-label="Toggle navigation menu">
+      <i class="menuIcon material-icons">menu</i>
+      <i class="closeIcon material-icons">close</i>
+    </button>
   </header>
 
   <main>
@@ -260,42 +348,28 @@
       <section class="project">
 	  
 		<h1>In the Works: A Windows PDF Reader Built with PyMuPDF</h1>
-	      
-	        <p>6/4/2025</p>
-		
-	        <p>Reading PDFs on Windows has become a daily routine—whether reviewing documents or reading guides. Unfortunately, most off-the-shelf PDF readers felt bloated or slow, and I wanted fine-grained control over rendering and annotation without pulling in dozens of megabytes of dependencies.
-
+	  
+		<p>Reading PDFs on Windows has become a daily routine—whether reviewing documents or reading guides. Unfortunately, most off-the-shelf PDF readers felt bloated or slow, and I wanted fine-grained control over rendering and annotation without pulling in dozens of megabytes of dependencies.
 		<p>That’s why I decided to build a pure-Python PDF viewer using PyMuPDF (a.k.a. Fitz) for parsing/rendering, paired with PyQt5 for the UI layer. In this post, I’ll walk through why I chose this stack, how the application is structured, 
 		and lessons learned along the way—all focused on the Windows platform.</P>
-
 		<p>Key Features Overview</p>
-
 		<p>Fast Page Rendering (Windows-optimized). Uses PyMuPDF’s native C backbone to generate bitmaps quickly. Lazy-loads pages: only the current viewport (and optionally the next page) is rendered.</p>
 		<p>Lightweight & Python-Only
 		<p>Pure Python code—no heavyweight Electron or .NET dependencies. Single executable under 15 MB (after packaging with PyInstaller).</p>
-
 		<p>Built with PyQt5 to match native Windows controls (File dialog, menus). Keyboard shortcuts familiar to Windows users: Ctrl+O for open, Ctrl+F for find, Ctrl++/Ctrl– to zoom, PageUp/PageDown to navigate pages.</p>
-
 		<p>One-click search bar builds an on-the-fly inverted index over all pages. Jumps directly to matching page and highlights occurrences.</p>
-		
 		<p>Check back soon for more updates.</p>
-	  
 	 </section>
 
         <h1>BrowseTXT</h1>
         <p>6/2/2025</p> 
-		<p>BrowseTXT is a minimalist, text-only web browser designed for speed, efficiency, and distraction-free browsing. It strips away all images, scripts, and media to deliver clean, fast-loading web pages focused purely on textual content. Ideal for users who want to save bandwidth, improve accessibility, or enjoy a clutter-free online experience.</p>
+		<p>BrowseTXT is a minimalist, text-only web browser designed for speed, efficiency, and distraction-free Browse. It strips away all images, scripts, and media to deliver clean, fast-loading web pages focused purely on textual content. Ideal for users who want to save bandwidth, improve accessibility, or enjoy a clutter-free online experience.</p>
 
 		<p>Key Features:
-
 		Ultra-lightweight and fast-loading interface |
-
 		Supports essential navigation with keyboard shortcuts |
-
-		Perfect for low-bandwidth environments or accessibility-focused browsing |
-
+		Perfect for low-bandwidth environments or accessibility-focused Browse |
 		Open-source and easily customizable for developers<p>
-
 		<p>Watch the video on YouTube.</p>
         <div class="video-wrapper">
           <iframe src="https://www.youtube.com/embed/iM8GiMlAqzQ" title="BrowseTXT demo" frameborder="0" allowfullscreen></iframe>
@@ -318,7 +392,97 @@
     </article>
   </main>
   <footer>
-    &copy; 2025 DPI850.com. Designed by dpi850.
+    © 2025 DPI850.com | Designed by DPI850. | All rights reserved.
   </footer>
+  <script src="https://unpkg.com/@barba/core"></script>
+  <script>
+    barba.init({
+      transitions: [
+        {
+          name: 'crazy-flip',
+
+          leave({ current }) {
+            return new Promise((resolve) => {
+              current.container.style.transition = 'transform 0.8s ease, opacity 0.8s ease';
+              current.container.style.transformOrigin = 'center';
+              current.container.style.transform = 'rotateY(90deg)';
+              current.container.style.opacity = '0';
+              setTimeout(resolve, 800);
+            });
+          },
+
+          enter({ next }) {
+            next.container.style.transform = 'rotateY(-90deg)';
+            next.container.style.opacity = '0';
+            next.container.style.transition = 'transform 0.8s ease, opacity 0.8s ease';
+
+            return new Promise((resolve) => {
+              requestAnimationFrame(() => {
+                next.container.style.transform = 'rotateY(0deg)';
+                next.container.style.opacity = '1';
+                setTimeout(resolve, 800);
+              });
+            });
+          },
+
+          once({ next }) {
+            next.container.style.opacity = '1';
+          }
+        }
+      ]
+    });
+  </script>
+  <script>
+    // Animate elements on scroll when they enter the viewport
+    document.addEventListener('DOMContentLoaded', () => {
+      const observerOptions = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0.2
+      };
+
+      const observer = new IntersectionObserver((entries, obs) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, observerOptions);
+
+      document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+      });
+    });
+
+    // Hamburger Menu JavaScript
+    const menu = document.querySelector(".menu");
+    const hamburger = document.querySelector(".hamburger");
+    const closeIcon = document.querySelector(".closeIcon");
+    const menuIcon = document.querySelector(".menuIcon");
+    const menuItems = document.querySelectorAll(".menuItem");
+
+    function toggleMenu() {
+      if (menu.classList.contains("showMenu")) {
+        menu.classList.remove("showMenu");
+        closeIcon.style.display = "none";
+        menuIcon.style.display = "block";
+        hamburger.classList.remove("active");
+        document.body.classList.remove("menu-open"); // Allow body scrolling
+      } else {
+        menu.classList.add("showMenu");
+        closeIcon.style.display = "block";
+        menuIcon.style.display = "none";
+        hamburger.classList.add("active");
+        document.body.classList.add("menu-open"); // Prevent body scrolling
+      }
+    }
+
+    hamburger.addEventListener("click", toggleMenu);
+
+    menuItems.forEach((menuItem) => {
+      menuItem.addEventListener("click", toggleMenu);
+    });
+  </script>
 </body>
 </html>
