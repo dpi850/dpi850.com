@@ -185,28 +185,14 @@
       font-weight: 600;
       font-size: 2rem; /* Larger font size for full-screen menu */
       color: var(--text); /* Use text color from projects.html's root */
-      text-decoration: underline;
+      text-decoration: none;
       position: relative;
       padding: 1rem 0; /* More padding for clickability */
       transition: color 0.35s ease, text-shadow 0.35s ease, transform 0.25s ease;
       user-select: none;
     }
 
-    nav.menu a.menuItem::after {
-      content: '';
-      position: absolute;
-      left: 0;
-      bottom: 8px; /* Adjusted position for larger font */
-      width: 100%;
-      height: 4px; /* Thicker underline */
-      background: linear-gradient(90deg, #ff6600, #ffa64d);
-      border-radius: 3px;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-    }
-
-   nav.menu a::after {
+    nav.menu a::after {
       content: '';
       position: absolute;
       left: 0;
@@ -220,13 +206,7 @@
       transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    nav.menu a:hover,
-    nav.menu a:focus-visible {
-      color: var(--accent); /* Use accent from projects.html's root */
-      text-shadow: 0 0 15px var(--accent-glow); /* Use accent-glow from projects.html's root */
-      transform: scale(1.1);
-      outline-offset: 3px;
-    }
+
 
     nav.menu a:hover::after,
     nav.menu a:focus-visible::after {
@@ -258,7 +238,7 @@
       }
 
       nav.menu a.menuItem::after {
-        bottom: 6px;
+        bottom: 5px;
         height: 3px;
       }
     }
@@ -634,7 +614,8 @@
           <i class="fas fa-image" aria-hidden="true"></i>
         </a>
       </div>
-      <div class="footer-text">© 2025 DPI850.com | Designed by DPI850. | All rights reserved.</div>
+      <div class="footer-text">| website built with love from the ground up |</div>
+	  <div class="footer-text">© 2025 DPI850.com | Designed by DPI850. | All rights reserved.</div>
     </footer>
   </div>
 
@@ -728,6 +709,7 @@
     menuItems.forEach((menuItem) => {
       menuItem.addEventListener("click", toggleMenu);
     });
+	
   </script>
 </body>
 </html>
