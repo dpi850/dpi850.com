@@ -69,7 +69,7 @@
       text-shadow: 0 0 5px rgba(255, 255, 255, 0.6);
     }
 
-    /* Hamburger Menu Button - Always visible */
+   /* Hamburger Menu Button - Always visible */
     .hamburger {
       display: block; /* Always show the hamburger button */
       background: transparent;
@@ -128,13 +128,13 @@
       opacity: 1;
     }
 
-    /* Styles for individual menu items within the overlay */
+     /* Styles for individual menu items within the overlay */
     nav.menu a { /* Target links specifically within the menu class */
       font-family: 'Share Tech Mono', monospace;
       font-weight: 600;
       font-size: 2rem; /* Larger font size for full-screen menu */
       color: var(--text); /* Use text color from projects.html's root */
-      text-decoration: none;
+      text-decoration: ;
       position: relative;
       padding: 1rem 0; /* More padding for clickability */
       transition: color 0.35s ease, text-shadow 0.35s ease, transform 0.25s ease;
@@ -155,18 +155,14 @@
       transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    nav.menu a:hover,
-    nav.menu a:focus-visible {
-      color: var(--accent); /* Use accent from projects.html's root */
-      text-shadow: 0 0 15px var(--accent-glow); /* Use accent-glow from projects.html's root */
-      transform: scale(1.1);
-      outline-offset: 3px;
-    }
+
 
     nav.menu a:hover::after,
     nav.menu a:focus-visible::after {
       transform: scaleX(1);
     }
+
+
 
     main {
       flex: 1;
