@@ -120,7 +120,7 @@
       font-size: 0;
     }
 
-       /* Hamburger Menu Button - Always visible */
+   /* Hamburger Menu Button - Always visible */
     .hamburger {
       display: block; /* Always show the hamburger button */
       background: transparent;
@@ -185,7 +185,7 @@
       font-weight: 600;
       font-size: 2rem; /* Larger font size for full-screen menu */
       color: var(--text); /* Use text color from projects.html's root */
-      text-decoration: none;
+      text-decoration: underline;
       position: relative;
       padding: 1rem 0; /* More padding for clickability */
       transition: color 0.35s ease, text-shadow 0.35s ease, transform 0.25s ease;
@@ -206,26 +206,33 @@
       transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
 
-    nav.menu a.menuItem:hover,
-    nav.menu a.menuItem:focus-visible {
-      color: #ff8a33;
-      text-shadow: 0 0 15px rgba(255, 138, 51, 0.9); /* Stronger glow */
-      transform: scale(1.1); /* Slightly larger scale on hover */
+   nav.menu a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 8px;
+      width: 100%;
+      height: 4px;
+      background: var(--accent); /* Use accent from projects.html's root */
+      border-radius: 3px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    nav.menu a:hover,
+    nav.menu a:focus-visible {
+      color: var(--accent); /* Use accent from projects.html's root */
+      text-shadow: 0 0 15px var(--accent-glow); /* Use accent-glow from projects.html's root */
+      transform: scale(1.1);
       outline-offset: 3px;
     }
 
-    nav.menu a.menuItem:hover::after,
-    nav.menu a.menuItem:focus-visible::after {
+    nav.menu a:hover::after,
+    nav.menu a:focus-visible::after {
       transform: scaleX(1);
     }
 
-
-    /* Responsive adjustments for header/logo (unrelated to hamburger display) */
-    @media (max-width: 800px) {
-      header {
-        flex-wrap: nowrap; /* Prevent wrapping for header elements */
-        padding: 1rem 1.2rem;
-      }
 
       .logo {
         width: 280px;
@@ -448,6 +455,8 @@
           >
             850
           </text>
+		  
+		  
 
           <text x="230" y="50" font-family="'Share Tech Mono', monospace" font-weight="400" font-size="20" fill="#666" letter-spacing="1">
             .com
@@ -486,6 +495,100 @@
         </svg>
         </section>
     </main>
+	
+	<div class="projects-container">
+  <div class="project-card"</div>
+    <h1>BrowseTXT</h1>
+    <p>Introducing BrowseTXT-a text only browser made entirely in Python.</p>
+    <a href="https://www.youtube.com/@dpi-850" target="_blank">YouTube</a>
+	<div style="position: relative; width: 100%; padding-bottom: 56.25%; height: 0;">
+  <iframe
+    src="https://www.youtube.com/embed/videoseries?list=PL1GdGcFMs4_MHOxPgxmMd1agR_ZRhGN6a"
+    frameborder="0"
+    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+    allowfullscreen
+    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;">
+  </iframe>
+</div>
+  </div>
+  <p><div class="project-card">
+    <h1>Network Utility Tool</h1>
+    <p>Custom network utility tool I made using Python libraries.</p>
+    <a href="https://github.com/dpi850/network-utilityv1" target="_blank">View on GitHub</a>
+	<img src="https://raw.githubusercontent.com/dpi850/site/refs/heads/main/images/networkutil_1.PNG" alt="Project preview" style="width: 100%; border-radius: 8px;">
+  </div>
+  <!-- Add more project cards as needed -->
+</div>
+
+<style>
+.projects-container {
+  display: flex;
+  flex-wrap: wrap; /* Allow wrap on smaller screens */
+  justify-content: center; /* Center the 2 cards */
+  gap: 15px; /* Small spacing between them */
+  padding: 30px;
+  background: linear-gradient(to right, #121212, #202020);
+}
+
+.project-card {
+  background: #353535;
+  border: 1px solid #3a3a3a;
+  border-radius: 20px;
+  padding: 20px;
+  width: 320px;
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.7);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.9);
+}
+
+.project-card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  filter: brightness(0.9);
+  transition: filter 0.3s ease;
+}
+
+.project-card:hover img {
+  filter: brightness(1);
+}
+
+.project-card h1 {
+  margin-top: 15px;
+  font-size: 1.5rem;
+  color: #f1f1f1;
+  font-weight: 700;
+}
+
+.project-card p {
+  font-size: 1rem;
+  color: #f1f1f1;
+  margin: 10px 0 15px;
+  line-height: 1.4;
+}
+
+.project-card a {
+  display: inline-block;
+  margin-top: auto;
+  color: #f2f2f2;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.project-card a:hover {
+  color: #63a4ff;
+  text-decoration: underline;
+}
+
+</style>
+
 
     <footer>
       <div class="social-icons">
