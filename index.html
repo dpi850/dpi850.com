@@ -801,7 +801,7 @@
         <div class="welcome-parallax-bg"></div> </section>
 
       <section class="project-cards-section">
-          <h2>My Projects</h2>
+          <h2>My Projects - Coded for speed. No bloat.</h2>
           <div class="project-cards-container">
               <div class="project-card animate-on-scroll">
                   
@@ -949,6 +949,17 @@
           const bgTranslateY = scrollPos * bgParallaxSpeed;
           welcomeParallaxBg.style.transform = `translate(-50%, -50%) translateY(${bgTranslateY}px)`;
         }
+
+        // Parallax for Banner H1 (welcome-title) - Removed direct JS transform to avoid conflicts with CSS animations.
+        // The 'floatingText' CSS animation already provides a subtle float, and introFlip handles the 'coming towards' on load.
+        // If you want more dramatic scroll-based parallax on the welcome-title AFTER its initial animation,
+        // you would need to manage the CSS animation state or use a JS library like GSAP for combined control.
+        // For now, we'll keep the CSS animation the primary source of motion for welcome-title.
+        // if (welcomeTitle) {
+        //   const titleSpeed = 0.05;
+        //   const titleTranslateY = scrollPos * titleSpeed;
+        //   welcomeTitle.style.transform = `translateY(${titleTranslateY}px)`;
+        // }
 
         // Parallax for other banner text elements (h2, p - excluding foundation words)
         bannerTexts.forEach(textElement => {
