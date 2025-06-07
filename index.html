@@ -817,7 +817,7 @@
               <div class="project-card animate-on-scroll">
                   
                   <div class="project-card-content">
-                      <h3>Network Utility Tool v1</h3>
+                      <h3>850NetTool</h3>
                       <p>Try this network utility tool I built entirely in Python.</p>
                       <a href="https://github.com/dpi850/network-utilityv1" class="card-link">Get it on GitHub</a>
                   </div>
@@ -949,17 +949,6 @@
           const bgTranslateY = scrollPos * bgParallaxSpeed;
           welcomeParallaxBg.style.transform = `translate(-50%, -50%) translateY(${bgTranslateY}px)`;
         }
-
-        // Parallax for Banner H1 (welcome-title) - Removed direct JS transform to avoid conflicts with CSS animations.
-        // The 'floatingText' CSS animation already provides a subtle float, and introFlip handles the 'coming towards' on load.
-        // If you want more dramatic scroll-based parallax on the welcome-title AFTER its initial animation,
-        // you would need to manage the CSS animation state or use a JS library like GSAP for combined control.
-        // For now, we'll keep the CSS animation the primary source of motion for welcome-title.
-        // if (welcomeTitle) {
-        //   const titleSpeed = 0.05;
-        //   const titleTranslateY = scrollPos * titleSpeed;
-        //   welcomeTitle.style.transform = `translateY(${titleTranslateY}px)`;
-        // }
 
         // Parallax for other banner text elements (h2, p - excluding foundation words)
         bannerTexts.forEach(textElement => {
