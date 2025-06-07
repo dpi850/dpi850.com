@@ -58,7 +58,7 @@
       font-family: 'Inter', serif;
       font-weight: 300;
       line-height: 1;
-      background: var(--bg-color); /* This will be overridden by background-image below, but keeping for fallback */
+      background-color: var(--bg-color); /* Now this is the primary background color */
       color: var(--text-color);
       display: flex;
       flex-direction: column;
@@ -66,21 +66,9 @@
       position: relative;
       overflow-x: hidden;
       perspective: 1500px; /* Needed for 3D flip */
-
-      /* Background Image CSS */
-      background-image: url('background.gif'); /* Make sure background.png is in the same directory */
-      background-size: cover; /* This makes the image cover the entire background */
-      background-position: center center; /* This centers the image */
-      background-repeat: no-repeat; /* Prevents the image from repeating */
-      background-attachment: fixed; /* Keeps the background fixed when scrolling (optional, remove if you want it to scroll with content) */
     }
 
-    /* Remove body.menu-open styles as there's no menu to open */
-    /* body.menu-open {
-        overflow: hidden;
-    } */
-
-    /* Optional: Add a subtle overlay for better text readability */
+    /* Existing subtle overlay for better text readability */
     body::before {
       content: '';
       position: fixed;
@@ -88,27 +76,28 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-color: rgba(0, 0, 0, 0.3); /* Adjust the last value (0.3) for more or less darkness */
-      z-index: -1; /* Ensures the overlay is behind your content */
+      background-color: rgba(0, 0, 0, 0.3); /* Adjust for more or less darkness */
+      z-index: -1; /* Ensures this overlay is behind your content */
     }
 
-    /* Remove overlay for menu as there is no menu */
-    /* body.menu-open::after {
-        content: '';
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: rgba(0, 0, 0, 0.7);
-        z-index: 998;
-        opacity: 0;
-        transition: opacity 0.5s ease-in-out;
+    /* NEW: Pseudo-element for the blurred background image */
+    body::after {
+      content: '';
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image: url('background.gif'); /* Your background image */
+      background-size: cover;
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-attachment: fixed; /* Keeps the background fixed when scrolling */
+      filter: blur(5px); /* Adjusted for slightly more blur */
+      -webkit-filter: blur(5px); /* For Safari compatibility */
+      z-index: -2; /* Ensures it's behind the body::before overlay and all content */
+      pointer-events: none; /* Allows clicks to pass through */
     }
-
-    body.menu-open::after {
-        opacity: 1;
-    } */
 
     header {
       background: rgba(20, 20, 20, 0.5);
@@ -133,36 +122,6 @@
       font-size: 0;
     }
 
-    /* Remove all hamburger button specific styles */
-    /* .hamburger {
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      padding: 10px;
-      z-index: 1000;
-      display: block;
-    }
-
-    .hamburger .menuIcon,
-    .hamburger .closeIcon {
-      color: var(--accent);
-      font-size: 2.5rem;
-      filter: drop-shadow(0 0 8px var(--accent-glow));
-      transition: transform 0.3s ease, filter 0.3s ease;
-    }
-
-    .hamburger .closeIcon {
-      display: none;
-    }
-
-    .hamburger.active .menuIcon {
-      display: none;
-    }
-
-    .hamburger.active .closeIcon {
-      display: block;
-    } */
-	
     /* Navigation Menu (now always visible and horizontal) */
     nav.menu {
       display: flex; /* Make it a flex container for horizontal items */
@@ -413,6 +372,22 @@
       padding: 0 0.5rem;
     }
 
+    /* Parallax for Welcome Section background element */
+    .welcome-parallax-bg {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200px; /* Adjust size */
+        height: 200px; /* Adjust size */
+        background: radial-gradient(circle at center, rgba(0, 212, 255, 0.2) 0%, rgba(0, 212, 255, 0) 70%); /* Color and fade */
+        border-radius: 50%; /* Make it circular */
+        z-index: -2; /* Ensure it's behind the content and body overlay */
+        filter: blur(5px); /* Apply blur for a soft glow effect */
+        opacity: 0.7; /* Adjust transparency */
+        transform: translate(-50%, -50%); /* Center the element */
+        will-change: transform; /* Optimize for animation */
+    }
+
 
     /* ─────────────────────────────────────────────────────────────────────────
        Scroll animation styles
@@ -485,6 +460,7 @@
       flex-direction: column;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       box-shadow: 0 0 20px rgba(0, 212, 255, 0.15); /* Subtle initial glow */
+      will-change: transform; /* Optimize for parallax animation */
     }
 
     .project-card:hover {
@@ -726,7 +702,7 @@
 
     <main data-barba="container" data-barba-namespace="home" tabindex="-1">
       <section class="banner" aria-label="Introduction banner">
-		<div class="welcome‐3d‐wrapper">
+		<div class="welcome-3d-wrapper">
 		<h1 class="welcome-title" data-text="Welcome">Welcome</h1>
 		</div>
         <h2>who is dpi850</h2>
@@ -745,7 +721,7 @@
           focusable="false"
         >
         </svg>
-      </section>
+        <div class="welcome-parallax-bg"></div> </section>
 
       <section class="project-cards-section">
           <h2>My Projects</h2>
@@ -877,6 +853,61 @@
   </script>
 
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const welcomeTitle = document.querySelector('.welcome-title');
+      const bannerTexts = document.querySelectorAll('.banner h2, .banner p'); // Targeting h2 and p tags within banner
+      const projectCards = document.querySelectorAll('.project-card');
+      const welcomeParallaxBg = document.querySelector('.welcome-parallax-bg');
+
+      function applyParallax() {
+        const scrollPos = window.scrollY;
+        const viewportHeight = window.innerHeight;
+        const viewportCenter = scrollPos + (viewportHeight / 2);
+
+        // Parallax for Welcome Section background element
+        if (welcomeParallaxBg) {
+          const bgParallaxSpeed = 0.08; /* Slower speed for the background */
+          const bgTranslateY = scrollPos * bgParallaxSpeed;
+          welcomeParallaxBg.style.transform = `translate(-50%, -50%) translateY(${bgTranslateY}px)`;
+        }
+
+        // Parallax for Banner H1 (welcome-title)
+        if (welcomeTitle) {
+          const titleSpeed = 0.05; /* Adjust speed for the title */
+          const titleTranslateY = scrollPos * titleSpeed;
+          welcomeTitle.style.transform = `translateY(${titleTranslateY}px)`;
+        }
+
+        // Parallax for other banner text elements (h2, p)
+        bannerTexts.forEach(textElement => {
+          let speed = 0.1; // Default speed
+          if (textElement.tagName === 'P') {
+            speed = 0.15; // Specific for paragraphs
+          } else if (textElement.tagName === 'H2') {
+            speed = 0.1; // Specific for h2 tags
+          }
+          const translateY = scrollPos * speed;
+          textElement.style.transform = `translateY(${translateY}px)`;
+        });
+
+        // Parallax for Project Cards (subtle float effect)
+        projectCards.forEach(card => {
+          const cardRect = card.getBoundingClientRect();
+          const cardCenterY = cardRect.top + scrollPos + (cardRect.height / 2);
+          const distance = viewportCenter - cardCenterY; // Distance from viewport center
+
+          const parallaxSpeed = 0.05; // Subtle float effect
+          const translateY = distance * parallaxSpeed;
+          card.style.transform = `translateY(${translateY}px)`;
+        });
+      }
+
+      // Initial call and attach to scroll event
+      applyParallax();
+      window.addEventListener('scroll', applyParallax);
+      window.addEventListener('resize', applyParallax); // Recalculate on resize
+    });
+
     // Animate elements on scroll when they enter the viewport
     document.addEventListener('DOMContentLoaded', () => {
       const observerOptions = {
