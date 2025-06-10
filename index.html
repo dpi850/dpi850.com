@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>DPI850.com - Official Site</title>
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-  <meta name="description" content="Welcome to DPI850.com." />
+ <meta charset="UTF-8" />
+ <meta name="viewport" content="width=device-width, initial-scale=1" />
+ <title>DPI850.com - Official Site</title>
+ <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+ <meta name="description" content="Welcome to DPI850.com." />
 
-  <link rel="icon" href="/favicon.png" />
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="manifest" href="/manifest.webmanifest" />
-  <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff6600" />
-  <meta name="theme-color" content="#0d0d0d" />
+ <link rel="icon" href="/favicon.png" />
+ <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+ <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+ <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+ <link rel="manifest" href="/manifest.webmanifest" />
+ <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff6600" />
+ <meta name="theme-color" content="#0d0d0d" />
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-    rel="stylesheet"
-  />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
-    rel="stylesheet"
-  />
-  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-    integrity="sha512-pVUv37Qm6VR9RcyqY6r0zpo+XRBXJztZtFzxJ7qTk6iW0+j+Xg0CkntjxT5P8n0xN+tBJYcXKgqE1tV8FPhOg=="
-    crossorigin="anonymous"
-    referrerpolicy="no-referrer"
-  />
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <link
+   href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+   rel="stylesheet"
+ />
+ <link
+   href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
+   rel="stylesheet"
+ />
+ <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
+ <link
+   rel="stylesheet"
+   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+   integrity="sha512-pVUv37Qm6VR9RcyqY6r0zpo+XRBXJztZtFzxJ7qTk6iW0+j+Xg0CkntjxT5P8n0xN+tBJYcXKgqE1tV8FPhOg=="
+   crossorigin="anonymous"
+   referrerpolicy="no-referrer"
+ />
+ <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
-  <style>
+ <style>
 :root {
-  --bg-color: #1a1a1d;                 /* Titanium black */
-  --text-color: #cccccc;               /* Steel gray */
-  --accent: #00d4ff;                   /* Electric blue pulse */
-  --accent-secondary: #ffd700;         /* Bright gold edge */
+  --bg-color: #1a1a1d;           /* Titanium black */
+  --text-color: #cccccc;         /* Steel gray */
+  --accent: #00d4ff;             /* Electric blue pulse */
+  --accent-secondary: #ffd700;   /* Bright gold edge */
   --accent-glow: rgba(0, 212, 255, 0.3);
   --glass-bg: rgba(255, 255, 255, 0.035);
   --border-glow: 1px solid rgba(255, 215, 0, 0.4);
 }
 
 /* ─────────────────────────────────────────────────────────────────────────────
-   Your existing reset and typography/styles
+  Your existing reset and typography/styles
 ──────────────────────────────────────────────────────────────────── */
 
     *, *::before, *::after {
@@ -88,7 +88,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('background.jpg'); /* Your background image */
+      background-image: url(''); /* Your background image */
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -109,13 +109,35 @@
       }
     }
 
+    /* --- Particle.js Styles --- */
+    #particles-js {
+        position: fixed; /* Fixed to cover the entire viewport */
+        width: 100%;
+        height: 100%;
+        background-color: var(--bg-color); /* Matches your site's dark background */
+        background-image: url(''); /* Optional: add a background image here if needed */
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: 50% 50%;
+        z-index: 0; /* Placed above body::before and body::after, but below content */
+        top: 0;
+        left: 0;
+    }
+
+    /* Ensure other content layers correctly on top of particles */
+    header, main, footer {
+        position: relative; /* Ensure these elements respect z-index */
+        z-index: 10; /* A higher z-index to bring them above #particles-js */
+    }
+
+    /* If your header is already sticky, ensure its z-index is still higher */
     header {
       background: rgba(20, 20, 20, 0.5);
       backdrop-filter: transparent;
       padding: 1rem 2rem;
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 100; /* Keep this high so it's always on top */
       display: flex;
       align-items: center;
       justify-content: space-between; /* Space out logo and nav */
@@ -411,7 +433,7 @@
 
 
     /* ─────────────────────────────────────────────────────────────────────────
-       Scroll animation styles
+      Scroll animation styles
     ───────────────────────────────────────────────────────────────────────── */
     .animate-on-scroll {
       opacity: 0;
@@ -698,6 +720,8 @@
   </style>
 </head>
 <body>
+  <div id="particles-js"></div>
+
   <div data-barba="wrapper">
     <header>
       <a
@@ -762,8 +786,8 @@
           >
             850
           </text>
-		  
-		  
+          
+          
 
           <text x="230" y="50" font-family="'Share Tech Mono', monospace" font-weight="400" font-size="20" fill="#666" letter-spacing="1">
             .com
@@ -779,9 +803,9 @@
 
     <main data-barba="container" data-barba-namespace="home" tabindex="-1">
       <section class="banner" aria-label="Introduction banner">
-		<div class="welcome-3d-wrapper">
-		<h1 class="welcome-title" data-text="Welcome">Welcome</h1>
-		</div>
+        <div class="welcome-3d-wrapper">
+        <h1 class="welcome-title" data-text="Welcome">Welcome</h1>
+        </div>
         <h2>who is dpi850</h2>
         <p class="animate-on-scroll">programmer shaped by a philosophy</p>
         <h2 class="animate-on-scroll">foundations of the code</h2>
@@ -806,10 +830,10 @@
               <div class="project-card animate-on-scroll">
                   
                   
-				  <div class="project-card-content">
+                  <div class="project-card-content">
                       <h3>BrowseTXT</h3>
                       <p>Browse the Internet using a text-only browser built in Python.</p>
-                      <a href="https://youtu.be/iM8GiMlAqzQ?feature=shared" class="card-link">Watch on YouTube</a>
+                      <a href="http://www.youtube.com/watch?v=iM8GiMlAqzQ" class="card-link" target="_blank">Watch on YouTube</a>
                   </div>
               </div>
 
@@ -819,7 +843,7 @@
                   <div class="project-card-content">
                       <h3>850NetTool</h3>
                       <p>Try this network utility tool I built entirely in Python.</p>
-                      <a href="https://github.com/dpi850/network-utilityv1" class="card-link">Get it on GitHub</a>
+                      <a href="https://github.com/dpi850/network-utilityv1" class="card-link" target="_blank">Get it on GitHub</a>
                   </div>
               </div>
 
@@ -832,11 +856,10 @@
                       <a href="projects.html#blockchain-app" class="card-link">Learn More</a>
                   </div>
               </div>
-              </div>
           </div>
       </section>
     </main>
-	
+    
     <footer>
       <div class="social-icons">
         <a href="https://github.com/dpi850" target="_blank" rel="noopener noreferrer" aria-label="GitHub" style="display:inline-flex; align-items:center; justify-content:center; width:48px; height:48px; border-radius:9999px;">
@@ -882,12 +905,232 @@
         </a>
       </div>
       <div class="footer-text">| website built with love from the ground up |</div>
-	  <div class="footer-text">© 2025 DPI850.com | Designed by DPI850. | All rights reserved.</div>
+      <div class="footer-text">© 2025 DPI850.com | Designed by DPI850. | All rights reserved.</div>
     </footer>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+  <script>
+    /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+    particlesJS('particles-js', {
+      "particles": {
+        "number": {
+          "value": 80, // Number of particles
+          "density": {
+            "enable": true,
+            "value_area": 800
+          }
+        },
+        "color": {
+          "value": "#ffffff" // Particle color (e.g., white)
+        },
+        "shape": {
+          "type": "circle", // "circle", "edge", "triangle", "polygon", "star", "image"
+          "stroke": {
+            "width": 0,
+            "color": "#000000"
+          },
+          "polygon": {
+            "nb_sides": 5
+          }
+        },
+        "opacity": {
+          "value": 0.5, // Particle opacity
+          "random": false,
+          "anim": {
+            "enable": false,
+            "speed": 1,
+            "opacity_min": 0.1,
+            "sync": false
+          }
+        },
+        "size": {
+          "value": 3, // Particle size
+          "random": true,
+          "anim": {
+            "enable": false,
+            "speed": 40,
+            "size_min": 0.1,
+            "sync": false
+          }
+        },
+        "line_linked": {
+          "enable": true, // Connect particles with lines
+          "distance": 150, // Max distance for lines
+          "color": "#ffffff", // Line color
+          "opacity": 0.4,
+          "width": 1
+        },
+        "move": {
+          "enable": true,
+          "speed": 6, // Movement speed
+          "direction": "none",
+          "random": false,
+          "straight": false,
+          "out_mode": "out",
+          "bounce": false,
+          "attract": {
+            "enable": false,
+            "rotateX": 600,
+            "rotateY": 1200
+          }
+        }
+      },
+      "interactivity": {
+        "detect_on": "canvas",
+        "events": {
+          "onhover": {
+            "enable": true,
+            "mode": "grab" // "grab", "bubble", "repulse"
+          },
+          "onclick": {
+            "enable": true,
+            "mode": "push" // "push", "remove", "bubble", "repulse"
+          },
+          "resize": true
+        },
+        "modes": {
+          "grab": {
+            "distance": 140,
+            "line_linked": {
+              "opacity": 1
+            }
+          },
+          "bubble": {
+            "distance": 400,
+            "size": 40,
+            "duration": 2,
+            "opacity": 8,
+            "speed": 3
+          },
+          "repulse": {
+            "distance": 200,
+            "duration": 0.4
+          },
+          "push": {
+            "particles_nb": 4
+          },
+          "remove": {
+            "particles_nb": 2
+          }
+        }
+      },
+      "retina_detect": true
+    });
+  </script>
+
    <script src="https://unpkg.com/@barba/core"></script>
   <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const welcomeTitle = document.querySelector('.welcome-title');
+      // Added 'foundation-word' to the selector to include them for parallax
+      const bannerTexts = document.querySelectorAll('.banner h2, .banner p:not(.foundation-word)');
+      const foundationWords = document.querySelectorAll('.banner p.foundation-word');
+      const projectCards = document.querySelectorAll('.project-card');
+      const welcomeParallaxBg = document.querySelector('.welcome-parallax-bg');
+
+      function applyParallax() {
+        const scrollPos = window.scrollY;
+        const viewportHeight = window.innerHeight;
+        const viewportCenter = scrollPos + (viewportHeight / 2);
+
+        // Parallax for Welcome Section background element
+        if (welcomeParallaxBg) {
+          const bgParallaxSpeed = 0.05; /* Even slower speed for the background */
+          const bgTranslateY = scrollPos * bgParallaxSpeed;
+          welcomeParallaxBg.style.transform = `translate(-50%, -50%) translateY(${bgTranslateY}px)`;
+        }
+
+        // Parallax for Banner H1 (welcome-title) - Removed direct JS transform to avoid conflicts with CSS animations.
+        // The 'floating
+        /*
+        // Original H1 parallax - commented out to avoid conflict with CSS animation
+        if (welcomeTitle) {
+          const h1ParallaxSpeed = 0.1;
+          const h1TranslateY = -scrollPos * h1ParallaxSpeed;
+          welcomeTitle.style.transform = `translateY(${h1TranslateY}px)`;
+        }
+        */
+
+        // Parallax for other banner texts
+        bannerTexts.forEach((text, index) => {
+          const speed = 0.08 - (index * 0.01); // Vary speed slightly
+          const translateY = -scrollPos * speed;
+          text.style.transform = `translateY(${translateY}px)`;
+        });
+
+        // Parallax for foundation words
+        foundationWords.forEach((word, index) => {
+          const speed = 0.1 + (index * 0.02); // Make them move slightly faster
+          const translateY = -scrollPos * speed;
+          word.style.transform = `translateY(${translateY}px)`;
+        });
+
+        // Parallax for project cards - horizontal movement based on scroll
+        projectCards.forEach(card => {
+          const cardRect = card.getBoundingClientRect();
+          const cardCenter = cardRect.top + (cardRect.height / 2);
+
+          // Check if card is in viewport
+          if (cardCenter < viewportHeight && cardCenter > 0) {
+            const distanceFromCenter = cardCenter - (viewportHeight / 2);
+            const parallaxAmount = distanceFromCenter * 0.1; // Adjust this value for intensity
+
+            card.style.transform = `translateX(${parallaxAmount}px)`;
+          } else {
+            // Reset transform when out of view to avoid odd behavior
+            card.style.transform = `translateX(0px)`;
+          }
+        });
+      }
+
+      window.addEventListener('scroll', applyParallax);
+      applyParallax(); // Initial call to set positions
+
+      // Observer for 'animate-on-scroll'
+      const observer = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            // Stop observing once visible if you only want it to animate once
+            // observer.unobserve(entry.target);
+          } else {
+            // Optional: remove 'visible' class when out of view to re-trigger on scroll back
+            // entry.target.classList.remove('visible');
+          }
+        });
+      }, {
+        threshold: 0.1, // Trigger when 10% of the element is visible
+        rootMargin: '0px 0px -50px 0px' // Adjust for early/late trigger
+      });
+
+      document.querySelectorAll('.animate-on-scroll').forEach(el => {
+        observer.observe(el);
+      });
+
+      // Staggered animation for project cards
+      const projectCardObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            Array.from(projectCards).forEach((card, index) => {
+              // Apply a staggered delay
+              card.style.transitionDelay = `${index * 0.15}s`; // 0.15s delay between each card
+              card.classList.add('visible');
+            });
+            projectCardObserver.unobserve(entry.target); // Observe only once for the stagger
+          }
+        });
+      }, {
+        threshold: 0.2 // Trigger when 20% of the container is visible
+      });
+
+      const projectCardsSection = document.querySelector('.project-cards-section');
+      if (projectCardsSection) {
+        projectCardObserver.observe(projectCardsSection);
+      }
+    });
+
     barba.init({
       // Comment out the entire 'transitions' array to disable page transitions
       // This helps to check if Barba.js's animations are interfering with the fixed menu.
@@ -929,118 +1172,5 @@
     });
   </script>
 
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const welcomeTitle = document.querySelector('.welcome-title');
-      // Added 'foundation-word' to the selector to include them for parallax
-      const bannerTexts = document.querySelectorAll('.banner h2, .banner p:not(.foundation-word)');
-      const foundationWords = document.querySelectorAll('.banner p.foundation-word');
-      const projectCards = document.querySelectorAll('.project-card');
-      const welcomeParallaxBg = document.querySelector('.welcome-parallax-bg');
-
-      function applyParallax() {
-        const scrollPos = window.scrollY;
-        const viewportHeight = window.innerHeight;
-        const viewportCenter = scrollPos + (viewportHeight / 2);
-
-        // Parallax for Welcome Section background element
-        if (welcomeParallaxBg) {
-          const bgParallaxSpeed = 0.05; /* Even slower speed for the background */
-          const bgTranslateY = scrollPos * bgParallaxSpeed;
-          welcomeParallaxBg.style.transform = `translate(-50%, -50%) translateY(${bgTranslateY}px)`;
-        }
-
-        // Parallax for Banner H1 (welcome-title) - Removed direct JS transform to avoid conflicts with CSS animations.
-        // The 'floatingText' CSS animation already provides a subtle float, and introFlip handles the 'coming towards' on load.
-        // If you want more dramatic scroll-based parallax on the welcome-title AFTER its initial animation,
-        // you would need to manage the CSS animation state or use a JS library like GSAP for combined control.
-        // For now, we'll keep the CSS animation the primary source of motion for welcome-title.
-        // if (welcomeTitle) {
-        //   const titleSpeed = 0.05;
-        //   const titleTranslateY = scrollPos * titleSpeed;
-        //   welcomeTitle.style.transform = `translateY(${titleTranslateY}px)`;
-        // }
-
-        // Parallax for other banner text elements (h2, p - excluding foundation words)
-        bannerTexts.forEach(textElement => {
-          let speed = 0.05; // Default speed, significantly toned down
-          if (textElement.tagName === 'P') {
-            speed = 0.08; // Specific for paragraphs, toned down
-          } else if (textElement.tagName === 'H2') {
-            speed = 0.05; // Specific for h2 tags, toned down
-          }
-          const translateY = scrollPos * speed;
-          textElement.style.transform = `translateY(${translateY}px)`;
-        });
-
-        // Parallax for foundation words
-        foundationWords.forEach(textElement => {
-            const speed = 0.1; // Toned down speed for variation
-            const translateY = scrollPos * speed;
-            textElement.style.transform = `translateY(${translateY}px)`;
-        });
-
-
-        // Parallax for Project Cards (subtle float effect)
-        projectCards.forEach(card => {
-          const cardRect = card.getBoundingClientRect();
-          const cardCenterY = cardRect.top + scrollPos + (cardRect.height / 2);
-          const distance = viewportCenter - cardCenterY; // Distance from viewport center
-
-          const parallaxSpeed = 0.03; // Even more subtle float effect
-          const translateY = distance * parallaxSpeed;
-          // card.style.transform = `translateY(${translateY}px) translateX(${distance * 0.01}px)`; // Optional: subtle horizontal shift
-          card.style.transform = `translateY(${translateY}px)`;
-        });
-      }
-
-      // Initial call and attach to scroll event
-      applyParallax();
-      window.addEventListener('scroll', applyParallax);
-      window.addEventListener('resize', applyParallax); // Recalculate on resize
-    });
-
-    // Animate elements on scroll when they enter the viewport - MODIFIED FOR STAGGERED EFFECT AND GENERAL ANIMATION
-    document.addEventListener('DOMContentLoaded', () => {
-      const observerOptions = {
-        root: null,
-        rootMargin: '0px',
-        threshold: 0.2
-      };
-
-      // Select all elements that should animate on scroll
-      const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
-      const projectCards = document.querySelectorAll('.project-card.animate-on-scroll'); // Re-query specifically for staggering
-
-      const observer = new IntersectionObserver((entries, obs) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            if (entry.target.classList.contains('project-card')) {
-              // Handle project cards with staggered animation
-              const index = Array.from(projectCards).indexOf(entry.target);
-              if (index > -1) {
-                const delay = index * 0.15; // Stagger delay by 150ms
-                entry.target.style.transitionDelay = `${delay}s`;
-                entry.target.classList.add('visible');
-              }
-            } else {
-              // Handle other animate-on-scroll elements (like banner text) without stagger
-              entry.target.style.transitionDelay = '0s'; // Ensure no previous delay
-              entry.target.classList.add('visible');
-            }
-            obs.unobserve(entry.target); // Stop observing once visible
-          }
-        });
-      }, observerOptions);
-
-      // Observe all elements that should animate on scroll
-      elementsToAnimate.forEach(el => {
-        observer.observe(el);
-      });
-    });
-
-  
-	
-  </script>
 </body>
 </html>
