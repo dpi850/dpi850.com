@@ -34,12 +34,12 @@
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
  <style>
     :root {
-      --bg-color: #1a1a1d;           /* Titanium black */
+      --bg-color: #000;           	 /* Black */
       --text-color: #cccccc;         /* Steel gray */
       --accent: #00d4ff;             /* Electric blue pulse */
       --accent-secondary: #ffd700;   /* Bright gold edge */
       --accent-glow: rgba(0, 212, 255, 0.3);
-      --glass-bg: rgba(255, 255, 255, 0.035);
+      --glass-bg: rgba(255, 255, 255, 0.039);
       --border-glow: 1px solid rgba(255, 215, 0, 0.4);
     }
 
@@ -55,29 +55,19 @@
 
     body {
       font-family: 'Inter', serif;
-      font-weight: 300;
-      line-height: 1;
+      font-weight: 0;
+      line-height: 0;
       background-color: var(--bg-color); /* Now this is the primary background color */
       color: var(--text-color);
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
+      min-height: 0;
       position: relative;
       overflow-x: hidden;
       perspective: 1500px; /* Needed for 3D flip */
     }
 
-    /* Existing subtle overlay for better text readability */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-color: rgba(0, 0, 0, 0.3); /* Adjust for more or less darkness */
-      z-index: -1; /* Ensures this overlay is behind your content */
-    }
+
 
     /* NEW: Pseudo-element for the blurred background image */
     body::after {
@@ -154,7 +144,7 @@
     nav.menu {
       display: flex; /* Make it a flex container for horizontal items */
       flex-direction: row; /* Arrange items horizontally */
-      gap: 2.5rem; /* Space between menu items */
+      gap: 1rem; /* Space between menu items */
       position: static; /* No longer fixed, flows with header */
       width: auto; /* Take natural width */
       height: auto; /* Take natural height */
@@ -165,7 +155,7 @@
       justify-content: flex-end; /* Align items to the right */
       align-items: center; /* Vertically center items */
       transform: none; /* Remove transform */
-      opacity: 1; /* Always visible */
+      opacity: 0.5; /* Always visible */
       transition: none; /* Remove transition */
       padding: 0;
     }
@@ -178,7 +168,7 @@
       color: var(--text-color);
       text-decoration: none;
       position: relative;
-      padding: 0.5rem 0; /* Adjusted padding */
+      padding: 0.3rem 0; /* Adjusted padding */
       transition: color 0.35s ease, text-shadow 0.35s ease, transform 0.25s ease;
       user-select: none;
     }
@@ -189,7 +179,7 @@
       left: 0;
       bottom: 2px; /* Adjusted bottom for horizontal nav */
       width: 100%;
-      height: 3px; /* Slightly thinner underline */
+      height: 2px; /* Slightly thinner underline */
       background: var(--accent);
       border-radius: 3px;
       transform: scaleX(0);
@@ -209,7 +199,7 @@
         margin-bottom: 0;
       }
       nav.menu {
-        gap: 1.5rem; /* Smaller gap on smaller screens */
+        gap: 1rem; /* Smaller gap on smaller screens */
       }
       nav.menu a {
         font-size: 1rem; /* Smaller font size */
@@ -218,7 +208,7 @@
 
     @media (max-width: 480px) {
       header {
-        padding: 0.8rem 1rem;
+        padding: 0.5rem 1rem;
         flex-direction: column; /* Stack logo and nav vertically on very small screens */
         align-items: center;
         gap: 1rem; /* Space between stacked items */
@@ -777,8 +767,10 @@
         <section class="bg-black p-6 md:p-8 rounded-lg shadow-xl mb-12 transform transition duration-300 hover:scale-[1.01]">
             <h2 class="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-6">
                 <p>Welcome to dpi850.com<p/>
-		<p>| Programmer shaped by a philosophy |</p>
-		<p>Minimalism. Speed. Accuracy.</p>
+				<p></p>
+				<p>| Programmer shaped by a philosophy |</p>
+				<p></p>
+				<p>Minimalism. Speed. Accuracy.</p>
             </h2>
             <p class="text-lg text-gray-300 text-center max-w-3xl mx-auto mb-8 leading-relaxed">
                 Featured Video
