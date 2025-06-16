@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
  <meta charset="UTF-8" />
@@ -27,26 +27,28 @@
  <link
    rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-   integrity="sha512-pVUv37Qm6VR9RcyqY6r0zpo+XRBXJztZtFzxJ7qTk6iW0+j+Xg0CkntjxT5P8n0xN+tBJYcXKgqE1tV8FPhOg=="
+   xintegrity="sha512-pVUv37Qm6VR9RcyqY6r0zpo+XRBXJztZtFzxJ7qTk6iW0+j+Xg0CkntjxT5P8n0xN+tBJYcXKgqE1tV8FPhOg=="
    crossorigin="anonymous"
    referrerpolicy="no-referrer"
  />
  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+ <!-- Tailwind CSS CDN for new sections -->
+ <script src="https://cdn.tailwindcss.com"></script>
 
  <style>
-:root {
-  --bg-color: #1a1a1d;           /* Titanium black */
-  --text-color: #cccccc;         /* Steel gray */
-  --accent: #00d4ff;             /* Electric blue pulse */
-  --accent-secondary: #ffd700;   /* Bright gold edge */
-  --accent-glow: rgba(0, 212, 255, 0.3);
-  --glass-bg: rgba(255, 255, 255, 0.035);
-  --border-glow: 1px solid rgba(255, 215, 0, 0.4);
-}
+    :root {
+      --bg-color: #1a1a1d;           /* Titanium black */
+      --text-color: #cccccc;         /* Steel gray */
+      --accent: #00d4ff;             /* Electric blue pulse */
+      --accent-secondary: #ffd700;   /* Bright gold edge */
+      --accent-glow: rgba(0, 212, 255, 0.3);
+      --glass-bg: rgba(255, 255, 255, 0.035);
+      --border-glow: 1px solid rgba(255, 215, 0, 0.4);
+    }
 
-/* ─────────────────────────────────────────────────────────────────────────────
-  Your existing reset and typography/styles
-──────────────────────────────────────────────────────────────────── */
+    /* ─────────────────────────────────────────────────────────────────────────────
+      Your existing reset and typography/styles
+    ──────────────────────────────────────────────────────────────────── */
 
     *, *::before, *::after {
       box-sizing: border-box;
@@ -247,121 +249,121 @@
     }
 
 
-/* ─── “Up a Notch” 3D Flip + Bounce + Gradient/Wave Animation ───────────────── */
-.welcome-title {
-  font-size: 4rem;
-  font-weight: 900;
-  line-height: 1;
-  margin: 0;
-  position: relative;
-  display: inline-block;
-  transform-origin: center center;
+    /* ─── “Up a Notch” 3D Flip + Bounce + Gradient/Wave Animation ───────────────── */
+    .welcome-title {
+      font-size: 4rem;
+      font-weight: 900;
+      line-height: 1;
+      margin: 0;
+      position: relative;
+      display: inline-block;
+      transform-origin: center center;
 
-  /* Gradient text */
-  background: linear-gradient(270deg, #ff6ec4, #7873f5, #4ade80, #facc15);
-  background-size: 800% 800%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+      /* Gradient text */
+      background: linear-gradient(270deg, #ff6ec4, #7873f5, #4ade80, #facc15);
+      background-size: 800% 800%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
 
-  /* Glow shadow */
-  text-shadow:
-    0 0 6px rgba(255, 110, 196, 0.6),
-    0 0 12px rgba(120, 123, 245, 0.4);
+      /* Glow shadow */
+      text-shadow:
+        0 0 6px rgba(255, 110, 196, 0.6),
+        0 0 12px rgba(120, 123, 245, 0.4);
 
-  /* Start hidden, rotated, scaled down */
-  opacity: 0;
-  /* Modified initial transform for 'coming from far' - toned down */
-  transform: perspective(800px) rotateY(-50deg) scale(0.7) translateZ(-200px);
+      /* Start hidden, rotated, scaled down */
+      opacity: 0;
+      /* Modified initial transform for 'coming from far' - toned down */
+      transform: perspective(800px) rotateY(-50deg) scale(0.7) translateZ(-200px);
 
-  /* 1. introFlip: 3D flip-with-bounce for 1.2s
-    2. gradientMove: 10s looping gradient (starts after flip)
-    3. waveMove: 8s looping blurred wave (starts after flip)
-  */
-  animation:
-    introFlip 1.2s cubic-bezier(0.25, 1.3, 0.5, 1) forwards,
-    gradientMove 10s ease 1.2s infinite,
-    waveMove 8s ease 1.2s infinite alternate,
-    floatingText 4s ease-in-out 1.2s infinite alternate; /* New float animation */
-}
+      /* 1. introFlip: 3D flip-with-bounce for 1.2s
+        2. gradientMove: 10s looping gradient (starts after flip)
+        3. waveMove: 8s looping blurred wave (starts after flip)
+      */
+      animation:
+        introFlip 1.2s cubic-bezier(0.25, 1.3, 0.5, 1) forwards,
+        gradientMove 10s ease 1.2s infinite,
+        waveMove 8s ease 1.2s infinite alternate,
+        floatingText 4s ease-in-out 1.2s infinite alternate; /* New float animation */
+    }
 
-.welcome-title::before {
-  content: attr(data-text);
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
+    .welcome-title::before {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
 
-  /* Slightly different gradient angle for depth */
-  background: linear-gradient(240deg, #ff6ec4, #7876f5, #4ade80, #facc15);
-  background-size: 800% 800%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+      /* Slightly different gradient angle for depth */
+      background: linear-gradient(240deg, #ff6ec4, #7876f5, #4ade80, #facc15);
+      background-size: 800% 800%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
 
-  /* Blurred “ghost” */
-  filter: blur(4px);
-  opacity: 0.5;
-  z-index: -1;
-  pointer-events: none;
+      /* Blurred “ghost” */
+      filter: blur(4px);
+      opacity: 0.5;
+      z-index: -1;
+      pointer-events: none;
 
-  /* waveMove begins once introFlip finishes (delay 1.2s) */
-  animation: waveMove 8s ease 1.2s infinite alternate;
-}
+      /* waveMove begins once introFlip finishes (delay 1.2s) */
+      animation: waveMove 8s ease 1.2s infinite alternate;
+    }
 
-@keyframes introFlip {
-  0% {
-    opacity: 0;
-    transform: perspective(800px) rotateY(-50deg) scale(0.7) translateZ(-200px); /* Toned down values */
-  }
-  50% {
-    opacity: 1;
-    transform: perspective(800px) rotateY(10deg) scale(1.05) translateZ(20px); /* Toned down overshoot */
-  }
-  75% {
-    transform: perspective(800px) rotateY(-5deg) scale(0.98) translateZ(-10px); /* Toned down pull back */
-  }
-  100% {
-    opacity: 1;
-    transform: perspective(800px) rotateY(0deg) scale(1) translateZ(0); /* Final resting place */
-  }
-}
+    @keyframes introFlip {
+      0% {
+        opacity: 0;
+        transform: perspective(800px) rotateY(-50deg) scale(0.7) translateZ(-200px); /* Toned down values */
+      }
+      50% {
+        opacity: 1;
+        transform: perspective(800px) rotateY(10deg) scale(1.05) translateZ(20px); /* Toned down overshoot */
+      }
+      75% {
+        transform: perspective(800px) rotateY(-5deg) scale(0.98) translateZ(-10px); /* Toned down pull back */
+      }
+      100% {
+        opacity: 1;
+        transform: perspective(800px) rotateY(0deg) scale(1) translateZ(0); /* Final resting place */
+      }
+    }
 
-@keyframes gradientMove {
-  0%   { background-position:   0% 50%; }
-  50%  { background-position: 100% 50%; }
-  100% { background-position:   0% 50%; }
-}
+    @keyframes gradientMove {
+      0%   { background-position:   0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position:   0% 50%; }
+    }
 
-@keyframes waveMove {
-  0%   { background-position:   0% 50%; }
-  100% { background-position: 100% 50%; }
-}
+    @keyframes waveMove {
+      0%   { background-position:   0% 50%; }
+      100% { background-position: 100% 50%; }
+    }
 
-@keyframes floatingText {
-  0%, 100% {
-    transform: translateY(0) scale(1);
-  }
-  50% {
-    transform: translateY(-2px) scale(1.002); /* More subtle vertical float and slight scale */
-  }
-}
+    @keyframes floatingText {
+      0%, 100% {
+        transform: translateY(0) scale(1);
+      }
+      50% {
+        transform: translateY(-2px) scale(1.002); /* More subtle vertical float and slight scale */
+      }
+    }
 
-/* Hover Interaction: pause animations + lift + extra glow */
-.welcome-title:hover {
-  animation-play-state: paused;
-  transform: translateY(-5px) scale(1.05); /* Keep scale for hover, translateY is for float */
-  text-shadow:
-    0 0 10px rgba(255, 110, 196, 0.8),
-    0 0 20px rgba(120, 123, 245, 0.6),
-    0 0 30px rgba(74, 222, 128, 0.4);
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
-}
+    /* Hover Interaction: pause animations + lift + extra glow */
+    .welcome-title:hover {
+      animation-play-state: paused;
+      transform: translateY(-5px) scale(1.05); /* Keep scale for hover, translateY is for float */
+      text-shadow:
+        0 0 10px rgba(255, 110, 196, 0.8),
+        0 0 20px rgba(120, 123, 245, 0.6),
+        0 0 30px rgba(74, 222, 128, 0.4);
+      transition: transform 0.3s ease, text-shadow 0.3s ease;
+    }
 
-.welcome-title:hover::before {
-  animation-play-state: paused;
-  opacity: 0.7;
-  filter: blur(6px);
-}
+    .welcome-title:hover::before {
+      animation-play-state: paused;
+      opacity: 0.7;
+      filter: blur(6px);
+    }
 
     main {
       flex-grow: 1;
@@ -717,6 +719,25 @@
       filter: drop-shadow(0 0 15px #ff6600);
       outline: none;
     }
+
+    /* Custom CSS for responsive video embedding (from the new section) */
+    .video-container {
+        position: relative;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio (height / width = 9 / 16 = 0.5625) */
+        height: 0;
+        overflow: hidden;
+        max-width: 100%;
+        background: #000; /* Black background to prevent white flicker */
+    }
+
+    .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        border-radius: 0.5rem; /* Rounded corners for the video iframe */
+    }
   </style>
 </head>
 <body>
@@ -823,6 +844,30 @@
         >
         </svg>
         <div class="welcome-parallax-bg"></div> </section>
+
+        <!-- START: Featured YouTube Video Section -->
+        <section class="bg-black p-6 md:p-8 rounded-lg shadow-xl mb-12 transform transition duration-300 hover:scale-[1.01]">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-6">
+                Videos
+            </h2>
+            <p class="text-lg text-gray-300 text-center max-w-3xl mx-auto mb-8 leading-relaxed">
+                Watch featured content
+            </p>
+
+            <!-- Responsive Video Embed Wrapper -->
+            <div class="video-container rounded-lg shadow-lg overflow-hidden">
+                <!-- YouTube Video with ID: iM8GiMlAqzQ -->
+                <iframe
+                    src="https://www.youtube.com/embed/iM8GiMlAqzQ?modestbranding=1&autohide=1&showinfo=0&rel=0"
+                    title="DPI850 Featured Video"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                ></iframe>
+            </div>
+
+        </section>
+        <!-- END: Featured YouTube Video Section -->
 
       <section class="project-cards-section">
           <h2>My Projects - Coded for speed. No bloat.</h2>
@@ -1042,17 +1087,6 @@
           welcomeParallaxBg.style.transform = `translate(-50%, -50%) translateY(${bgTranslateY}px)`;
         }
 
-        // Parallax for Banner H1 (welcome-title) - Removed direct JS transform to avoid conflicts with CSS animations.
-        // The 'floating
-        /*
-        // Original H1 parallax - commented out to avoid conflict with CSS animation
-        if (welcomeTitle) {
-          const h1ParallaxSpeed = 0.1;
-          const h1TranslateY = -scrollPos * h1ParallaxSpeed;
-          welcomeTitle.style.transform = `translateY(${h1TranslateY}px)`;
-        }
-        */
-
         // Parallax for other banner texts
         bannerTexts.forEach((text, index) => {
           const speed = 0.08 - (index * 0.01); // Vary speed slightly
@@ -1173,4 +1207,6 @@
   </script>
 
 </body>
+</html>
+
 </html>
