@@ -342,17 +342,25 @@
       <section class="project">
 	  
 		<h1>In the Works: A Windows PDF Reader Built with PyMuPDF</h1>
-	  
-		<p>Reading PDFs on Windows has become a daily routine—whether reviewing documents or reading guides. Unfortunately, most off-the-shelf PDF readers felt bloated or slow, and I wanted fine-grained control over rendering and annotation without pulling in dozens of megabytes of dependencies.
-		<p>That’s why I decided to build a pure-Python PDF viewer using PyMuPDF (a.k.a. Fitz) for parsing/rendering, paired with PyQt5 for the UI layer. In this post, I’ll walk through why I chose this stack, how the application is structured, 
-		and lessons learned along the way—all focused on the Windows platform.</P>
-		<p>Key Features Overview</p>
-		<p>Fast Page Rendering (Windows-optimized). Uses PyMuPDF’s native C backbone to generate bitmaps quickly. Lazy-loads pages: only the current viewport (and optionally the next page) is rendered.</p>
-		<p>Lightweight & Python-Only
-		<p>Pure Python code—no heavyweight Electron or .NET dependencies. Single executable under 15 MB (after packaging with PyInstaller).</p>
-		<p>Built with PyQt5 to match native Windows controls (File dialog, menus). Keyboard shortcuts familiar to Windows users: Ctrl+O for open, Ctrl+F for find, Ctrl++/Ctrl– to zoom, PageUp/PageDown to navigate pages.</p>
-		<p>One-click search bar builds an on-the-fly inverted index over all pages. Jumps directly to matching page and highlights occurrences.</p>
-		<p>Check back soon for more updates.</p>
+	      	<p>6/15/2025</p>
+	      	<h2>PDF Reader Details</h2>
+		<p>Lately, I’ve been diving into two exciting projects: creating a custom PDF reader and building a weather app. Both have been great learning experiences, and I wanted to share some insights and challenges.</p>
+		<p>Features Overview</p>
+		<p>Fast Page Rendering (Windows-optimized). 
+		<p>Uses PyMuPDF’s native C backbone to generate bitmaps quickly.</p> 
+		<p>Lazy-loads pages: only the current viewport (and optionally the next page) is rendered.</p>
+	        <p>Building it from scratch helped me understand how PDF rendering works under the hood, especially dealing with different fonts and page layouts. I’m planning to add annotation tools next!</p>
+    		<h2></h2>
+	      	<p>The weather app taps into a public API to fetch live weather data, including temperature, humidity, and forecasts.</p>
+	      	<p>I focused on making it responsive and intuitive, perfect for quick checks on the go.</p>
+	      	<p>Both projects have sharpened my skills in UI design, API integration, and handling data efficiently. I’m excited to keep improving them and share more updates soon!</p>
+
+	      	<H2>Screen Shots</H2>
+	      
+		<IMG>https://github.com/dpi850/dpi850.com/blob/main/images/Capture1.PNG</IMG>
+	      	<IMG>https://github.com/dpi850/dpi850.com/blob/main/images/Capture2.PNG</IMG>
+	      	
+		    		
 	 </section>
 
         <h1>BrowseTXT</h1>
