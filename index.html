@@ -112,8 +112,8 @@
 
     /* Ensure other content layers correctly on top */
     header, main, footer {
-        position: relative; /* Ensure these elements respect z-index */
-        z-index: 10; /* A higher z-index to bring them above any background effects */
+        position: relative; 						/* Ensure these elements respect z-index */
+        z-index: 10; 								/* A higher z-index to bring them above any background effects */
     }
 
     /* If your header is already sticky, ensure its z-index is still higher */
@@ -500,7 +500,7 @@
 
 
     .project-card:hover {
-      transform: translateY(-10px);
+      transform: translateY(-5px);
       box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4), 0 0 40px rgba(255, 215, 0, 0.3); /* Enhanced glow on hover */
     }
 
@@ -540,7 +540,7 @@
       display: inline-block;
       background: linear-gradient(90deg, var(--accent), #00aaff); /* Blue gradient button */
       color: #fff;
-      padding: 0.8rem 1.5rem;
+      padding: 0.8rem 1rem;
       border-radius: 8px;
       text-decoration: none;
       font-weight: 600;
@@ -616,8 +616,6 @@
         font-size: 0.85rem;
       }
     }
-
-
     footer {
       font-family: 'Share Tech Mono', monospace;
       font-size: 0.9rem;
@@ -763,14 +761,12 @@
         >
         </svg>
         <div class="welcome-parallax-bg"></div> </section>
-		
 		<section class="project-cards-section">
           <h2>Welcome to dpi850.com</h2>
 		  <h2>| Programmer shaped by a philosophy |</h2>
 			<h2>Minimalism. Speed. Accuracy.</h2>
           <div class="project-cards-container">
               <div class="project-card animate-on-scroll">
-          
                   <div class="project-card-content">
                       <h3>BrowseTXT</h3>
                       <p>Browse the Internet using a text-only browser built in Python.</p>
@@ -802,7 +798,7 @@
 	  
 <section id="bluesky-social" style="padding: 3rem 1rem; background-color: #121212; color: #fff;">
   <div style="max-width: 1200px; margin: 0 auto;">
-    <h2 style="text-align: center; margin-bottom: 2rem;">🦋BlueSky Social🦋</h2>
+    <h2 style="text-align: center; margin-bottom: 2rem;">🦋 BlueSky Social 🦋</h2>
 
     <div style="
       display: flex;
@@ -959,9 +955,6 @@
   <script src="https://unpkg.com/@barba/core" defer></script>
 
   <script defer>
-    // Initialize particles.js after the DOM is fully loaded, but not necessarily all assets
-    // The 'defer' attribute ensures particles.min.js is parsed and executed after HTML
-    // and before DOMContentLoaded. This script here will run after particles.min.js.
     document.addEventListener('DOMContentLoaded', () => {
       const welcomeTitle = document.querySelector('.welcome-title');
       // Added 'foundation-word' to the selector to include them for parallax
@@ -1201,6 +1194,21 @@
       */
     });
   </script>
+  
+  <script src="js/jquery.min.js" defer></script>
+  <script src="js/jquery-migrate-3.0.1.min.js" defer></script>
+  <script src="js/popper.min.js" defer></script>
+  <script src="js/bootstrap.min.js" defer></script>
+  <script src="js/jquery.easing.1.3.js" defer></script>
+  <script src="js/jquery.waypoints.min.js" defer></script>
+  <script src="js/jquery.stellar.min.js" defer></script>
+  <script src="js/owl.carousel.min.js" defer></script>
+  <script src="js/jquery.magnific-popup.min.js" defer></script>
+  <script src="js/aos.js" defer></script>
+  <script src="js/jquery.animateNumber.min.js" defer></script>
+  <script src="js/bootstrap-datepicker.js" defer></script>
+  <script src="js/scrollax.min.js" defer></script>
+  <script src="js/main.js" defer></script>
 
 </body>
 </html>
