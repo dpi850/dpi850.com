@@ -16,14 +16,18 @@
  <meta name="theme-color" content="#0d0d0d" />
 
  <link
-   href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+   href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+   rel="stylesheet"
+ />
+ <link
+   href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
    rel="stylesheet"
  />
  <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
  <link
    rel="stylesheet"
    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-   integrity="sha512-pVUv37Qm6VR9RcyqY6r0zpo+XRBXJ7qTk6iW0+j+Xg0CkntjxT5P8n0xN+tBJYcXKgqE1tV8FPhOg=="
+   xintegrity="sha512-pVUv37Qm6VR9RcyqY6r0zpo+XRBXJ7qTk6iW0+j+Xg0CkntjxT5P8n0xN+tBJYcXKgqE1tV8FPhOg=="
    crossorigin="anonymous"
    referrerpolicy="no-referrer"
  />
@@ -51,17 +55,19 @@
 
     body {
       font-family: 'Inter', serif;
-      font-weight: 400; /* Corrected from 0 */
-      line-height: 1.5; /* Corrected from 0 */
+      font-weight: 0;
+      line-height: 0;
       background-color: var(--bg-color); /* Now this is the primary background color */
       color: var(--text-color);
       display: flex;
       flex-direction: column;
-      min-height: 100vh; /* Changed from 0 to 100vh for proper layout */
+      min-height: 0;
       position: relative;
       overflow-x: hidden;
       perspective: 1500px; /* Needed for 3D flip */
     }
+
+
 
     /* NEW: Pseudo-element for the blurred background image */
     body::after {
@@ -71,7 +77,7 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background-image: url('YOUR_BACKGROUND_IMAGE_URL_HERE'); /* Your background image */
+      background-image: url(''); /* Your background image */
       background-size: cover;
       background-position: center center;
       background-repeat: no-repeat;
@@ -90,6 +96,18 @@
       100% {
         background-position: 100% 100%; /* Pans diagonally */
       }
+    }
+
+    /* Particles.js container styling */
+    #particles-js {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: -3; /* Ensures it's behind body::before and body::after */
+      background-color: transparent; /* Make sure it's transparent to show other backgrounds */
+      pointer-events: none; /* Allows interaction with elements behind it */
     }
 
     /* Ensure other content layers correctly on top */
@@ -212,6 +230,42 @@
         bottom: 1px;
         height: 1px;
       }
+    }
+
+      /* Glow shadow */
+      text-shadow:
+        0 0 6px rgba(255, 110, 196, 0.6),
+        0 0 12px rgba(120, 123, 245, 0.4);
+
+      /* Start hidden, slightly translated and scaled down for a simpler intro */
+      opacity: 0;
+      transform: translateY(20px) scale(0.9);
+
+      /* Use simpler introFadeScale animation */
+      animation:
+        introFadeScale 1s ease-out forwards, /* Faster and simpler fade/scale */
+        gradientMove 10s ease 1s infinite, /* Adjust delay to start after introFadeScale */
+        waveMove 8s ease 1s infinite alternate,
+        floatingText 4s ease-in-out 1s infinite alternate;
+    }
+
+      /* Keep a subtle gradient for consistency, but less impactful */
+      background: linear-gradient(240deg, #ff6ec4, #7876f5, #4ade80, #facc15);
+      background-size: 800% 800%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+
+      /* Removed blur for "flat text" and very low opacity to "not clutter" */
+      filter: none; /* Removed blur */
+      opacity: 0; /* Very low opacity for subtle background */
+      z-index: -1;
+      pointer-events: none;
+
+      /* Removed text-shadow for "flat text" */
+      text-shadow: none;
+
+      /* waveMove begins once introFadeScale finishes */
+      animation: waveMove 8s ease 1s infinite alternate;
     }
 
     /* New, simpler intro animation */
@@ -619,12 +673,15 @@
   </style>
 </head>
 <body>
+  <div id="particles-js"></div>
+
   <div data-barba="wrapper">
     <header>
       <a
         href="index.html"
         class="logo"
         aria-label="DPI850 homepage"
+        style="display:inline-block; width:320px; height:80px;"
       >
         <svg
           width="320"
@@ -693,7 +750,6 @@
         <a href="about.html" class="menuItem">About</a>
       </nav>
       </header>
-    <main>
         <svg
           class="wave-svg"
           viewBox="0 0 1440 150"
@@ -713,12 +769,13 @@
                   <div class="project-card-content">
                       <h3>BrowseTXT</h3>
                       <p>Browse the Internet using a text-only browser built in Python.</p>
-                      <a href="https://www.youtube.com/embed/VIDEO_ID_0" class="card-link" target="_blank">Watch on YouTube</a>
+                      <a href="http://www.youtube.com/watch?v=iM8GiMlAqzQ" class="card-link" target="_blank">Watch on YouTube</a>
                   </div>
               </div>
 
 
               <div class="project-card animate-on-scroll">
+        
                   <div class="project-card-content">
                       <h3>850NetTool</h3>
                       <p>Try this network utility tool I built entirely in Python.</p>
@@ -728,6 +785,7 @@
 
 
               <div class="project-card animate-on-scroll">
+          
                   <div class="project-card-content">
                       <h3>In the works.</h3>
                       <p>Project updates.</p>
@@ -747,6 +805,7 @@
       gap: 2rem;
       justify-content: center;
     ">
+      <!-- Post Block 1 -->
       <div style="flex: 1 1 300px; max-width: 500px; display: flex;">
         <div style="
           flex: 1;
@@ -767,6 +826,7 @@
         </div>
       </div>
 
+      <!-- Post Block 2 -->
       <div style="flex: 1 1 300px; max-width: 500px; display: flex;">
         <div style="
           flex: 1;
@@ -787,6 +847,7 @@
         </div>
       </div>
 
+      <!-- Post Block 3 -->
       <div style="flex: 1 1 300px; max-width: 500px; display: flex;">
         <div style="
           flex: 1;
@@ -813,25 +874,42 @@
 <script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
 
 
-<section class="bg-black p-6 md:p-8 rounded-lg shadow-xl mb-12 transform transition duration-300 hover:scale-[1.01]">
-    <h2 class="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-6">
-        Featured Video
-    </h2>
-    <p class="text-lg text-gray-300 text-center max-w-3xl mx-auto mb-8 leading-relaxed">
-       -Please Visit My YouTube Channel For More Content-
-    </p>
+<script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
 
-    <div class="video-container rounded-lg shadow-lg overflow-hidden">
-        <iframe
-            src="https://www.youtube.com/embed/VIDEO_ID"
-            title="DPI850 Featured Video"
-            frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            loading="lazy"
-        ></iframe>
-    </div>
-</section>
+
+<script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+
+
+<script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+
+
+  <script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+
+        <section class="bg-black p-6 md:p-8 rounded-lg shadow-xl mb-12 transform transition duration-300 hover:scale-[1.01]">
+            <h2 class="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-6">
+
+				<p></p>
+
+            </h2>
+            <p class="text-lg text-gray-300 text-center max-w-3xl mx-auto mb-8 leading-relaxed">
+                Featured Video
+            </p>
+			
+			 <p class="text-lg text-gray-300 text-center max-w-3xl mx-auto mb-8 leading-relaxed">
+               -Please Visit My YouTube Channel For More Content-
+            </p>
+		
+            <div class="video-container rounded-lg shadow-lg overflow-hidden">
+                <iframe
+                    src="https://www.youtube.com/embed/iM8GiMlAqzQ?modestbranding=1&autohide=1&showinfo=0&rel=0&mute=1"
+                    title="DPI850 Featured Video"
+                    frameborder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowfullscreen
+                    loading="lazy"
+                ></iframe>
+            </div>
+        </section
             
     </main>
 
@@ -848,7 +926,7 @@
           <i class="fab fa-github" aria-hidden="true"></i>
         </a>
         <a
-          href="https://www.youtube.com/channel/VIDEO_ID_1"
+          href="https://www.youtube.com/@dpi-850"
           target="_blank"
           aria-label="YouTube"
           rel="noopener noreferrer"
@@ -872,6 +950,7 @@
   </div>
 
   <script src="https://cdn.tailwindcss.com" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
   <script src="https://unpkg.com/@barba/core" defer></script>
 
   <script defer>
@@ -886,6 +965,7 @@
       function applyParallax() {
         const scrollPos = window.scrollY;
         const viewportHeight = window.innerHeight;
+        // No need for viewportCenter if we're not doing project card parallax
 
         // Parallax for Welcome Section background element
         if (welcomeParallaxBg) {
@@ -907,6 +987,9 @@
           const translateY = -scrollPos * speed;
           word.style.transform = `translateY(${translateY}px)`;
         });
+
+        // Removed Project Card Parallax for lighter loading
+        // projectCards.forEach(card => { ... });
       }
 
       window.addEventListener('scroll', applyParallax);
@@ -952,6 +1035,121 @@
       const projectCardsSection = document.querySelector('.project-cards-section');
       if (projectCardsSection) {
         projectCardObserver.observe(projectCardsSection);
+      }
+
+      // Initialize particles.js only after its script has been loaded
+      // This check ensures particlesJS object is available
+      if (window.particlesJS) {
+        particlesJS('particles-js', {
+          "particles": {
+            "number": {
+              "value": 0,
+              "density": {
+                "enable": true,
+                "value_area": 800
+              }
+            },
+            "color": {
+              "value": "#ffffff" /* Match accent color */
+            },
+            "shape": {
+              "type": "circle",
+              "stroke": {
+                "width": 0,
+                "color": "#000000"
+              },
+              "polygon": {
+                "nb_sides": 5
+              },
+              "image": {
+                "src": "img/github.svg",
+                "width": 100,
+                "height": 100
+              }
+            },
+            "opacity": {
+              "value": 0.5,
+              "random": false,
+              "anim": {
+                "enable": false,
+                "speed": 1,
+                "opacity_min": 0.1,
+                "sync": false
+              }
+            },
+            "size": {
+              "value": 3,
+              "random": true,
+              "anim": {
+                "enable": false,
+                "speed": 40,
+                "size_min": 0.1,
+                "sync": false
+              }
+            },
+            "line_linked": {
+              "enable": false, /* Set to false for floating particles, not wireframe */
+              "distance": 150,
+              "color": "#ffd700", /* Match secondary accent color */
+              "opacity": 0.4,
+              "width": 1
+            },
+            "move": {
+              "enable": true,
+              "speed": 3, /* Reduced speed for a more gentle floating effect */
+              "direction": "none",
+              "random": true, /* Set to true for more natural, random floating */
+              "straight": false,
+              "out_mode": "out",
+              "bounce": false,
+              "attract": {
+                "enable": false,
+                "rotateX": 600,
+                "rotateY": 1200
+              }
+            }
+          },
+          "interactivity": {
+            "detect_on": "canvas",
+            "events": {
+              "onhover": {
+                "enable": true,
+                "mode": "grab"
+              },
+              "onclick": {
+                "enable": true,
+                "mode": "push"
+              },
+              "resize": true
+            },
+            "modes": {
+              "grab": {
+                "distance": 140,
+                "line_linked": {
+                  "opacity": 1
+                }
+              },
+              "bubble": {
+                "distance": 400,
+                "size": 40,
+                "duration": 2,
+                "opacity": 8,
+                "speed": 3
+              },
+              "repulse": {
+                "distance": 200,
+                "duration": 0.4
+              },
+              "push": {
+                "particles_nb": 4
+              },
+              "remove": {
+                "particles_nb": 2
+              }
+            }
+          },
+          "retina_detect": true
+        });
       }
     });
 
