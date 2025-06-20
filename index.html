@@ -67,54 +67,13 @@
       perspective: 0px; /* Needed for 3D flip */
     }
 
-    /* Pseudo-element for the blurred background image */
-    body::after {
-      content: '';
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background-image: url(''); /* Your background image */
-      background-size: cover;
-      background-position: center center;
-      background-repeat: no-repeat;
-      background-attachment: fixed; /* Keeps the background fixed when scrolling */
-      filter: blur(5px); /* Adjusted for slightly more blur */
-      -webkit-filter: blur(5px); /* For Safari compatibility */
-      z-index: -2; /* Ensures it's behind the body::before overlay and all content */
-      pointer-events: none; /* Allows clicks to pass through */
-      animation: backgroundPan 60s linear infinite; /* Added backgroundPan animation */
-    }
-
-    @keyframes backgroundPan {
-      0% {
-        background-position: 0% 0%;
-      }
-      100% {
-        background-position: 100% 100%; /* Pans diagonally */
-      }
-    }
-
-    /* Particles.js container styling */
-    #particles-js {
-      position: fixed;
-      width: 100%;
-      height: 100%;
-      top: 0;
-      left: 0;
-      z-index: -3; /* Ensures it's behind body::before and body::after */
-      background-color: transparent; /* Make sure it's transparent to show other backgrounds */
-      pointer-events: none; /* Allows interaction with elements behind it */
-    }
-
     /* Ensure other content layers correctly on top */
     header, main, footer {
         position: relative; /* Ensure these elements respect z-index */
         z-index: 10; 	/* A higher z-index to bring them above any background effects */
     }
 
-    /* If your header is already sticky, ensure its z-index is still higher */
+    /* If header is already sticky, ensure its z-index is still higher */
     header {
       background: rgba(20, 20, 20, 0.5);
       backdrop-filter: transparent;
@@ -757,6 +716,7 @@
         </svg>
         <div class="welcome-parallax-bg"></div> </section>
 		<section class="project-cards-section">
+		  <h2>| Programmer shaped by a philosophy |</h2>
 			<h2>Minimalism. Speed. Accuracy.</h2>
           <div class="project-cards-container">
               <div class="project-card animate-on-scroll">
