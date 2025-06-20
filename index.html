@@ -879,7 +879,6 @@
   projectinfo [name] Get description for a project
   go [section]     Navigate to section (projects, media, about, contact, hero)
   clear            Clear the terminal output
-  ping [host]      Simulate ping to host
   portcheck [port] Simulate port check (demo)
   theme [dark|light|matrix]
                    Switch theme
@@ -930,19 +929,6 @@
             return `Section "${section}" not found.`;
           }
           return 'Usage: go [section]';
-        },
-        ping: (args) => {
-          const host = args[1] || 'example.com';
-          let out = `Pinging ${host} with 32 bytes of data:\n`;
-          let total = 0;
-          for (let i = 0; i < 4; i++) {
-            const ms = (Math.random() * 50 + 10).toFixed(2);
-            total += parseFloat(ms);
-            out += `Reply from ${host}: time=${ms}ms\n`;
-          }
-          const avg = (total/4).toFixed(2);
-          out += `\nApproximate round trip times in milli-seconds:\n    Minimum = 10ms, Maximum = 60ms, Average = ${avg}ms`;
-          return out;
         },
         portcheck: (args) => {
           const port = args[1] || '80';
