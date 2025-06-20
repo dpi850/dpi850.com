@@ -35,9 +35,9 @@
  <style>
     :root {
       --bg-color: #151515;           	 /* Black */
-      --text-color: #cccccc;         /* Steel gray */
-      --accent: #00d4ff;             /* Electric blue pulse */
-      --accent-secondary: #ffd700;   /* Bright gold edge */
+      --text-color: #cccccc;         	 /* Steel gray */
+      --accent: #00d4ff;             	 /* Electric blue pulse */
+      --accent-secondary: #ffd700;   	 /* Bright gold edge */
       --accent-glow: rgba(0, 212, 255, 0.3);
       --glass-bg: rgba(255, 255, 255, 0.039);
       --border-glow: 1px solid rgba(255, 215, 0, 0.4);
@@ -57,19 +57,19 @@
       font-family: 'Inter', serif;
       font-weight: 0;
       line-height: 0;
-      background-color: var(--bg-color); /* Now this is the primary background color */
+      background-color: var(--bg-color); /* This is the primary background color */
       color: var(--text-color);
       display: flex;
       flex-direction: column;
       min-height: 0;
       position: relative;
       overflow-x: hidden;
-      perspective: 1500px; /* Needed for 3D flip */
+      perspective: 0px; /* Needed for 3D flip */
     }
 
 
 
-    /* NEW: Pseudo-element for the blurred background image */
+    /* Pseudo-element for the blurred background image */
     body::after {
       content: '';
       position: fixed;
@@ -112,15 +112,15 @@
 
     /* Ensure other content layers correctly on top */
     header, main, footer {
-        position: relative; 							/* Ensure these elements respect z-index */
-        z-index: 10; 								/* A higher z-index to bring them above any background effects */
+        position: relative; /* Ensure these elements respect z-index */
+        z-index: 10; 	/* A higher z-index to bring them above any background effects */
     }
 
     /* If your header is already sticky, ensure its z-index is still higher */
     header {
       background: rgba(20, 20, 20, 0.5);
       backdrop-filter: transparent;
-      padding: 1rem 2rem;
+      padding: 0rem 0rem;
       position: sticky;
       top: 0;
       z-index: 100; /* Keep this high so it's always on top */
@@ -673,8 +673,6 @@
   </style>
 </head>
 <body>
-  <div id="particles-js"></div>
-
   <div data-barba="wrapper">
     <header>
       <a
@@ -804,7 +802,6 @@
       gap: 2rem;
       justify-content: center;
     ">
-      <!-- Post Block 1 -->
       <div style="flex: 1 1 300px; max-width: 500px; display: flex;">
         <div style="
           flex: 1;
@@ -825,7 +822,6 @@
         </div>
       </div>
 
-      <!-- Post Block 2 -->
       <div style="flex: 1 1 300px; max-width: 500px; display: flex;">
         <div style="
           flex: 1;
@@ -846,7 +842,6 @@
         </div>
       </div>
 
-      <!-- Post Block 3 -->
       <div style="flex: 1 1 300px; max-width: 500px; display: flex;">
         <div style="
           flex: 1;
@@ -943,13 +938,12 @@
           <i class="fas fa-image" aria-hidden="true"></i>
         </a>
       </div>
-      <div class="footer-text">| website built with love from the ground up | i offer up all of my code for free on github ❤️|</div>
+      <div class="footer-text">| website built with love from the ground up | all of my code is free on github ❤️|</div>
       <div class="footer-text">© 2025 DPI850.com | Designed by DPI850. | All rights reserved.</div>
     </footer>
   </div>
 
   <script src="https://cdn.tailwindcss.com" defer></script>
-  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
   <script src="https://unpkg.com/@barba/core" defer></script>
 
   <script defer>
@@ -1035,162 +1029,10 @@
       if (projectCardsSection) {
         projectCardObserver.observe(projectCardsSection);
       }
-
-      // Initialize particles.js only after its script has been loaded
-      // This check ensures particlesJS object is available
-      if (window.particlesJS) {
-        particlesJS('particles-js', {
-          "particles": {
-            "number": {
-              "value": 0,
-              "density": {
-                "enable": true,
-                "value_area": 800
-              }
-            },
-            "color": {
-              "value": "#ffffff" /* Match accent color */
-            },
-            "shape": {
-              "type": "circle",
-              "stroke": {
-                "width": 0,
-                "color": "#000000"
-              },
-              "polygon": {
-                "nb_sides": 5
-              },
-              "image": {
-                "src": "img/github.svg",
-                "width": 100,
-                "height": 100
-              }
-            },
-            "opacity": {
-              "value": 0.5,
-              "random": false,
-              "anim": {
-                "enable": false,
-                "speed": 1,
-                "opacity_min": 0.1,
-                "sync": false
-              }
-            },
-            "size": {
-              "value": 3,
-              "random": true,
-              "anim": {
-                "enable": false,
-                "speed": 40,
-                "size_min": 0.1,
-                "sync": false
-              }
-            },
-            "line_linked": {
-              "enable": false, /* Set to false for floating particles, not wireframe */
-              "distance": 150,
-              "color": "#ffd700", /* Match secondary accent color */
-              "opacity": 0.4,
-              "width": 1
-            },
-            "move": {
-              "enable": true,
-              "speed": 3, /* Reduced speed for a more gentle floating effect */
-              "direction": "none",
-              "random": true, /* Set to true for more natural, random floating */
-              "straight": false,
-              "out_mode": "out",
-              "bounce": false,
-              "attract": {
-                "enable": false,
-                "rotateX": 600,
-                "rotateY": 1200
-              }
-            }
-          },
-          "interactivity": {
-            "detect_on": "canvas",
-            "events": {
-              "onhover": {
-                "enable": true,
-                "mode": "grab"
-              },
-              "onclick": {
-                "enable": true,
-                "mode": "push"
-              },
-              "resize": true
-            },
-            "modes": {
-              "grab": {
-                "distance": 140,
-                "line_linked": {
-                  "opacity": 1
-                }
-              },
-              "bubble": {
-                "distance": 400,
-                "size": 40,
-                "duration": 2,
-                "opacity": 8,
-                "speed": 3
-              },
-              "repulse": {
-                "distance": 200,
-                "duration": 0.4
-              },
-              "push": {
-                "particles_nb": 4
-              },
-              "remove": {
-                "particles_nb": 2
-              }
-            }
-          },
-          "retina_detect": true
-        });
-      }
-    });
-
-    barba.init({
-      // Comment out the entire 'transitions' array to disable page transitions
-      // This helps to check if Barba.js's animations are interfering with the fixed menu.
-      /*
-      transitions: [
-        {
-          name: 'crazy-flip',
-          leave({ current }) {
-            return new Promise((resolve) => {
-              current.container.style.transition = 'transform 0.8s ease, opacity 0.8s ease';
-              current.container.style.transformOrigin = 'center';
-              current.container.style.transform = 'rotateY(90deg)';
-              current.container.style.opacity = '0';
-              setTimeout(resolve, 800);
-            });
-          },
-          enter({ next }) {
-            next.container.style.transform = 'rotateY(-90deg)';
-            next.container.style.opacity = '0';
-            next.container.style.transition = 'transform 0.8s ease, opacity 0.8s ease';
-            return new Promise((resolve) => {
-              requestAnimationFrame(() => {
-                next.container.style.transform = 'rotateY(0deg)';
-                next.container.style.opacity = '1';
-                setTimeout(resolve, 800);
-              });
-            });
-          },
-
-          once({ next }) {
-            next.container.style.opacity = '1';
-          }
-        }
-      ]
-      */
     });
   </script>
   <script src="js/jquery.min.js" defer></script>
-  <script src="js/jquery-migrate-3.0.1.min.js" defer></script>
+  <script src="js/jquery-migrate-3.0.1.js" defer></script>
   <script src="js/popper.min.js" defer></script>
   <script src="js/bootstrap.min.js" defer></script>
   <script src="js/jquery.easing.1.3.js" defer></script>
