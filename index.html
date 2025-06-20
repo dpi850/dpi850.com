@@ -1,1027 +1,1224 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark">
 <head>
- <meta charset="UTF-8" />
- <meta name="viewport" content="width=device-width, initial-scale=1" />
- <title>DPI850.com - Official Site</title>
- <link rel="icon" href="/favicon.ico" type="image/x-icon" />
- <meta name="description" content="Welcome to DPI850.com." />
- <link rel="icon" href="/favicon.png" />
- <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
- <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
- <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
- <link rel="manifest" href="/manifest.webmanifest" />
- <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#ff6600" />
- <meta name="theme-color" content="#0d0d0d" />
- <link
-   href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
-   rel="stylesheet"
- />
- <link
-   href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap"
-   rel="stylesheet"
- />
- <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap" rel="stylesheet" />
- <link
-   rel="stylesheet"
-   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
-   xintegrity="sha512-pVUv37Qm6VR9RcyqY6r0zpo+XRBXJ7qTk6iW0+j+Xg0CkntjxT5P8n0xN+tBJYcXKgqE1tV8FPhOg=="
-   crossorigin="anonymous"
-   referrerpolicy="no-referrer"
- />
- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
- <style>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>dpi850: Programming that works.</title>
+  <meta name="description" content="dpi850 — Programming that works." />
+  <meta property="og:title" content="dpi850: Programming that works." />
+  <meta property="og:description" content="Programming that works." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://dpi850.com/" />
+  <meta property="og:image" content="https://dpi850.com/assets/og-image.png" />
+  <meta property="og:video" content="https://www.youtube.com/embed/iM8GiMlAqzQ" />
+  <meta property="og:video:secure_url" content="https://www.youtube.com/embed/iM8GiMlAqzQ" />
+  <meta property="og:video:type" content="text/html" />
+  <meta property="og:video:width" content="1280" />
+  <meta property="og:video:height" content="720" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="theme-color" content="#111111" />
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/Inter-VariableFont.woff2" as="font" type="font/woff2" crossorigin />
+  <style>
+    /* =======================
+       CSS Variables & Base
+       ======================= */
     :root {
-      --bg-color: #151515;           	 /* Black */
-      --text-color: #ffffff;         	 /* White */
-      --accent: #00d4ff;             	 /* Electric blue pulse */
-      --accent-secondary: #ffd700;   	 /* Bright gold edge */
-      --accent-glow: rgba(0, 212, 255, 0.3);
-      --glass-bg: rgba(255, 255, 255, 0.039);
-      --border-glow: 1px solid rgba(255, 215, 0, 0.4);
+      --bg-color: #111111;
+      --text-color: #f5f5f5;
+      --accent-color: #00aaff;
+      --font-sans: 'Inter', sans-serif;
+      --radius: 0.5rem;
+      --transition-fast: 0.3s ease;
+      --terminal-bg: rgba(0, 0, 0, 0.85);
+      --terminal-text: #33ff33;
+      --cursor-trail-color: rgba(255,255,255,0.3);
     }
-
-    /* ─────────────────────────────────────────────────────────────────────────────
-      Your existing reset and typography/styles
-    ──────────────────────────────────────────────────────────────────── */
-
+    [data-theme="light"] {
+      --bg-color: #fafafa;
+      --text-color: #46c34c;
+      --accent-color: #0077cc;
+      --terminal-bg: rgba(240, 240, 240, 0.95);
+      --terminal-text: #006600;
+    }
+    [data-theme="matrix"] {
+      --bg-color: #000;
+      --text-color: #0f0;
+      --accent-color: #0f0;
+      --terminal-bg: rgba(0, 0, 0, 0.9);
+      --terminal-text: #0f0;
+    }
     *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
     }
-
-    body {
-      font-family: 'Inter', serif;
-      font-weight: 0;
-      line-height: 0;
-      background-color: var(--bg-color); /* This is the primary background color */
+    html {
+      font-family: var(--font-sans);
+      font-size: 16px;
+      scroll-behavior: smooth;
+      background-color: var(--bg-color);
       color: var(--text-color);
-      display: flex;
-      flex-direction: column;
-      min-height: 0;
+      transition: background-color 0.5s ease, color 0.5s ease;
+    }
+    body {
+      min-height: 100vh;
+      line-height: 1.5;
       position: relative;
       overflow-x: hidden;
-      perspective: 0px; /* Needed for 3D flip */
     }
-
-    /* Ensure other content layers correctly on top */
-    header, main, footer {
-        position: relative; /* Ensure these elements respect z-index */
-        z-index: 10; 	/* A higher z-index to bring them above any background effects */
-    }
-
-    /* If header is already sticky, ensure its z-index is still higher */
-    header {
-      background: rgba(20, 20, 20, 0.5);
-      backdrop-filter: transparent;
-      padding: 0rem 0rem;
-      position: sticky;
-      top: 0;
-      z-index: 100; /* Keep this high so it's always on top */
-      display: flex;
-      align-items: center;
-      justify-content: space-between; /* Space out logo and nav */
-      transition: background-color 0.3s ease;
-    }
-
-    .logo {
-      display: inline-block;
-      width: 325px;
-      height: 80px;
-      user-select: none;
-      text-decoration: none;
-      color: transparent;
-      font-size: 0;
-    }
-
-    /* Navigation Menu (now always visible and horizontal) */
-    nav.menu {
-      display: flex; /* Make it a flex container for horizontal items */
-      flex-direction: row; /* Arrange items horizontally */
-      gap: 1rem; /* Space between menu items */
-      position: static; /* No longer fixed, flows with header */
-      width: auto; /* Take natural width */
-      height: auto; /* Take natural height */
-      background: transparent; /* No background for the nav container itself */
-      backdrop-filter: none; /* No backdrop filter needed */
-      box-shadow: none; /* No shadow */
-      z-index: auto; /* No special z-index needed */
-      justify-content: flex-end; /* Align items to the right */
-      align-items: center; /* Vertically center items */
-      transform: none; /* Remove transform */
-      opacity: 0.5; /* Always visible */
-      transition: none; /* Remove transition */
-      padding: 0;
-    }
-
-    /* Styles for individual menu items within the overlay */
-    nav.menu a {
-      font-family: 'Share Tech Mono', monospace;
-      font-weight: 600;
-      font-size: 1.7rem; /* Adjusted for horizontal nav */
-      color: var(--text-color);
+    a {
+      color: var(--accent-color);
       text-decoration: none;
       position: relative;
-      padding: 0.3rem 0; /* Adjusted padding */
-      transition: color 0.35s ease, text-shadow 0.35s ease, transform 0.25s ease;
-      user-select: none;
+    }
+    a:focus, button:focus, input:focus, textarea:focus {
+      outline: 2px dashed var(--accent-color);
+      outline-offset: 2px;
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    section {
+      padding: 3rem 0;
+    }
+    h1, h2, h3 {
+      margin-bottom: 1rem;
+      font-weight: 600;
+      line-height: 1.2;
+    }
+    h1 { font-size: 2.5rem; }
+    h2 { font-size: 2rem; }
+    h3 { font-size: 1.5rem; }
+    p { margin-bottom: 1rem; }
+    .btn {
+      display: inline-block;
+      padding: 0.75rem 1.5rem;
+      border: 2px solid var(--accent-color);
+      border-radius: var(--radius);
+      font-weight: 600;
+      transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
+    }
+    .btn:hover, .btn:focus {
+      background-color: var(--accent-color);
+      color: var(--bg-color);
+      transform: scale(1.05);
     }
 
-    nav.menu a::after {
+    /* =======================
+       Skip Link
+       ======================= */
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 1rem;
+      background: var(--accent-color);
+      color: var(--bg-color);
+      padding: 0.5rem 1rem;
+      z-index: 2000;
+      transition: top 0.3s ease;
+    }
+    .skip-link:focus {
+      top: 1rem;
+    }
+
+    /* =======================
+       Scroll Progress Bar
+       ======================= */
+    #scrollProgress {
+      position: fixed;
+      top: 0; left: 0;
+      height: 3px;
+      background: var(--accent-color);
+      width: 0%;
+      z-index: 1500;
+      transition: width 0.1s ease;
+    }
+
+    /* =======================
+       Header & Hamburger
+       ======================= */
+    header {
+      position: relative;
+      z-index: 1100;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    #menuToggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0.5rem;
+      color: var(--text-color);
+    }
+    .hamburger, .hamburger::before, .hamburger::after {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--text-color);
+      transition: transform 0.3s ease;
+      position: relative;
+    }
+    .hamburger::before, .hamburger::after {
       content: '';
       position: absolute;
       left: 0;
-      bottom: 2px; /* Adjusted bottom for horizontal nav */
-      width: 100%;
-      height: 2px; /* Slightly thinner underline */
-      background: var(--accent);
-      border-radius: 3px;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     }
+    .hamburger::before { top: -8px; }
+    .hamburger::after { top: 8px; }
 
-    nav.menu a:hover::after,
-    nav.menu a:focus-visible::after {
-      transform: scaleX(1);
-    }
-
-    @media (max-width: 768px) {
-      .logo {
-        width: 280px;
-        height: 70px;
-        margin-bottom: 0;
-      }
-      nav.menu {
-        gap: 1rem; /* Smaller gap on smaller screens */
-      }
-      nav.menu a {
-        font-size: 1rem; /* Smaller font size */
-      }
-    }
-
-    @media (max-width: 480px) {
-      header {
-        padding: 0.5rem 1rem;
-        flex-direction: column; /* Stack logo and nav vertically on very small screens */
-        align-items: center;
-        gap: 1rem; /* Space between stacked items */
-      }
-      .logo {
-        width: 225px;
-        height: 55px;
-      }
-      nav.menu {
-        width: 100%; /* Take full width when stacked */
-        justify-content: center; /* Center menu items when stacked */
-        gap: 1rem;
-      }
-      nav.menu a {
-        font-size: 0.9rem;
-        padding: 0.5rem 0.20rem;
-      }
-      nav.menu a::after {
-        bottom: 1px;
-        height: 1px;
-      }
-    }
-
-      /* Glow shadow */
-      text-shadow:
-        0 0 6px rgba(255, 110, 196, 0.6),
-        0 0 12px rgba(120, 123, 245, 0.4);
-
-      /* Start hidden, slightly translated and scaled down for a simpler intro */
+    /* Fullscreen overlay menu */
+    #overlayMenu {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(17,17,17,0.95);
+      backdrop-filter: blur(5px);
       opacity: 0;
-      transform: translateY(20px) scale(0.9);
-
-      /* Use simpler introFadeScale animation */
-      animation:
-        introFadeScale 1s ease-out forwards, /* Faster and simpler fade/scale */
-        gradientMove 10s ease 1s infinite, /* Adjust delay to start after introFadeScale */
-        waveMove 8s ease 1s infinite alternate,
-        floatingText 4s ease-in-out 1s infinite alternate;
-    }
-
-      /* Keep a subtle gradient for consistency, but less impactful */
-      background: linear-gradient(240deg, #ff6ec4, #7876f5, #4ade80, #facc15);
-      background-size: 800% 800%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-
-      /* Removed blur for "flat text" and very low opacity to "not clutter" */
-      filter: none; /* Removed blur */
-      opacity: 0; /* Very low opacity for subtle background */
-      z-index: -1;
       pointer-events: none;
-
-      /* Removed text-shadow for "flat text" */
-      text-shadow: none;
-
-      /* waveMove begins once introFadeScale finishes */
-      animation: waveMove 8s ease 1s infinite alternate;
-    }
-
-    /* New, simpler intro animation */
-    @keyframes introFadeScale {
-      0% {
-        opacity: 0;
-        transform: translateY(20px) scale(0.9);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    @keyframes gradientMove {
-      0%   { background-position:   0% 50%; }
-      50%  { background-position: 100% 50%; }
-      100% { background-position:   0% 50%; }
-    }
-
-    @keyframes waveMove {
-      0%   { background-position:   0% 50%; }
-      100% { background-position: 100% 50%; }
-    }
-
-    @keyframes floatingText {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(-2px) scale(1.002); /* More subtle vertical float and slight scale */
-      }
-    }
-
-    main {
-      flex-grow: 1;
-      position: relative;
-      z-index: 1;
-      backface-visibility: hidden; /* for flip effect */
-    }
-
-    .banner {
-      min-height: 100vh;
+      transition: opacity 0.4s ease;
       display: flex;
-      flex-direction: column;
-      justify-content: center;
       align-items: center;
-      background: transparent;
-      color: var(--accent);
-      text-align: center;
-      user-select: none;
-      padding: 0 1rem;
-      gap: 0.5rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .banner h1,
-    .banner h2,
-    .banner p {
-      font-family: 'Inter', monospace;
-      text-shadow: 0 0 12px rgba(255, 102, 0, 0.7);
-      max-width: 90vw;
-      margin: 0;
-    }
-
-    .banner h1 {
-      font-size: 3.5rem;
-      margin-bottom: 4rem;
-    }
-
-    .banner h2 {
-      font-size: 2rem;
-      margin-top: 1rem;
-    }
-
-    .banner p {
-      font-family: 'Alegreya', serif;
-      font-weight: 300;
-      font-size: 1.8rem;
-      color: rgba(255, 136, 0, 0.8);
-      max-width: 600px;
-      margin-bottom: 1rem;
-      padding: 0 0.5rem;
-    }
-
-    /* Parallax for Welcome Section background element */
-    .welcome-parallax-bg {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 200px; /* Adjust size */
-        height: 200px; /* Adjust size */
-        background: radial-gradient(circle at center, rgba(0, 212, 255, 0.2) 0%, rgba(0, 212, 255, 0) 70%); /* Color and fade */
-        border-radius: 50%; /* Make it circular */
-        z-index: -2; /* Ensure it's behind the content and body overlay */
-        filter: blur(5px); /* Apply blur for a soft glow effect */
-        opacity: 0.7; /* Adjust transparency */
-        transform: translate(-50%, -50%); /* Center the element */
-        will-change: transform; /* Optimize for animation */
-    }
-
-
-    /* ─────────────────────────────────────────────────────────────────────────
-      Scroll animation styles
-    ───────────────────────────────────────────────────────────────────────── */
-    .animate-on-scroll {
-      opacity: 0;
-      /* Simpler initial transform for 'coming from distance' */
-      transform: translateY(15px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out; /* Slightly faster transition */
-      will-change: opacity, transform;
-    }
-
-    .animate-on-scroll.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* Specific style for your 'foundations' words */
-    .banner p.foundation-word {
-      font-family: 'Share Tech Mono', monospace; /* Consistent with other code-like text */
-      font-size: 2rem; /* Make them stand out */
-      color: var(--accent-secondary); /* Gold for emphasis */
-      text-shadow: 0 0 10px rgba(255, 215, 0, 0.5), 0 0 20px rgba(255, 215, 0, 0.3);
-      letter-spacing: 0.1em; /* Space them out a bit */
-      position: relative; /* Needed for pseudo-element */
-
-      /* Simpler initial transform */
-      opacity: 0;
-      transform: translateX(-15px);
-      transition: opacity 0.8s ease-out, transform 0.8s ease-out;
-      will-change: opacity, transform;
-    }
-
-    .banner p.foundation-word.visible {
-      opacity: 1;
-      transform: translateX(0); /* Animate to normal state */
-    }
-
-    /* Optional: Add a very subtle trail effect using a pseudo-element - Toned down */
-    .banner p.foundation-word::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: -10px; /* Shorter start off-screen */
-      width: 10px; /* Shorter length of the trail */
-      height: 1px; /* Thinner */
-      background: linear-gradient(to right, transparent, var(--accent-secondary));
-      transform: translateY(-50%) scaleX(0);
-      transform-origin: left center;
-      transition: transform 0.8s ease-out;
-      pointer-events: none;
-      z-index: -1;
-      opacity: 0; /* Starts fully transparent */
-    }
-
-    .banner p.foundation-word.visible::before {
-      transform: translateY(-50%) scaleX(1);
-      opacity: 0.5; /* Reduced opacity */
-      transition-delay: 0.2s; /* Trail appears slightly after word starts moving */
-    }
-
-
-    @keyframes fadeInUp {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes float {
-      0%, 100% {
-        transform: translateY(0);
-      }
-      50% {
-        transform: translateY(8px);
-      }
-    }
-
-    /* Project Cards Section */
-    .project-cards-section {
-      padding: 4rem 2rem;
-      text-align: center;
-      background-color: rgba(26, 26, 29, 0.7); /* Slightly darker, semi-transparent background */
-      backdrop-filter: blur(8px);
-      border-top: 1px solid rgba(0, 212, 255, 0.1);
-      border-bottom: 1px solid rgba(0, 212, 255, 0.1);
-    }
-
-    .project-cards-section h2 {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 2.5rem;
-      color: var(--accent-secondary); /* Gold color for section title */
-      text-shadow: 0 0 15px rgba(255, 215, 0, 0.6);
-      margin-bottom: 3rem;
-    }
-
-    .project-cards-container {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2.5rem;
-      max-width: 1200px;
-      margin: 0 auto;
-      justify-content: center; /* Center cards if they don't fill the grid */
-    }
-
-    .project-card {
-      background: var(--glass-bg); /* Use glass background */
-      border: var(--border-glow); /* Gold border glow */
-      border-radius: 12px;
-      overflow: hidden;
-      display: flex;
-      flex-direction: column;
-      /* Modify transition to include delay, which will be set by JS */
-      transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.8s ease-out, transform 0.8s ease-out;
-      box-shadow: 0 0 20px rgba(0, 212, 255, 0.15); /* Subtle initial glow */
-      will-change: transform; /* Optimize for animation */
-      opacity: 0; /* Start hidden for stagger animation */
-      transform: translateY(30px); /* Start slightly below for stagger animation */
-    }
-
-    .project-card.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-
-    .project-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0, 212, 255, 0.4), 0 0 40px rgba(255, 215, 0, 0.3); /* Enhanced glow on hover */
-    }
-
-    .project-card img {
-      width: 100%;
-      height: 200px;
-      object-fit: cover;
-      border-bottom: 1px solid rgba(255, 215, 0, 0.2);
-    }
-
-    .project-card-content {
-      padding: 1.5rem;
-      flex-grow: 1; /* Allow content to take available space */
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .project-card h3 {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 1.8rem;
-      color: var(--accent); /* Electric blue for titles */
-      margin-bottom: 0.8rem;
-      text-shadow: 0 0 10px var(--accent-glow);
-    }
-
-    .project-card p {
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      color: var(--text-color);
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-      flex-grow: 1; /* Allow description to grow */
-    }
-
-    .project-card .card-link {
-      display: inline-block;
-      background: linear-gradient(90deg, var(--accent), #00aaff); /* Blue gradient button */
-      color: #fff;
-      padding: 0.8rem 1rem;
-      border-radius: 8px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-      box-shadow: 0 4px 15px rgba(0, 212, 255, 0.4);
-      margin-top: 1rem; /* Space from description */
-    }
-
-    .project-card .card-link:hover {
-      background: linear-gradient(90deg, #00aaff, #00d4ff);
-      transform: translateY(-3px);
-      box-shadow: 0 6px 20px rgba(0, 212, 255, 0.6);
-    }
-
-    /* Media queries for project cards */
-    @media (max-width: 768px) {
-      .project-cards-section {
-        padding: 3rem 1rem;
-      }
-
-      .project-cards-section h2 {
-        font-size: 2rem;
-        margin-bottom: 2rem;
-      }
-
-      .project-cards-container {
-        gap: 2rem;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      }
-
-      .project-card h3 {
-        font-size: 1.5rem;
-      }
-
-      .project-card p {
-        font-size: 0.9rem;
-      }
-
-      .project-card .card-link {
-        padding: 0.7rem 1.2rem;
-        font-size: 0.9rem;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .project-cards-section {
-        padding: 2rem 1.1rem;
-      }
-
-      .project-cards-section h2 {
-        font-size: 1.8rem;
-        margin-bottom: 1.5rem;
-      }
-
-      .project-cards-container {
-        grid-template-columns: 1fr; /* Single column on very small screens */
-        gap: 1.5rem;
-      }
-
-      .project-card img {
-        height: 180px;
-      }
-
-      .project-card-content {
-        padding: 1rem;
-      }
-
-      .project-card h3 {
-        font-size: 1.3rem;
-      }
-
-      .project-card p {
-        font-size: 0.85rem;
-      }
-    }
-    footer {
-      font-family: 'Share Tech Mono', monospace;
-      font-size: 0.9rem;
-      color: var(--accent);
-      background: rgba(20, 20, 20, 0.6);
-      backdrop-filter: blur(6px);
-      user-select: none;
-      position: relative;
-      z-index: 1;
-      padding: 1rem 2rem 1.5rem;
-      text-align: center;
-    }
-
-    .footer-socials {
-      display: flex;
       justify-content: center;
-      gap: 2rem;
-      padding-bottom: 0.5rem;
-      user-select: none;
+      flex-direction: column;
+      z-index: 1000;
     }
-
-    .footer-socials .social-icon i {
-      font-size: 2.3rem;
-      color: var(--accent);
-      filter: drop-shadow(0 0 5px rgba(255, 102, 0, 0.8));
-      transition: color 0.4s ease, transform 0.3s ease, filter 0.4s ease;
+    #overlayMenu.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    #overlayMenu ul {
+      list-style: none;
+      text-align: center;
+    }
+    #overlayMenu li {
+      margin: 1rem 0;
+    }
+    #overlayMenu a {
+      color: var(--text-color);
+      font-size: 2rem;
+      transition: transform var(--transition-fast);
+    }
+    #overlayMenu a:hover, #overlayMenu a:focus {
+      transform: scale(1.1);
+    }
+    #menuClose {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: none;
+      border: none;
+      font-size: 2rem;
+      color: var(--text-color);
       cursor: pointer;
     }
 
-    .footer-socials .social-icon:hover i,
-    .footer-socials .social-icon:focus-visible i {
-      color: #000000;
-      transform: scale(1.5);
-      filter: drop-shadow(0 0 15px #ff6600);
-      outline: none;
+    /* =======================
+       Hero: Terminal + Binary Rain
+       ======================= */
+    #hero {
+      position: relative;
+      width: 100%;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-color);
+    }
+    #matrixCanvas {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: 0;
+    }
+    .terminal-window {
+      position: relative;
+      background: var(--terminal-bg);
+      border-radius: var(--radius);
+      padding: 1rem;
+      width: 90%;
+      max-width: 600px;
+      color: var(--terminal-text);
+      font-family: monospace;
+      font-size: 1rem;
+      line-height: 1.4;
+      z-index: 1;
+      box-shadow: 0 0 20px rgba(0,0,0,0.5);
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 1s ease, transform 1s ease;
+    }
+    .terminal-output {
+      max-height: 200px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-word;
+      margin-bottom: 0.5rem;
+    }
+    .terminal-input-line {
+      display: flex;
+      align-items: center;
+    }
+    .terminal-prompt {
+      margin-right: 0.5rem;
+    }
+    .terminal-input {
+      background: transparent;
+      border: none;
+      color: var(--terminal-text);
+      flex: 1;
+      font-family: inherit;
+      font-size: inherit;
+    }
+    /* Help hint in terminal */
+    #helpHint {
+      position: absolute;
+      bottom: 2rem;
+      right: 50%;
+      transform: translateX(50%);
+      background: var(--terminal-bg);
+      color: var(--terminal-text);
+      padding: 0.3rem 0.6rem;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      opacity: 0.7;
+      animation: fadeOutHint 8s ease forwards;
+      z-index: 2;
+    }
+    @keyframes fadeOutHint {
+      0%,50% { opacity: 0.7; }
+      80% { opacity: 0.3; }
+      100% { opacity: 0; display: none; }
     }
 
-    /* Custom CSS for responsive video embedding (from the new section) */
+    /* =======================
+       Projects grid + filter
+       ======================= */
+    #projects .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background-color: #1a1a1a;
+      transition: transform 0.3s ease;
+    }
+    .project-card:focus-within, .project-card:hover {
+      transform: translateY(-5px);
+    }
+    .project-card img {
+      display: block;
+      width: 100%;
+      height: auto;
+      transition: transform 0.5s ease;
+    }
+    .project-card:focus-within img, .project-card:hover img {
+      transform: scale(1.05);
+    }
+    .card-overlay {
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 100%;
+      background: rgba(17,17,17,0.8);
+      color: var(--text-color);
+      transform: translateY(100%);
+      transition: transform 0.4s ease;
+      padding: 1rem;
+      font-family: inherit;
+    }
+    .project-card:focus-within .card-overlay, .project-card:hover .card-overlay {
+      transform: translateY(0);
+    }
+    #projectFilter {
+      width: 100%;
+      max-width: 400px;
+      padding: 0.5rem;
+      background: #222;
+      border: 1px solid #444;
+      border-radius: var(--radius);
+      color: var(--text-color);
+      margin-bottom: 1.5rem;
+    }
+    #projectFilter::placeholder {
+      color: #888;
+    }
+
+    /* =======================
+       Media Section (autoplay muted)
+       ======================= */
     .video-container {
-        position: relative;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio (height / width = 9 / 16 = 0.5625) */
-        height: 0;
-        overflow: hidden;
-        max-width: 100%;
-        background: #000; /* Black background to prevent white flicker */
+      position: relative;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+      border-radius: var(--radius);
+      background: #000;
+      margin-top: 1rem;
     }
-
     .video-container iframe {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        border-radius: 0.5rem; /* Rounded corners for the video iframe */
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: 100%;
     }
-	 .bluesky-embed {
-    white-space: normal !important;
-    overflow: visible !important;
-    text-overflow: unset !important;
-    display: block !important;
-    max-width: 100% !important;
-    word-wrap: break-word !important;
-    word-break: break-word !important;
-  }
 
-  .bluesky-embed * {
-    white-space: normal !important;
-    overflow: visible !important;
-    text-overflow: unset !important;
-    max-width: 100% !important;
-    word-wrap: break-word !important;
-    word-break: break-word !important;
-  }
+    /* =======================
+       About Section ASCII logo
+       ======================= */
+    .ascii-logo {
+      font-family: monospace;
+      white-space: pre;
+      overflow: hidden;
+      display: inline-block;
+      vertical-align: middle;
+      color: var(--accent-color);
+      animation: reveal-logo 3s steps(30) forwards;
+      max-width: 100%;
+    }
+    @keyframes reveal-logo {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    /* Playground */
+    .playground {
+      margin-top: 1rem;
+      background: var(--terminal-bg);
+      padding: 1rem;
+      border-radius: var(--radius);
+      font-family: monospace;
+    }
+    .playground textarea {
+      width: 100%;
+      height: 100px;
+      background: #222;
+      color: var(--text-color);
+      border: 1px solid #444;
+      border-radius: var(--radius);
+      font-family: inherit;
+      padding: 0.5rem;
+    }
+    .playground button {
+      margin-top: 0.5rem;
+    }
+    .playground pre {
+      margin-top: 0.5rem;
+      background: #111;
+      color: var(--text-color);
+      padding: 0.5rem;
+      border-radius: var(--radius);
+      max-height: 150px;
+      overflow-y: auto;
+    }
+
+    /* =======================
+       Footer
+       ======================= */
+    footer {
+      background: #0d0d0d;
+      padding: 2rem 0;
+      text-align: center;
+    }
+    .footer-content p {
+      margin: 0.5rem 0;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    /* =======================
+       Back-to-top Button
+       ======================= */
+    #backToTop {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: var(--terminal-bg);
+      color: var(--terminal-text);
+      border: 1px solid var(--accent-color);
+      border-radius: 50%;
+      width: 3rem;
+      height: 3rem;
+      font-size: 1.2rem;
+      cursor: pointer;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 1200;
+    }
+    #backToTop.show {
+      opacity: 1;
+      pointer-events: all;
+    }
+    #backToTop:hover {
+      transform: scale(1.1);
+    }
+
+    /* =======================
+       Theme Toggle Button
+       ======================= */
+    #themeToggle {
+      position: fixed;
+      bottom: 2rem;
+      left: 2rem;
+      background: var(--terminal-bg);
+      color: var(--terminal-text);
+      border: 1px solid var(--accent-color);
+      border-radius: 50%;
+      width: 3rem;
+      height: 3rem;
+      cursor: pointer;
+      z-index: 1200;
+      opacity: 0.7;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    #themeToggle:hover {
+      opacity: 1;
+      transform: scale(1.1);
+    }
+    /* Inline SVG icon styling */
+    #themeToggle svg {
+      width: 1.2rem;
+      height: 1.2rem;
+      fill: var(--text-color);
+    }
+
+    /* =======================
+       Section Reveal on Scroll
+       ======================= */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* =======================
+       Section Label
+       ======================= */
+    #sectionLabel {
+      position: fixed;
+      top: 1rem;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--terminal-bg);
+      color: var(--terminal-text);
+      padding: 0.25rem 0.5rem;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: 1200;
+    }
+    #sectionLabel.show {
+      opacity: 0.8;
+    }
+
+    /* =======================
+       Custom Scrollbar
+       ======================= */
+    body::-webkit-scrollbar {
+      width: 8px;
+    }
+    body::-webkit-scrollbar-track {
+      background: #222;
+    }
+    body::-webkit-scrollbar-thumb {
+      background: var(--accent-color);
+      border-radius: 4px;
+    }
+    body::-webkit-scrollbar-thumb:hover {
+      background: var(--text-color);
+    }
+    html {
+      scrollbar-width: thin;
+      scrollbar-color: var(--accent-color) #222;
+    }
+
+
+    /* =======================
+       Cursor Trail Dot
+       ======================= */
+    .cursor-trail-dot {
+      position: fixed;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      pointer-events: none;
+      background: var(--cursor-trail-color);
+      will-change: transform, opacity;
+      opacity: 1;
+    }
+
+    /* =======================
+       Responsive & Reduced Motion
+       ======================= */
+    @media (max-width: 600px) {
+      .terminal-window { font-size: 0.9rem; }
+      #overlayMenu a { font-size: 1.5rem; }
+      #backToTop, #themeToggle {
+        bottom: 1rem; right: 1rem; left: auto;
+        width: 2.5rem; height: 2.5rem;
+      }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
   </style>
 </head>
+
 <body>
-  <div data-barba="wrapper">
-    <header>
-      <a
-        href="index.html"
-        class="logo"
-        aria-label="DPI850 homepage"
-        style="display:inline-block; width:320px; height:80px;"
-      >
-        <svg
-          width="320"
-          height="80"
-          viewBox="0 0 320 80"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          role="img"
-          aria-label="DPI850.com logo"
-          style="display:block; width:100%; height:100%;"
-        >
-          <defs>
-            <linearGradient id="gradBlueOrange" x1="0" y1="0" x2="1" y2="1">
-              <stop offset="0%" stop-color="#1A73E8" />
-              <stop offset="100%" stop-color="#FF5722" />
-            </linearGradient>
-            <filter
-              id="dropShadow"
-              x="-10%"
-              y="-10%"
-              width="120%"
-              height="120%"
-              color-interpolation-filters="sRGB"
-            >
-              <feDropShadow dx="0" dy="2" stdDeviation="2" flood-color="#000" flood-opacity="0.25" />
-            </filter>
-          </defs>
+  <a href="#main-content" class="skip-link">Skip to content</a>
 
-          <rect x="10" y="20" width="8" height="8" fill="url(#gradBlueOrange)" filter="url(#dropShadow)" rx="1" />
-          <rect x="22" y="20" width="8" height="8" fill="#FF5722" rx="1" />
-          <rect x="10" y="32" width="8" height="8" fill="#1A73E8" rx="1" />
+  <div id="scrollProgress"></div>
 
-          <text
-            x="45"
-            y="50"
-            font-family="'Share Tech Mono', monospace"
-            font-weight="800"
-            font-size="50"
-            fill="url(#gradBlueOrange)"
-            filter="url(#dropShadow)"
-            letter-spacing="1"
-          >
-            DPI
-          </text>
+  <header class="container">
+    <button id="menuToggle" aria-label="Open menu" aria-expanded="false">
+      <span class="hamburger"></span>
+    </button>
+  </header>
 
-          <text
-            x="150"
-            y="50"
-            font-family="'Share Tech Mono', monospace"
-            font-weight="600"
-            font-size="50"
-            fill="#FF5722"
-            filter="url(#dropShadow)"
-            letter-spacing="2"
-          >
-            850
-          </text>
-          <text x="230" y="50" font-family="'Share Tech Mono', monospace" font-weight="500" font-size="23" fill="#666" letter-spacing="1">
-            .com
-          </text>
-        </svg>
-      </a>
-      <nav class="menu" role="navigation" aria-label="Main navigation">
-        <a href="index.html" class="menuItem">Home</a>
-        <a href="projects.html" class="menuItem">Projects</a>
-        <a href="about.html" class="menuItem">About</a>
-      </nav>
-      </header>
-        <svg
-          class="wave-svg"
-          viewBox="0 0 1440 150"
-          preserveAspectRatio="none"
-          xmlns="http://www.w3.org/2000/svg"
-          aria-hidden="true"
-          focusable="false"
-        >
-        </svg>
-        <div class="welcome-parallax-bg"></div> </section>
-		
-				<section class="project-cards-section">
+  <nav id="overlayMenu" aria-hidden="true">
+    <button id="menuClose" aria-label="Close menu">×</button>
+    <ul>
+      <li><a href="#hero">Home</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">About</a></li>
+    </ul>
+  </nav>
 
-			<h2>Minimalism. Speed. Accuracy.</h2>
-          <div class="project-cards-container">
-              <div class="project-card animate-on-scroll">
-                  <div class="project-card-content">
-		
-		<section class="project-cards-section">
-			<h2>Projects</h2>
-          <div class="project-cards-container">
-              <div class="project-card animate-on-scroll">
-                  <div class="project-card-content">
-                      <h3>BrowseTXT</h3>
-                      <p>Browse the Internet using a text-only browser built in Python.</p>
-                      <a href="http://www.youtube.com/watch?v=iM8GiMlAqzQ" class="card-link" target="_blank">Watch on YouTube</a>
-                  </div>
+  <button id="themeToggle" aria-label="Toggle theme" data-tooltip="Toggle theme">
+    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle></svg>
+  </button>
+
+  <button id="backToTop" aria-label="Back to top">↑</button>
+
+  <div id="sectionLabel"></div>
+
+  <main id="main-content">
+    <section id="hero">
+      <canvas id="matrixCanvas"></canvas>
+      <div class="terminal-window container" aria-label="Interactive terminal interface">
+        <div class="terminal-output" id="terminalOutput">
+          <span>Type <code>help</code> to begin.</span>
+        </div>
+        <div class="terminal-input-line">
+          <span class="terminal-prompt">></span>
+          <input type="text" id="terminalInput" class="terminal-input" autocomplete="off" aria-label="Terminal command input" />
+        </div>
+        <div id="helpHint">Type “help” and press Enter</div>
+      </div>
+    </section>
+
+    <section id="projects" class="reveal">
+      <div class="container">
+        <h2>Featured Projects</h2>
+        <input type="text" id="projectFilter" placeholder="Filter projects by name or tag..." />
+        <div class="grid" id="projectsGrid">
+          <div class="project-card" data-owner="dpi850" data-repo="browsetxt" data-tags="python text browser" data-description="BrowseTXT is a text-only web browser built using Python, designed for efficient and minimalist web Browse.">
+            <a href="https://github.com/dpi850/browsetxt" class="card-link" target="_blank" rel="noopener">
+              <img src="https://private-user-images.githubusercontent.com/211891849/448956060-5c15e2de-0576-4e8e-9e44-8039c8215a88.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTA0NDMwNjAsIm5iZiI6MTc1MDQ0Mjc2MCwicGF0aCI6Ii8yMTE4OTE4NDkvNDQ4OTU2MDYwLTVjMTVlMmRlLTA1NzYtNGU4ZS05ZTQ0LTgwMzljODIxNWE4OC5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNjIwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDYyMFQxODA2MDBaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.JALeHMO7YpRAiRB08yGf4frelFRAmtW-bmlFwL_vd-Y" alt="BrowseTXT project screenshot" loading="lazy" />
+              <div class="card-overlay">
+                <h3>BrowseTXT</h3>
+                <p>Text-only browser built in Python.</p>
+                <div class="repo-info" style="font-size:0.9rem; margin-top:0.5rem;">Loading...</div>
               </div>
-
-              <div class="project-card animate-on-scroll">
-   
-                  <div class="project-card-content">
-                      <h3>850NetTool</h3>
-                      <p>Try this network utility tool I built entirely in Python.</p>
-                      <a href="https://github.com/dpi850/network-utilityv1" class="card-link" target="_blank">Get it on GitHub</a>
-                  </div>
-              </div>
-
-              <div class="project-card animate-on-scroll">
-       
-                  <div class="project-card-content">
-                      <h3>In the works.</h3>
-                      <p>Project updates.</p>
-                      <a href="projects.html#blockchain-app" class="card-link">Learn More</a>
-                  </div>
-              </div>
+            </a>
           </div>
-      </section>
-<section id="bluesky-social" style="padding: 3rem 1rem; background-color: #111111; color: #fff;">
-  <div style="max-width: 1200px; margin: 0 auto;">
-    <h2 style="text-align: center; margin-bottom: 2rem;">🦋 BlueSky Social 🦋</h2>
-
-    <div style="
-      display: flex;
-      flex-wrap: wrap;
-      gap: 2rem;
-      justify-content: center;
-    ">
-      <div style="flex: 1 1 300px; max-width: 500px; display: flex;">
-        <div style="
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: stretch;
-          background-color: #252525;
-          border-radius: 12px;
-          padding: 1rem;
-          backdrop-filter: blur(2px);
-          overflow-y: auto; /* Added for workaround */
-        ">
-          <blockquote class="bluesky-embed" 
-            data-bluesky-uri="at://did:plc:hj3dpglfcdiipso23d4ie7uy/app.bsky.feed.post/3lrvno4ykm22r" 
-            data-bluesky-cid="bafyreidv3z7pqjvmqkiyap4c5ewcdj75mu6awvezefwizcxkbqdkpate5e" 
-            data-bluesky-embed-color-mode="dark">
-          </blockquote>
-        </div>
+          <div class="project-card" data-owner="dpi850" data-repo="850NetTool" data-tags="network python" data-description="850NetTool is a user-level network utility written in Python for various network diagnostics.">
+            <a href="https://github.com/dpi850/850NetTool" class="card-link" target="_blank" rel="noopener">
+              <img src="https://raw.githubusercontent.com/dpi850/dpi850.com/refs/heads/main/images/networkutil_1.PNG" alt="850NetTool screenshot" loading="lazy" />
+              <div class="card-overlay">
+                <h3>850NetTool</h3>
+                <p>User-level network utility in Python.</p>
+                <div class="repo-info" style="font-size:0.9rem; margin-top:0.5rem;">Loading...</div>
+              </div>
+            </a>
+          </div>
+		    <div class="project-card" data-owner="dpi850" data-repo="850NetTool" data-tags="weather app" data-description="A simple weather application displaying current weather conditions.">
+            <a href="https://bsky.app/profile/dpi850.com/post/3lrvno4ykm22r" class="card-link" target="_blank" rel="noopener">
+              <img src="https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:hj3dpglfcdiipso23d4ie7uy/bafkreibo7m3djdgxuc6kt55p5eceppg3amuwwkb2o3peer3ry2m7ryqgpm@jpeg" alt="850NetTool screenshot" loading="lazy" />
+              <div class="card-overlay">
+                <h3>Weather App</h3>
+                <p>Weather Appp</p>
+                <div class="repo-info" style="font-size:0.9rem; margin-top:0.5rem;">Loading...</div>
+              </div>
+            </a>
+          </div>
+          </div>
       </div>
+    </section>
 
-      <div style="flex: 1 1 300px; max-width: 500px; display: flex;">
-        <div style="
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: stretch;
-          background-color: #252525;
-          border-radius: 12px;
-          padding: 1rem;
-          backdrop-filter: blur(2px);
-          overflow-y: auto; /* Added for workaround */
-        ">
-          <blockquote class="bluesky-embed" 
-            data-bluesky-uri="at://did:plc:hj3dpglfcdiipso23d4ie7uy/app.bsky.feed.post/3lr2lzcr2qc2d" 
-            data-bluesky-cid="bafyreigngfy6d44p6sf45ve64njddowvveji2mz63fofl5x5x7ekzwyp6m3e" 
-            data-bluesky-embed-color-mode="dark">
-          </blockquote>
-        </div>
+    <section id="media" class="reveal">
+      <div class="container">
+        <h2>Featured Video</h2>
+        <div class="video-container">
+          </div>
       </div>
+    </section>
 
-      <div style="flex: 1 1 300px; max-width: 500px; display: flex;">
-        <div style="
-          flex: 1;
-          display: flex;
-          flex-direction: column;
-          justify-content: stretch;
-          background-color: #252525;
-          border-radius: 12px;
-          padding: 1rem;
-          backdrop-filter: blur(2px);
-          overflow-y: auto; /* Added for workaround */
-        ">
-          <blockquote class="bluesky-embed" 
-            data-bluesky-uri="at://did:plc:hj3dpglfcdiipso23d4ie7uy/app.bsky.feed.post/3lqzm3ffs622z" 
-            data-bluesky-cid="bafyreihyf7msyvpjqu7u2wvjy4xqagffdefb6ojtykcquz7oqgn7iji4fq" 
-            data-bluesky-embed-color-mode="dark">
-          </blockquote>
+    <section id="about" class="reveal">
+      <div class="container">
+        <h2>About dpi850</h2>
+        <div class="ascii-logo">
+		<p>██████╗ ██████╗ ██╗ █████╗ ███████╗ ██████╗ 
+██╔══██╗██╔══██╗██║██╔══██╗██╔════╝██╔═████╗
+██║  ██║██████╔╝██║╚█████╔╝███████╗██║██╔██║
+██║  ██║██╔═══╝ ██║██╔══██╗╚════██║████╔╝██║
+██████╔╝██║     ██║╚█████╔╝███████║╚██████╔╝
+╚═════╝ ╚═╝     ╚═╝ ╚════╝ ╚══════╝ ╚═════╝                      </p>
+
         </div>
+        <p style="margin-top:1rem;">The name comes from my gaming roots—850 DPI was the perfect balance: fast enough to compete, precise enough to control. That same mindset now powers my code: efficient, purposeful, and lightweight by design.
+		<h1>Key Features</h1>
+		<p>If you prefer clarity over clutter, speed over bloat, and results over buzzwords—you’re in the right place. Everything here reflects a love for clean code, practical simplicity, and no-nonsense tools that just work. I use technologies like Git and lightweight JavaScript libraries only when they serve a real purpose. My approach to design favors minimalist UI with functional elegance.
+		This site itself was hand-built to showcase that philosophy.</p>
+		<h2>Skills & Stack</h2>
+		<p>Python development with PyQt5 for UI</p>
+		<p>HTML5, CSS3, JavaScript (ES6+)</p>
+		<p>Tailwind CSS & responsive design</p>
+		<p>End-to-end site design and deployment</p>	
+        <div id="playground" class="playground" style="display:none;">
+          <textarea id="codeInput" placeholder="// write JS here"></textarea>
+          <button id="runCode" class="btn">Run</button>
+          <pre id="codeOutput"></pre>
+        </div>
+        <h2>Links</h2>
+        <p>Say hello via:</p>
+        <ul>
+          <li><a href="https://github.com/dpi850" target="_blank" rel="noopener">GitHub</a></li>
+          <li><a href="https://www.youtube.com/@dpi-850" target="_blank" rel="noopener">YouTube Channel</a></li>
+		  <li><a href="https://bsky.app/profile/dpi850.com" target="_blank" rel="noopener">BlueSky</a></li>
+        </ul>
       </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container footer-content">
+      <p>© <span id="currentYear"></span> Design by dpi850. All rights reserved.</p>
+      <p>Last updated: <time datetime="2025-06-20" id="lastUpdated">June 20, 2025</time></p>
+      <p><a href="https://github.com/dpi850/dpi850.com" target="_blank" rel="noopener">View Source on GitHub</a></p>
     </div>
-  </div>
-</section>
+  </footer>
+  <script>
+    /***** THEME PERSISTENCE *****/
+    (function() {
+      const html = document.documentElement;
+      const saved = localStorage.getItem('dpi850-theme');
+      function applyTheme(t) {
+        html.setAttribute('data-theme', t);
+      }
+      if (saved) {
+        applyTheme(saved);
+      } else {
+        applyTheme('dark');
+      }
+      window.setTheme = function(t) {
+        applyTheme(t);
+        localStorage.setItem('dpi850-theme', t);
+      };
+    })();
 
-<script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
+    /***** OVERLAY MENU LOGIC *****/
+    (function() {
+      const menuToggle = document.getElementById('menuToggle');
+      const overlayMenu = document.getElementById('overlayMenu');
+      const menuClose = document.getElementById('menuClose');
+      function openMenu() {
+        menuToggle.setAttribute('aria-expanded', 'true');
+        overlayMenu.classList.add('open');
+        overlayMenu.setAttribute('aria-hidden', 'false');
+        const firstLink = overlayMenu.querySelector('a');
+        if (firstLink) firstLink.focus();
+      }
+      function closeMenu() {
+        menuToggle.setAttribute('aria-expanded', 'false');
+        overlayMenu.classList.remove('open');
+        overlayMenu.setAttribute('aria-hidden', 'true');
+        menuToggle.focus();
+      }
+      menuToggle.addEventListener('click', () => {
+        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
+        expanded ? closeMenu() : openMenu();
+      });
+      menuClose.addEventListener('click', closeMenu);
+      overlayMenu.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+      });
+      overlayMenu.querySelectorAll('a').forEach(link => {
+        link.addEventListener('click', closeMenu);
+      });
+    })();
 
+    /***** SCROLL PROGRESS BAR *****/
+    (function() {
+      const bar = document.getElementById('scrollProgress');
+      function update() {
+        const doc = document.documentElement;
+        const scrollTop = window.scrollY || doc.scrollTop;
+        const height = doc.scrollHeight - window.innerHeight;
+        const pct = height > 0 ? (scrollTop / height) * 100 : 0;
+        bar.style.width = pct + '%';
+      }
+      window.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      window.addEventListener('load', update);
+    })();
 
-<script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
-
-
-<script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
-
-
-<script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
-
-
-  <script async src="https://embed.bsky.app/static/embed.js" charset="utf-8"></script>
-
-        <section class="bg-black p-6 md:p-8 rounded-lg shadow-xl mb-12 transform transition duration-300 hover:scale-[1.01]">
-            <h2 class="text-3xl md:text-4xl font-bold text-gray-100 text-center mb-6">
-
-				<p></p>
-
-            </h2>
-            <p class="text-lg text-gray-300 text-center max-w-3xl mx-auto mb-8 leading-relaxed">
-                Featured Video
-            </p>
-			
-			 <p class="text-lg text-gray-300 text-center max-w-3xl mx-auto mb-8 leading-relaxed">
-               -Please Visit My YouTube Channel For More Content-
-            </p>
-		
-            <div class="video-container rounded-lg shadow-lg overflow-hidden">
-                <iframe
-                    src="https://www.youtube.com/embed/iM8GiMlAqzQ?modestbranding=1&autohide=1&showinfo=0&rel=0&mute=1"
-                    title="DPI850 Featured Video"
-                    frameborder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowfullscreen
-                    loading="lazy"
-                ></iframe>
-            </div>
-        </section>
-            
-    </main>
-
-    <footer>
-
-      <div class="footer-socials" role="contentinfo" aria-label="Social media links">
-        <a
-          href="https://github.com/dpi850"
-          target="_blank"
-          aria-label="GitHub"
-          rel="noopener noreferrer"
-          class="social-icon"
-        >
-          <i class="fab fa-github" aria-hidden="true"></i>
-        </a>
-        <a
-          href="https://www.youtube.com/@dpi-850"
-          target="_blank"
-          aria-label="YouTube"
-          rel="noopener noreferrer"
-          class="social-icon"
-        >
-          <i class="fab fa-youtube" aria-hidden="true"></i>
-        </a>
-        <a
-          href="https://imgur.com/user/dpi850"
-          target="_blank"
-          aria-label="Imgur"
-          rel="noopener noreferrer"
-          class="social-icon"
-        >
-          <i class="fas fa-image" aria-hidden="true"></i>
-        </a>
-      </div>
-      <div class="footer-text">🌐 website built with love from the ground up 🤓 all of my code is free on github ❤️</div>
-      <div class="footer-text">© 2025 DPI850.com | Designed by DPI850. | All rights reserved.</div>
-    </footer>
-  </div>
-
-  <script src="https://cdn.tailwindcss.com" defer></script>
-  <script src="https://unpkg.com/@barba/core" defer></script>
-
-  <script defer>
-    document.addEventListener('DOMContentLoaded', () => {
-      const welcomeTitle = document.querySelector('.welcome-title');
-      // Added 'foundation-word' to the selector to include them for parallax
-      const bannerTexts = document.querySelectorAll('.banner h2, .banner p:not(.foundation-word)');
-      const foundationWords = document.querySelectorAll('.banner p.foundation-word');
-      const projectCards = document.querySelectorAll('.project-card');
-      const welcomeParallaxBg = document.querySelector('.welcome-parallax-bg');
-
-      function applyParallax() {
-        const scrollPos = window.scrollY;
-        const viewportHeight = window.innerHeight;
-        // No need for viewportCenter if we're not doing project card parallax
-
-        // Parallax for Welcome Section background element
-        if (welcomeParallaxBg) {
-          const bgParallaxSpeed = 0.05; /* Even slower speed for the background */
-          const bgTranslateY = scrollPos * bgParallaxSpeed;
-          welcomeParallaxBg.style.transform = `translate(-50%, -50%) translateY(${bgTranslateY}px)`;
+    /***** BACK-TO-TOP BUTTON *****/
+    (function() {
+      const btn = document.getElementById('backToTop');
+      function check() {
+        if (window.scrollY > window.innerHeight) {
+          btn.classList.add('show');
+        } else {
+          btn.classList.remove('show');
         }
+      }
+      btn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+      window.addEventListener('scroll', check, { passive: true });
+      window.addEventListener('load', check);
+    })();
 
-        // Parallax for other banner texts
-        bannerTexts.forEach((text, index) => {
-          const speed = 0.08 - (index * 0.01); // Vary speed slightly
-          const translateY = -scrollPos * speed;
-          text.style.transform = `translateY(${translateY}px)`;
-        });
+    /***** THEME TOGGLE BUTTON *****/
+    (function() {
+      const btn = document.getElementById('themeToggle');
+      btn.addEventListener('click', () => {
+        const current = document.documentElement.getAttribute('data-theme') || 'dark';
+        const next = current === 'dark' ? 'light' : current === 'light' ? 'matrix' : 'dark';
+        window.setTheme(next);
+      });
+    })();
 
-        // Parallax for foundation words
-        foundationWords.forEach((word, index) => {
-          const speed = 0.1 + (index * 0.02); // Make them move slightly faster
-          const translateY = -scrollPos * speed;
-          word.style.transform = `translateY(${translateY}px)`;
-        });
+    /***** DYNAMIC FOOTER DATES *****/
+    (function() {
+      const yearEl = document.getElementById('currentYear');
+      if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+      }
+    })();
 
-        // Removed Project Card Parallax for lighter loading
-        // projectCards.forEach(card => { ... });
+    /***** TERMINAL INTERFACE *****/
+    (function() {
+      const outputEl = document.getElementById('terminalOutput');
+      const inputEl = document.getElementById('terminalInput');
+      const projectsGrid = document.getElementById('projectsGrid');
+      const cards = () => Array.from(projectsGrid.querySelectorAll('.project-card'));
+      let cursorTrailEnabled = false;
+      let soundEnabled = false;
+      let konamiBuffer = [];
+      const konamiSeq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a','Enter'];
+
+      function beep() {
+        if (!soundEnabled) return;
+        try {
+          const ctx = new (window.AudioContext||window.webkitAudioContext)();
+          const osc = ctx.createOscillator();
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(440, ctx.currentTime);
+          osc.connect(ctx.destination);
+          osc.start();
+          osc.stop(ctx.currentTime + 0.1);
+        } catch {}
+      }
+      function appendOutput(text) {
+        const lines = text.split('\n');
+        for (const line of lines) {
+          const div = document.createElement('div');
+          div.textContent = line;
+          outputEl.appendChild(div);
+        }
+        outputEl.scrollTop = outputEl.scrollHeight;
+        beep();
+      }
+      function checkOffline() {
+        if (!navigator.onLine) {
+          appendOutput('⚠ You appear offline. Some features may not work.');
+        }
       }
 
-      window.addEventListener('scroll', applyParallax);
-      applyParallax(); // Initial call to set positions
+      const commands = {
+        help: `Available commands:
+  help             Show this help
+  projects         List project names
+  projectinfo [name] Get description for a project
+  go [section]     Navigate to section (projects, media, about, contact, hero)
+  clear            Clear the terminal output
+  ping [host]      Simulate ping to host
+  portcheck [port] Simulate port check (demo)
+  theme [dark|light|matrix]
+                   Switch theme
+  playground        Toggle code playground
+  stats            Show site stats
+  cursor [on|off]  Toggle cursor trail effect
+  sound [on|off]   Toggle terminal sound
+  github [owner/repo]
+                   Fetch stars and last update for a GitHub repo
+`,
+        clear: () => { outputEl.innerHTML = ''; return ''; },
+        projects: () => {
+          const names = cards().map(card => card.querySelector('h3')?.textContent.trim()).filter(Boolean);
+          return 'Projects:\n  ' + names.join('\n  ');
+        },
+        projectinfo: (args) => {
+          const projectName = args.slice(1).join(' ').toLowerCase();
+          if (!projectName) {
+            return 'Usage: projectinfo [project name]';
+          }
 
-      // Observer for 'animate-on-scroll'
-      const observer = new IntersectionObserver((entries, observer) => {
+          const projectCard = cards().find(card =>
+            card.querySelector('h3')?.textContent.toLowerCase() === projectName
+          );
+
+          if (projectCard) {
+            const description = projectCard.dataset.description;
+            if (description) {
+              return `${projectCard.querySelector('h3').textContent}:\n  ${description}`;
+            } else {
+              return `No description available for "${projectName}".`;
+            }
+          } else {
+            return `Project "${projectName}" not found. Type "projects" to list all projects.`;
+          }
+        },
+        go: (args) => {
+          const section = args[1]?.toLowerCase();
+          const valid = ['projects','media','about','contact','home','hero'];
+          if (valid.includes(section)) {
+            const targetId = (section === 'home' ? 'hero' : section); // Corrected 'home' to target 'hero' section
+            const target = document.getElementById(targetId);
+            if (target) {
+              appendOutput(`Navigating to ${section}...`);
+              target.scrollIntoView({ behavior: 'smooth' });
+              return '';
+            }
+            return `Section "${section}" not found.`;
+          }
+          return 'Usage: go [section]';
+        },
+        ping: (args) => {
+          const host = args[1] || 'example.com';
+          let out = `Pinging ${host} with 32 bytes of data:\n`;
+          let total = 0;
+          for (let i = 0; i < 4; i++) {
+            const ms = (Math.random() * 50 + 10).toFixed(2);
+            total += parseFloat(ms);
+            out += `Reply from ${host}: time=${ms}ms\n`;
+          }
+          const avg = (total/4).toFixed(2);
+          out += `\nApproximate round trip times in milli-seconds:\n    Minimum = 10ms, Maximum = 60ms, Average = ${avg}ms`;
+          return out;
+        },
+        portcheck: (args) => {
+          const port = args[1] || '80';
+          const open = Math.random() > 0.5;
+          return `Port ${port} is ${open ? 'open' : 'closed'} (demo).`;
+        },
+        theme: (args) => {
+          const t = args[1];
+          if (['dark','light','matrix'].includes(t)) {
+            window.setTheme(t);
+            return `Theme set to ${t}.`;
+          }
+          return 'Usage: theme [dark|light|matrix]';
+        },
+        playground: () => {
+          const pg = document.getElementById('playground');
+          if (pg.style.display === 'none') {
+            pg.style.display = 'block';
+            return 'Playground shown.';
+          } else {
+            pg.style.display = 'none';
+            return 'Playground hidden.';
+          }
+        },
+        stats: () => {
+          const count = cards().length;
+          const lastUpdate = document.getElementById('lastUpdated')?.textContent || '';
+          return `Site stats:\n  Projects listed: ${count}\n  Last update: ${lastUpdate}`;
+        },
+        cursor: (args) => {
+          const v = args[1];
+          if (v === 'on' || v === 'off') {
+            cursorTrailEnabled = (v === 'on');
+            if (!cursorTrailEnabled) {
+              document.querySelectorAll('.cursor-trail-dot').forEach(d => d.remove());
+            }
+            return `Cursor trail ${v}.`;
+          }
+          return 'Usage: cursor [on|off]';
+        },
+        sound: (args) => {
+          const v = args[1];
+          if (v === 'on' || v === 'off') {
+            soundEnabled = (v === 'on');
+            return `Sound ${v}.`;
+          }
+          return 'Usage: sound [on|off]';
+        },
+        github: async (args) => {
+          const repo = args[1];
+          if (!repo || !repo.includes('/')) return 'Usage: github [owner/repo]';
+          try {
+            appendOutput('Fetching GitHub info...');
+            const res = await fetch(`https://api.github.com/repos/${repo}`);
+            if (!res.ok) throw new Error();
+            const data = await res.json();
+            const stars = data.stargazers_count;
+            const updated = new Date(data.pushed_at).toLocaleDateString();
+            return `Repo ${repo}: ⭐ ${stars}, last updated ${updated}`;
+          } catch {
+            return 'Failed to fetch GitHub info (rate limit or network).';
+          }
+        }
+      };
+
+      inputEl.addEventListener('keydown', async (e) => {
+        // Konami detection
+        konamiBuffer.push(e.key);
+        if (konamiBuffer.slice(-konamiSeq.length).join('') === konamiSeq.join('')) {
+          appendOutput('🎉 Easter egg unlocked🎉');
+          appendOutput('✨ ✨ ✨ GG! ✨ ✨ ✨');
+        }
+        if (e.key === 'Enter') {
+          const raw = inputEl.value.trim();
+          appendOutput('> ' + raw);
+          inputEl.value = '';
+          if (!raw) { appendOutput(''); return; }
+          const parts = raw.split(/\s+/);
+          const cmd = parts[0].toLowerCase();
+          if (commands[cmd] !== undefined) {
+            try {
+              const result = typeof commands[cmd] === 'function'
+                ? commands[cmd](parts)
+                : commands[cmd];
+              if (result instanceof Promise) {
+                const res = await result;
+                if (res) appendOutput(res);
+              } else if (result) {
+                appendOutput(result);
+              }
+            } catch {
+              appendOutput('Error executing command.');
+            }
+          } else {
+            appendOutput(`Unknown command: ${cmd}. Type "help" for available commands.`);
+          }
+        }
+      });
+
+      window.addEventListener('load', () => {
+        const term = document.querySelector('.terminal-window');
+        if (term) {
+          term.style.opacity = '1';
+          term.style.transform = 'translateY(0)';
+        }
+        inputEl.focus();
+        checkOffline();
+      });
+
+      // Cursor trail effect
+      document.addEventListener('mousemove', (e) => {
+        if (!cursorTrailEnabled) return;
+        const dot = document.createElement('div');
+        dot.className = 'cursor-trail-dot';
+        document.body.appendChild(dot);
+        const x = e.clientX, y = e.clientY;
+        dot.style.transform = `translate(${x - 3}px, ${y - 3}px)`;
+        setTimeout(() => { dot.style.opacity = '0'; }, 50);
+        setTimeout(() => dot.remove(), 500);
+      });
+    })();
+
+    /***** PROJECT FILTER + GitHub Info Fetch *****/
+    (function() {
+      const filterInput = document.getElementById('projectFilter');
+      const projectsGrid = document.getElementById('projectsGrid');
+      if (!projectsGrid) return;
+      const cards = Array.from(projectsGrid.querySelectorAll('.project-card'));
+      filterInput.addEventListener('input', () => {
+        const q = filterInput.value.trim().toLowerCase();
+        cards.forEach(card => {
+          const name = card.querySelector('h3')?.textContent.toLowerCase() || '';
+          const tags = (card.dataset.tags || '').toLowerCase();
+          if (!q || name.includes(q) || tags.includes(q)) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      });
+      cards.forEach(card => {
+        const owner = card.dataset.owner;
+        const repo = card.dataset.repo;
+        const infoEl = card.querySelector('.repo-info');
+        if (owner && repo && infoEl) {
+          const cacheKey = `github-${owner}-${repo}`;
+          const cached = localStorage.getItem(cacheKey);
+          if (cached) {
+            infoEl.textContent = cached;
+          } else {
+            fetch(`https://api.github.com/repos/${owner}/${repo}`)
+              .then(res => res.json())
+              .then(data => {
+                if (data.stargazers_count !== undefined) {
+                  const txt = `⭐ ${data.stargazers_count} • updated ${new Date(data.pushed_at).toLocaleDateString()}`;
+                  infoEl.textContent = txt;
+                  localStorage.setItem(cacheKey, txt);
+                } else {
+                  infoEl.textContent = '';
+                }
+              })
+              .catch(() => {
+                infoEl.textContent = '';
+              });
+          }
+        }
+      });
+    })();
+
+    /***** VIDEO EMBED MUTED AUTOPLAY ON LOAD *****/
+    (function() {
+      const container = document.querySelector('.video-container');
+      if (!container) return;
+      window.addEventListener('load', () => {
+        // If you want to respect reduced-motion, uncomment:
+        // if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (container.querySelector('iframe')) return;
+        const videoId = 'iM8GiMlAqzQ'; // your YouTube ID
+        const iframe = document.createElement('iframe');
+        // autoplay=1&mute=1 ensures browsers allow autoplay
+        iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&rel=0`;
+        iframe.title = 'YouTube video player';
+        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+        iframe.allowFullscreen = true;
+        container.appendChild(iframe);
+      });
+    })();
+
+    /***** PLAYGROUND RUN CODE *****/
+    (function() {
+      const runBtn = document.getElementById('runCode');
+      const codeInput = document.getElementById('codeInput');
+      const codeOutput = document.getElementById('codeOutput');
+      if (runBtn) {
+        runBtn.addEventListener('click', () => {
+          codeOutput.textContent = '';
+          const code = codeInput.value;
+          try {
+            const result = Function('"use strict";return (' + code + ')')();
+            codeOutput.textContent = String(result);
+          } catch (err) {
+            codeOutput.textContent = 'Error: ' + err.message;
+          }
+        });
+      }
+    })();
+
+    /***** SMOOTH SCROLL for anchor links *****/
+    (function() {
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', (e) => {
+          const href = a.getAttribute('href');
+          if (href.length > 1) {
+            e.preventDefault();
+            const id = href.substring(1);
+            const target = document.getElementById(id);
+            if (target) {
+              target.scrollIntoView({ behavior: 'smooth' });
+            }
+          }
+        });
+      });
+    })();
+
+    /***** SECTION REVEAL ON SCROLL *****/
+    (function() {
+      const elems = document.querySelectorAll('.reveal');
+      const obs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
             entry.target.classList.add('visible');
-            // Stop observing once visible if you only want it to animate once
-            // observer.unobserve(entry.target);
-          } else {
-            // Optional: remove 'visible' class when out of view to re-trigger on scroll back
-            // entry.target.classList.remove('visible');
+            obs.unobserve(entry.target);
           }
         });
-      }, {
-        threshold: 0.1, // Trigger when 10% of the element is visible
-        rootMargin: '0px 0px -50px 0px' // Adjust for early/late trigger
-      });
+      }, { threshold: 0.1 });
+      elems.forEach(el => obs.observe(el));
+    })();
 
-      document.querySelectorAll('.animate-on-scroll').forEach(el => {
-        observer.observe(el);
-      });
-
-      // Staggered animation for project cards
-      const projectCardObserver = new IntersectionObserver((entries, observer) => {
+    /***** SECTION LABEL DISPLAY *****/
+    (function() {
+      const label = document.getElementById('sectionLabel');
+      if (!label) return;
+      const sections = document.querySelectorAll('section[id]');
+      const obs = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
           if (entry.isIntersecting) {
-            Array.from(projectCards).forEach((card, index) => {
-              // Apply a staggered delay
-              card.style.transitionDelay = `${index * 0.15}s`; // 0.15s delay between each card
-              card.classList.add('visible');
-            });
-            projectCardObserver.unobserve(entry.target); // Observe only once for the stagger
+            const name = entry.target.querySelector('h2')?.textContent || entry.target.id;
+            label.textContent = name;
+            label.classList.add('show');
+            clearTimeout(label._hideTimeout);
+            label._hideTimeout = setTimeout(() => label.classList.remove('show'), 2000);
           }
         });
-      }, {
-        threshold: 0.2 // Trigger when 20% of the container is visible
-      });
+      }, { threshold: 0.5 });
+      sections.forEach(sec => obs.observe(sec));
+    })();
 
-      const projectCardsSection = document.querySelector('.project-cards-section');
-      if (projectCardsSection) {
-        projectCardObserver.observe(projectCardsSection);
+    /***** OFFLINE DETECTION *****/
+    window.addEventListener('offline', () => {
+      const termOut = document.getElementById('terminalOutput');
+      if (termOut) {
+        const div = document.createElement('div');
+        div.textContent = '⚠ You are offline.';
+        termOut.appendChild(div);
       }
     });
-	
+
+    /***** BACKGROUND PERFORMANCE GUARD *****/
+    (function() {
+      const isLowPower = navigator.deviceMemory && navigator.deviceMemory < 2;
+      if (isLowPower || navigator.connection?.saveData) {
+        const matrix = document.getElementById('matrixCanvas');
+        if (matrix) matrix.remove();
+      }
+    })();
+
+    /***** SKIP-LINK FOCUS Fix *****/
+    (function() {
+      const skip = document.querySelector('.skip-link');
+      skip.addEventListener('click', () => {
+        const target = document.getElementById('main-content');
+        if (target) target.focus();
+      });
+    })();
   </script>
-  <script src="js/jquery.min.js" defer></script>
-  <script src="js/jquery-migrate-3.0.1.js" defer></script>
-  <script src="js/popper.min.js" defer></script>
-  <script src="js/bootstrap.min.js" defer></script>
-  <script src="js/jquery.easing.1.3.js" defer></script>
-  <script src="js/jquery.waypoints.min.js" defer></script>
-  <script src="js/jquery.stellar.min.js" defer></script>
-  <script src="js/owl.carousel.min.js" defer></script>
-  <script src="js/jquery.magnific-popup.min.js" defer></script>
-  <script src="js/aos.js" defer></script>
-  <script src="js/jquery.animateNumber.min.js" defer></script>
-  <script src="js/bootstrap-datepicker.js" defer></script>
-  <script src="js/scrollax.min.js" defer></script>
-  <script src="js/main.js" defer></script>
 </body>
 </html>
