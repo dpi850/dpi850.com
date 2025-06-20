@@ -943,7 +943,7 @@
           <i class="fas fa-image" aria-hidden="true"></i>
         </a>
       </div>
-      <div class="footer-text">| website built with love from the ground up |</div>
+      <div class="footer-text">| website built with love from the ground up | i offer up all of my code for free on github ❤️|</div>
       <div class="footer-text">© 2025 DPI850.com | Designed by DPI850. | All rights reserved.</div>
     </footer>
   </div>
@@ -1159,7 +1159,6 @@
       transitions: [
         {
           name: 'crazy-flip',
-
           leave({ current }) {
             return new Promise((resolve) => {
               current.container.style.transition = 'transform 0.8s ease, opacity 0.8s ease';
@@ -1169,12 +1168,10 @@
               setTimeout(resolve, 800);
             });
           },
-
           enter({ next }) {
             next.container.style.transform = 'rotateY(-90deg)';
             next.container.style.opacity = '0';
             next.container.style.transition = 'transform 0.8s ease, opacity 0.8s ease';
-
             return new Promise((resolve) => {
               requestAnimationFrame(() => {
                 next.container.style.transform = 'rotateY(0deg)';
@@ -1192,7 +1189,6 @@
       */
     });
   </script>
-  
   <script src="js/jquery.min.js" defer></script>
   <script src="js/jquery-migrate-3.0.1.min.js" defer></script>
   <script src="js/popper.min.js" defer></script>
@@ -1207,6 +1203,5 @@
   <script src="js/bootstrap-datepicker.js" defer></script>
   <script src="js/scrollax.min.js" defer></script>
   <script src="js/main.js" defer></script>
-
 </body>
 </html>
