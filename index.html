@@ -34,6 +34,8 @@
       --terminal-bg: rgba(0, 0, 0, 0.85);
       --terminal-text: #33ff33;
       --cursor-trail-color: #ffffff;
+      --terminal-comment: #999; /* Added for ASCII art variations */
+      --terminal-keyword: #ffaa00; /* Added for ASCII art variations */
     }
     [data-theme="light"] {
       --bg-color: #fafafa;
@@ -41,6 +43,8 @@
       --accent-color: #0077cc;
       --terminal-bg: rgba(240, 240, 240, 0.95);
       --terminal-text: #006600;
+      --terminal-comment: #666;
+      --terminal-keyword: #cc6600;
     }
     [data-theme="matrix"] {
       --bg-color: #000;
@@ -48,6 +52,8 @@
       --accent-color: #0f0;
       --terminal-bg: rgba(0, 0, 0, 0.9);
       --terminal-text: #0f0;
+      --terminal-comment: #0a0;
+      --terminal-keyword: #0c0;
     }
     *, *::before, *::after {
       box-sizing: border-box;
@@ -378,20 +384,7 @@
     /* =======================
        About Section ASCII logo
        ======================= */
-    .ascii-logo {
-      font-family: monospace;
-      white-space: pre;
-      overflow: hidden;
-      display: inline-block;
-      vertical-align: middle;
-      color: var(--accent-color);
-      animation: reveal-logo 3s steps(30) forwards;
-      max-width: 100%;
-    }
-    @keyframes reveal-logo {
-      from { width: 0; }
-      to { width: 100%; }
-    }
+
 
     /* Playground */
     .playground {
@@ -590,13 +583,6 @@
       }
     }
 	
-	.ascii-art {
-		white-space: pre-wrap;
-		word-break: break-word;
-		font-family: monospace;
-		font-size: 10px;
-}
-
 	.icon-link {
     display: flex;
     align-items: center;
@@ -606,7 +592,7 @@
     color: inherit;
   }
 
-  .icon-link img {
+    .icon-link img {
     width: 60px;
     height: 60px;
     flex-shrink: 0;
@@ -614,10 +600,14 @@
     filter: grayscale(100%) brightness(70%) drop-shadow(0 0 1px white);
   }
 
-  .icon-list {
-    list-style: none;
-    padding-left: 0;
-  }
+   .icon-list {
+   list-style: none;
+   padding-left: 0;
+   display: flex; /* Add this line */
+   justify-content: center; /* Add this line */
+   flex-wrap: wrap; /* Add this line if you want items to wrap on smaller screens */
+   gap: 1em; /* Adjust gap as needed for spacing between icons */
+}
 
   .icon-list li {
     margin-bottom: 0.5em;
@@ -676,7 +666,7 @@
         <div class="grid" id="projectsGrid">
           <div class="project-card" data-owner="dpi850" data-repo="browsetxt" data-tags="python text browser" data-description="BrowseTXT is a text-only web browser built using Python, designed for efficient and minimalist web Browse.">
             <a href="https://github.com/dpi850/browsetxt" class="card-link" target="_blank" rel="noopener">
-              <img src="https://raw.githubusercontent.com/dpi850/dpi850.com/refs/heads/main/images/browsetxt.PNG" alt="BrowseTXT project screenshot" loading="lazy" />
+              <img src="https://private-user-images.githubusercontent.com/211891849/448956060-5c15e2de-0576-4e8e-9e44-8039c8215a88.PNG?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTA0NTYyMzIsIm5iZiI6MTc1MDQ1NTkzMiwicGF0aCI6Ii8yMTE4OTE4NDkvNDQ4OTU2MDYwLTVjMTVlMmRlLTA1NzYtNGU4ZS05ZTQ0LTgwMzljODIxNWE4OC5QTkc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNjIwJTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDYyMFQyMTQ1MzJaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT1mMGYzZTlhMDdlMzVkYjgzYjQ3ZDZmNTJkNmYwODZmMDY2ZDcwY2NlNWUxYWEyZWE2MGEyZWM3ZGE3OGVhMGU3JlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9._-1JldzTgxWclmKlbyrt7sIn7HlptkME6AiS5HSdZcM" alt="BrowseTXT project screenshot" loading="lazy" />
               <div class="card-overlay">
                 <h3>BrowseTXT</h3>
                 <p>Text-only browser built in Python.</p>
@@ -719,12 +709,14 @@
     <section id="about" class="reveal">
       <div class="container">
         <h2>About dpi850</h2>
-        <div class="ascii-logo">
+        <div class="ascii-logo" id="asciiLogoContainer">
+          <pre id="interactiveAsciiLogo" aria-label="Stylized dpi850 ASCII Logo">
+
+          </pre>
         </div>
         <p style="margin-top:1rem;">Name comes from my gaming roots—850 DPI was the perfect balance: fast enough to compete, precise enough to control. That same mindset now powers my code: efficient, purposeful, and lightweight by design.
 		<h1>Key Features</h1>
-		<p>If you prefer clarity over clutter, speed over bloat, and results over buzzwords—you’re in the right place. Everything here reflects a love for clean code, practical simplicity, and no-nonsense tools that just work. I use technologies like Git and lightweight JavaScript libraries only when they serve a real purpose. My approach to design favors minimalist UI with functional elegance.
-		This site itself was hand-built to showcase that philosophy.</p>
+		<p>If you prefer clarity over clutter, speed over bloat, and results over buzzwords—you’re in the right place. Everything here reflects a love for clean code, practical simplicity, and no-nonsense tools that just work. I use technologies like Git and lightweight JavaScript libraries only when they serve a real purpose. My approach to design favors minimalist UI with functional elegance.This site itself was hand-built to showcase that philosophy.</p>
 		<h2>Skills & Stack</h2>
 		<p>Python development with PyQt5 for UI</p>
 		<p>HTML5, CSS3, JavaScript (ES6+)</p>
@@ -736,7 +728,7 @@
           <pre id="codeOutput"></pre>
     
     </div>
-<h2>Links</h2>
+<h1>Links</h1>
 <p>Say hello via:</p>
 <ul class="icon-list">
   <li>
@@ -1253,6 +1245,61 @@
       skip.addEventListener('click', () => {
         const target = document.getElementById('main-content');
         if (target) target.focus();
+      });
+    })();
+
+    /***** INTERACTIVE ASCII LOGO LOGIC *****/
+    (function() { // Wrap in an IIFE to keep scope clean
+      const asciiLogoElement = document.getElementById('interactiveAsciiLogo');
+      if (!asciiLogoElement) return;
+
+      // Store the original content before wrapping characters
+      const originalAsciiContent = asciiLogoElement.textContent.trim();
+
+      let newHtml = '';
+      // Wrap each meaningful character in a span
+      for (let i = 0; i < originalAsciiContent.length; i++) {
+        const char = originalAsciiContent[i];
+        if (char === '\n') {
+          newHtml += '<br>'; // Preserve line breaks
+        } else if (char === ' ') {
+          newHtml += '&nbsp;'; // Use &nbsp; for spaces if you want them to be individual interactable elements
+        } else {
+          newHtml += `<span class="ascii-char">${char}</span>`;
+        }
+      }
+      asciiLogoElement.innerHTML = newHtml;
+
+      const chars = asciiLogoElement.querySelectorAll('.ascii-char');
+
+      asciiLogoElement.addEventListener('mouseover', () => {
+        chars.forEach((char, index) => {
+          // Different effects based on character type or position
+          if (char.textContent.match(/[_-]/)) { // For underscores and hyphens (the "lines")
+            char.style.color = 'var(--text-color)'; // Maybe a darker shade or highlight
+            char.style.transform = `translateY(${Math.random() * 2 - 1}px)`; // Subtle vertical wiggle
+          } else if (char.textContent === '/') { // For the forward slashes
+            char.style.color = 'var(--terminal-comment)'; // A secondary color from your theme
+            char.style.transform = `scaleX(${1 + Math.random() * 0.05})`; // Slight stretch
+          } else if (char.textContent === '\\') { // For the backslashes
+            char.style.color = 'var(--terminal-keyword)'; // Another secondary color from your theme
+            char.style.transform = `scaleX(${1 + Math.random() * 0.05})`; // Slight stretch
+          } else if (char.textContent.match(/[a-zA-Z0-9]/)) { // For actual letters/numbers in the art
+            char.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`; // Random bright colors for accent
+            char.style.transform = `scale(${1 + Math.random() * 0.05})`; // Subtle pop
+          } else { // For other characters like '(', ')', ',', etc.
+            char.style.color = 'var(--accent-color)'; // Default accent
+            char.style.transform = `translateY(${Math.random() * 1 - 0.5}px)`; // Very subtle movement
+          }
+        });
+      });
+
+      asciiLogoElement.addEventListener('mouseout', () => {
+        chars.forEach((char) => {
+          // Reset styles when not hovering
+          char.style.color = ''; // Reset to CSS default (from var(--accent-color) on parent)
+          char.style.transform = ''; // Reset transform
+        });
       });
     })();
   </script>
