@@ -662,7 +662,6 @@
     <section id="projects" class="reveal">
       <div class="container">
         <h2>Featured Projects</h2>
-        <input type="text" id="projectFilter" placeholder="Filter projects by name or tag..." />
         <div class="grid" id="projectsGrid">
             </a>
           </div>
@@ -681,7 +680,7 @@
               <img src="https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:hj3dpglfcdiipso23d4ie7uy/bafkreibo7m3djdgxuc6kt55p5eceppg3amuwwkb2o3peer3ry2m7ryqgpm@jpeg" alt="850NetTool screenshot" loading="lazy" />
               <div class="card-overlay">
                 <h3>Weather App</h3>
-                <p>Weather Appp</p>
+                <p>Appp</p>
                 <div class="repo-info" style="font-size:0.9rem; margin-top:0.5rem;">Loading...</div>
               </div>
             </a>
@@ -702,7 +701,7 @@
       <div class="container">
         <h2>About dpi850</h2>
         <div class="ascii-logo" id="asciiLogoContainer">
-          <pre id="interactiveAsciiLogo" aria-label="Stylized dpi850 ASCII Logo">
+          <pre id="interactiveAsciiLogo">
 
           </pre>
         </div>
@@ -903,14 +902,13 @@
   help             Show this help
   projects         List project names
   projectinfo [name] Get description for a project
-  go [section]     Navigate to section (projects, media, about, contact, hero)
+  go [section]     Navigate to section (projects, about, hero)
   clear            Clear the terminal output
   portcheck [port] Simulate port check (demo)
   theme [dark|light|matrix]
                    Switch theme
   playground        Toggle code playground
   stats            Show site stats
-  cursor [on|off]  Toggle cursor trail effect
   sound [on|off]   Toggle terminal sound
   github [owner/repo]
                    Fetch stars and last update for a GitHub repo
@@ -1077,52 +1075,6 @@
       });
     })();
 
-    /***** PROJECT FILTER + GitHub Info Fetch *****/
-    (function() {
-      const filterInput = document.getElementById('projectFilter');
-      const projectsGrid = document.getElementById('projectsGrid');
-      if (!projectsGrid) return;
-      const cards = Array.from(projectsGrid.querySelectorAll('.project-card'));
-      filterInput.addEventListener('input', () => {
-        const q = filterInput.value.trim().toLowerCase();
-        cards.forEach(card => {
-          const name = card.querySelector('h3')?.textContent.toLowerCase() || '';
-          const tags = (card.dataset.tags || '').toLowerCase();
-          if (!q || name.includes(q) || tags.includes(q)) {
-            card.style.display = '';
-          } else {
-            card.style.display = 'none';
-          }
-        });
-      });
-      cards.forEach(card => {
-        const owner = card.dataset.owner;
-        const repo = card.dataset.repo;
-        const infoEl = card.querySelector('.repo-info');
-        if (owner && repo && infoEl) {
-          const cacheKey = `github-${owner}-${repo}`;
-          const cached = localStorage.getItem(cacheKey);
-          if (cached) {
-            infoEl.textContent = cached;
-          } else {
-            fetch(`https://api.github.com/repos/${owner}/${repo}`)
-              .then(res => res.json())
-              .then(data => {
-                if (data.stargazers_count !== undefined) {
-                  const txt = `⭐ ${data.stargazers_count} • updated ${new Date(data.pushed_at).toLocaleDateString()}`;
-                  infoEl.textContent = txt;
-                  localStorage.setItem(cacheKey, txt);
-                } else {
-                  infoEl.textContent = '';
-                }
-              })
-              .catch(() => {
-                infoEl.textContent = '';
-              });
-          }
-        }
-      });
-    })();
 
     /***** VIDEO EMBED MUTED AUTOPLAY ON LOAD *****/
     (function() {
@@ -1255,7 +1207,7 @@
         if (char === '\n') {
           newHtml += '<br>'; // Preserve line breaks
         } else if (char === ' ') {
-          newHtml += '&nbsp;'; // Use &nbsp; for spaces if you want them to be individual interactable elements
+          newHtml += ' '; // Use   for spaces if you want them to be individual interactable elements
         } else {
           newHtml += `<span class="ascii-char">${char}</span>`;
         }
