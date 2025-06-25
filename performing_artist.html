@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>VOIDRUSHER</title>
+  <title>VOIDRUSHER</title>
+  <link href="https://fonts.googleapis.com/css2?family=Metal+Mania&family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #000000;
+      --text: #ffffff;
+      --accent: #ff0033;
+      --silver: #dddddd; /* Slightly off-white for softer contrast */
+      --font-heading: 'Metal Mania', cursive;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: var(--font-body);
+      background-color: var(--bg);
+      background-image: 
+      color: var(--text);
+      overflow-x: hidden;
+      scroll-behavior: smooth; /* Smooth scroll for anchor links */
+      position: relative; /* Ensure body establishes a stacking context */
+    }
+
+    /* New global texture overlay - Increased opacity for better visibility */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: url('https://i.pinimg.com/736x/9c/7a/55/9c7a5578b0f51a28715f2eb71c38e6ab.jpg');
+      background-size: fixed; 
+      opacity: 0.11; /* Increased opacity from 0.03 to 0.1 for visibility */
+      pointer-events: none; /* Allows interaction beneath */
+      z-index: -1; /* Keep it behind content */
+    }
+
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 0.5rem 5rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      background: rgba(10, 10, 0, 0);
+      backdrop-filter: blur(2px);
+      border-bottom: 1px solid #222;
+      box-shadow: 0 2px 4px rgba(0,0,0,0);
+    }
+
+    header h1 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      color: var(--accent);
+      letter-spacing: 2px;
+      text-shadow: 0 0 5px rgba(255,0,51,0.7), 0 0 15px rgba(255,0,51,0.3); /* Layered glow */
+      animation: subtlePulse 3s infinite ease-in-out; /* Pulsing glow */
+    }
+
+    /* ENHANCED HYPERLINKS (nav a, general a) */
+    nav a {
+      color: var(--text);
+      margin-left: 2rem;
+      text-decoration: none;
+      font-weight: 700;
+      text-transform: uppercase;
+      position: relative;
+      font-size: 0.7rem;
+      transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    nav a::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--accent);
+      transform: scaleX(0);
+      transform-origin: right;
+      transition: transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    nav a:hover, nav a:focus {
+      color: var(--accent);
+      transform: translateY(-2px);
+      text-shadow: 0 0 8px rgba(255, 0, 51, 0.7);
+    }
+
+    nav a:hover::after, nav a:focus::after {
+      transform: scaleX(1);
+      transform-origin: left;
+    }
+
+    a:not(.btn) {
+        color: var(--silver);
+        text-decoration: none;
+        position: relative;
+        transition: color 0.3s ease, text-shadow 0.3s ease;
+    }
+
+    a:not(.btn)::after {
+        content: '';
+        position: absolute;
+        bottom: -2px;
+        left: 0;
+        width: 100%;
+        height: 1px;
+        background: var(--accent);
+        transform: scaleX(0);
+        transform-origin: right;
+        transition: transform 0.3s ease-out;
+    }
+
+    a:not(.btn):hover, a:not(.btn):focus {
+        color: var(--accent);
+        text-shadow: 0 0 5px rgba(255, 0, 51, 0.5);
+    }
+
+    a:not(.btn):hover::after, a:not(.btn):focus::after {
+        transform: scaleX(1);
+        transform-origin: left;
+    }
+
+    a:visited:not(.btn) {
+        color: var(--silver);
+    }
+    nav a:visited {
+        color: var(--text);
+    }
+
+    /* Button Styling */
+    .btn {
+      background: transparent;
+      color: var(--accent);
+      border: 1px solid var(--accent);
+      padding: 0.85rem 2rem;
+      text-transform: uppercase;
+      margin-top: 2.5rem;
+      font-weight: bold;
+      z-index: 2;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      overflow: hidden;
+      z-index: 1;
+      transition: color 0.4s ease-in-out, border-color 0.4s ease-in-out;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: var(--accent);
+      transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      z-index: -1;
+    }
+
+    .btn:hover {
+      background: var(--accent);
+      color: var(--bg);
+      border-color: var(--accent);
+      box-shadow: 0 0 15px rgba(255, 0, 51, 0.6), inset 0 0 5px rgba(0,0,0,0.5); /* Added inset shadow */
+    }
+
+    .btn:hover::before {
+      left: 0;
+    }
+
+    /* Hero Section Enhancements */
+    .hero {
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+    }
+
+    .hero-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: 0;
+      transform: translate(-50%, -50%);
+      background-size: cover;
+      animation: videoFilterIntro 2s ease-out forwards; /* Video filter animation */
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      /* More complex gradient overlay */
+      background: radial-gradient(circle at center, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.95) 60%),
+                  url('https://www.transparenttextures.com/patterns/dust-and-noise.png') repeat;
+      background-blend-mode: multiply;
+      z-index: 1;
+      opacity: 0;
+    }
+
+    /* Additional subtle overlay for hero section */
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle, rgba(255, 0, 51, 0.02) 0%, rgba(0, 0, 0, 0.4) 70%, rgba(0, 0, 0, 0.8) 100%),
+                  url('') repeat;
+      background-blend-mode: overlay;
+      z-index: 1.5; /* Between video and content */
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .hero h2 {
+      font-family: var(--font-heading);
+      font-size: clamp(4rem, 8vw, 7rem);
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      z-index: 2;
+      position: relative;
+      text-shadow: 0 0 20px rgba(255,0,51,0.8), 0 0 40px rgba(255,0,51,0.4); /* Stronger layered glow */
+      animation: fadeInZoom 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards; /* Refined easing */
+    }
+
+    .hero p {
+      font-size: 3rem;
+      color: var(--silver);
+      margin-top: 1rem;
+      z-index: 2;
+      position: relative;
+      animation: fadeInSlideUp 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards 0.5s, letterSpaceIn 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards 0.5s; /* Staggered animation, refined easing, and letter spacing */
+      opacity: 0;
+      letter-spacing: 0.5em; /* Starting wide for animation */
+    }
+
+    .hero .btn {
+      margin-top: 2rem;
+      z-index: 2;
+      position: relative;
+      animation: fadeInSlideUp 1.5s cubic-bezier(0.23, 1, 0.32, 1) forwards 1s; /* Staggered animation, refined easing */
+      opacity: 0;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      color: var(--silver);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      opacity: 0.7;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 2;
+    }
+    .scroll-indicator::after {
+      content: '↓';
+      font-size: 2rem;
+      margin-top: 0.5rem;
+      animation: bounce 1.5s infinite;
+    }
+
+    /* General Sections */
+    section {
+      padding: 7rem 3rem;
+      max-width: 1000px;
+      margin: 0 auto;
+      position: relative;
+    }
+
+    section h3 {
+      font-family: var(--font-heading);
+      font-size: 2.5rem;
+      margin-bottom: 2rem;
+      border-left: 4px solid var(--accent);
+      padding-left: 1rem;
+      letter-spacing: 1px;
+      color: var(--accent);
+      text-shadow: 0 0 10px rgba(255,0,51,0.3);
+    }
+
+    .about p {
+      font-size: 1.1rem;
+      line-height: 1.8;
+      color: var(--silver); /* Using var(--silver) for consistency */
+    }
+
+    .tour-date {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid #333;
+      padding: 1.5rem 0;
+      font-size: 1rem;
+      transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .tour-date:hover {
+        background-color: rgba(255, 0, 51, 0.05);
+        transform: translateX(5px);
+        box-shadow: 0 0 10px rgba(255, 0, 51, 0.1); /* Subtle glow on hover */
+    }
+
+    .tour-date span {
+        color: var(--silver);
+    }
+
+    #merch, footer {
+      background-image: radial-gradient(circle at center, #151515 0%, #111111 100%); /* Radial gradient for sections */
+      border-top: 1px solid #222;
+    }
+
+    .merch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .item {
+      background: #1a1a1a;
+      padding: 1rem;
+      border: 1px solid #333;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Initial subtle dark shadow */
+      transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background 0.4s ease-in-out;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .item::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(45deg, rgba(255, 0, 51, 0.1), rgba(0, 0, 0, 0.1));
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
+    }
+
+    .item:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 15px 30px rgba(255, 0, 50, 0.4), 0 0 25px rgba(255, 0, 50, 0.6); /* Accent glow on hover */
+      background: #252525;
+    }
+
+    .item:hover::before {
+        opacity: 1;
+    }
+
+    .item img {
+      width: 100%;
+      max-height: 260px;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      filter: grayscale(0);
+      transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .item:hover img {
+      transform: scale(1.1);
+    }
+
+    .item .info {
+      font-family: var(--font-heading);
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: var(--accent);
+      position: relative;
+      z-index: 1;
+    }
+
+    .item .info p {
+      color: var(--silver);
+      font-size: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Band Members Grid */
+    .band-members-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .member-card {
+      background: #1a1a1a;
+      padding: 1.5rem;
+      border: 1px solid #333;
+      border-radius: 8px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); /* Initial subtle dark shadow */
+      transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background 0.4s ease-in-out;
+      position: relative;
+    }
+
+    .member-card::before {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle, rgba(255, 0, 51, 0.1) 0%, rgba(0, 0, 0, 0.1) 100%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        border-radius: 8px;
+        z-index: 0;
+    }
+
+    .member-card:hover {
+      transform: translateY(-8px) scale(1.03);
+      box-shadow: 0 15px 30px rgba(255, 0, 50, 0.4), 0 0 25px rgba(255, 0, 50, 0.6); /* Accent glow on hover */
+      background: #252525;
+    }
+
+    .member-card:hover::before {
+        opacity: 1;
+    }
+
+    .member-card img {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 1rem;
+      border: 3px solid var(--accent);
+      transition: border-color 0.4s ease, transform 0.4s ease;
+    }
+
+    .member-card:hover img {
+      border-color: #ffffff;
+      transform: scale(1.05);
+    }
+
+    .member-card h4 {
+      font-family: var(--font-heading);
+      font-size: 1.5rem;
+      color: var(--accent);
+      margin-bottom: 0.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .member-card p {
+      color: var(--silver);
+      font-size: 0.95rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    footer {
+      background-image: radial-gradient(circle at center, #151515 0%, #111111 100%); /* Radial gradient for footer */
+      color: #777;
+      text-align: center;
+      padding: 3rem;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+      border-top: 1px solid #222;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0.7rem 1.5rem;
+      }
+
+      nav {
+        margin-top: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        width: 100%;
+      }
+
+      nav a {
+        margin: 0.5rem 0.8rem 0 0.8rem;
+      }
+
+      .hero h2 {
+        font-size: clamp(3rem, 10vw, 5rem);
+      }
+
+      section {
+        padding: 5rem 1.5rem;
+      }
+
+      section h3 {
+        font-size: 2rem;
+      }
+
+      .tour-date {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .tour-date .btn {
+        margin-top: 1rem;
+        width: 100%;
+      }
+
+      .band-members-grid, .merch-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .scroll-indicator {
+        bottom: 1rem;
+      }
+    }
+
+    /* Animations */
+    @keyframes fadeInZoom {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    @keyframes fadeInSlideUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes subtlePulse {
+      0% { text-shadow: 0 0 8px rgba(255,0,51,0.5); }
+      50% { text-shadow: 0 0 12px rgba(255,0,51,0.7); }
+      100% { text-shadow: 0 0 8px rgba(255,0,51,0.5); }
+    }
+
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+      }
+      40% {
+        transform: translateY(-10px);
+      }
+      60% {
+        transform: translateY(-5px);
+      }
+    }
+
+    @keyframes videoFilterIntro {
+      0% {
+        filter: brightness(0.7) contrast(1.2) grayscale(0.5);
+      }
+      100% {
+        filter: brightness(1) contrast(1) grayscale(0);
+      }
+    }
+
+    @keyframes letterSpaceIn {
+      from {
+        letter-spacing: 0.5em;
+      }
+      to {
+        letter-spacing: normal;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <h1>VOIDRUSHER</h1>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#band">Band</a>
+      <a href="#tour">Tour</a>
+      <a href="#merch">Merch</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero" id="home">
+    <video autoplay muted loop class="hero-video">
+      <source src="https://assets.mixkit.co/videos/preview/mixkit-dark-rock-music-performance-50035-large.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+    </video>
+    <div>
+      <h2>VOIDRUSHER</h2>
+    </div>
+    <div class="scroll-indicator">
+        Scroll Down
+    </div>
+  </section>
+
+  <section id="about" class="about">
+    <h3>About Voidrusher</h3>
+    <p>
+      VOIDRUSHER is hailing from the ruins of the American Midwest. Combining metal riffs, synth-fusion, and unrelenting aggression, the band has forged a unique sonic identity — one forged in fire, steel, and distortion.
+    </p>
+  </section>
+
+  <section id="band" class="band">
+    <h3>Band Members</h3>
+    <div class="band-members-grid">
+      <div class="member-card">
+        <img src="https://static.gameloop.com/img/a2db02fdb48691d99e6b8a4839597b0a.jpg?imageMogr2/thumbnail/undefinedx266/format/webp">
+        <h4>Bloodaxe</h4>
+        <p>Vocals, Lead Guitar</p>
+      </div>
+      <div class="member-card">
+        <img src="https://wallpapers.com/images/featured/funny-facebook-profile-pictures-nghrweqjmsbdt69s.jpg">
+        <h4>Korger</h4>
+        <p>Keytars, Backing Vocals</p>
+      </div>
+      <div class="member-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQZrA6Selxd9OlZVUb6HS1dneajSs5pU96mbw&s">
+        <h4>Crusher</h4>
+        <p>Bass Guitar</p>
+      </div>
+      <div class="member-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ-8GNZcrIagtQZv9wqUAvpdtOJv7uZ44cTxQ&s">
+        <h4>Thor</h4>
+        <p>Drums, Percussion</p>
+      </div>
+	    <div class="member-card">
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjIBQGcTFXAGLNlgJ1iqi7-koGqivWzx_y9w&s">
+        <h4>Biff</h4>
+        <p>Rhythm Guitar</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="tour">
+    <h3>Tour Dates</h3>
+    <div class="tour-date">
+      <span>July 20, 2025 – Detroit, MI</span>
+      <a href="#" class="btn">Tickets</a>
+    </div>
+    <div class="tour-date">
+      <span>August 5, 2025 – Chicago, IL</span>
+      <a href="#" class="btn">Tickets</a>
+    </div>
+    <div class="tour-date">
+      <span>September 12, 2025 – Los Angeles, CA</span>
+      <a href="#" class="btn">Tickets</a>
+    </div>
+    <div class="tour-date">
+      <span>October 1, 2025 – Austin, TX</span>
+      <a href="#" class="btn">Tickets</a>
+    </div>
+  </section>
+
+  <section id="merch">
+  <h3>Merch</h3>
+  <div class="merch-grid">
+    <div class="item">
+      <img src="https://static.vecteezy.com/system/resources/previews/055/554/813/non_2x/black-crew-neck-t-shirt-back-view-isolated-on-transparent-background-free-png.png" alt="Band Shirt - Black Logo">
+      <div class="info">
+        <h4>Logo Tee (Black)</h4>
+        <p>$25</p>
+        <a href="#" class="btn">Buy Now</a>
+      </div>
+    </div>
+    <div class="item">
+      <img src="https://static.vecteezy.com/system/resources/previews/055/554/813/non_2x/black-crew-neck-t-shirt-back-view-isolated-on-transparent-background-free-png.png" alt="Band Hoodie">
+      <div class="info">
+        <h4>Plain Tee - Hee Hee</h4>
+        <p>$25</p>
+        <a href="#" class="btn">Buy Now</a>
+      </div>
+    </div>
+    <div class="item">
+      <img src="https://gallery.yopriceville.com/var/albums/Free-Clipart-Pictures/Music-PNG/Gramophone_Vinyl_LP_Record_PNG_Transparent_Clip_Art_Image.png?m=1629808590" alt="Limited Edition Vinyl">
+      <div class="info">
+        <h4>Debut Album (Vinyl)</h4>
+        <p>$35</p>
+        <a href="#" class="btn">Buy Now</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+  <section id="contact">
+    <h3>Contact Us</h3>
+    <p style="text-align: center; color: var(--silver); margin-bottom: 2rem;">
+      For booking inquiries or general questions, please reach out!
+    </p>
+    <form style="max-width: 500px; margin: 0 auto; display: flex; flex-direction: column; gap: 1rem;">
+      <input type="text" placeholder="Your Name" style="padding: 0.8rem; background: #1a1a1a; border: 1px solid #333; color: var(--text); border-radius: 4px;">
+      <input type="email" placeholder="Your Email" style="padding: 0.8rem; background: #1a1a1a; border: 1px solid #333; color: var(--text); border-radius: 4px;">
+      <textarea placeholder="Your Message" rows="5" style="padding: 0.8rem; background: #1a1a1a; border: 1px solid #333; color: var(--text); border-radius: 4px; resize: vertical;"></textarea>
+      <button type="submit" class="btn">Send Message</button>
+    </form>
+  </section>
+
+  <footer>
+    &copy; 2025 VOIDRUSHER. Designed by darkness. Not A Real Band, Inc. All Rights Reserved.
+  </footer>
+</body>
+</html>
