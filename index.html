@@ -1,1251 +1,196 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>dpi850: official site</title>
-  <meta name="description" content="dpi850 — Programming that works." />
-  <meta property="og:title" content="dpi850: Programming that works." />
-  <meta property="og:description" content="Programming that works." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://dpi850.com/" />
-  <meta property="og:image" content="https://dpi850.com/assets/og-image.png" />
-  <meta property="og:video" content="https://www.youtube.com/embed/iM8GiMlAqzQ" />
-  <meta property="og:video:secure_url" content="https://www.youtube.com/embed/iM8GiMlAqzQ" />
-  <meta property="og:video:type" content="text/html" />
-  <meta property="og:video:width" content="1280" />
-  <meta property="og:video:height" content="720" />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="theme-color" content="#111111" />
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="preload" href="assets/fonts/Inter-VariableFont.woff2" as="font" type="font/woff2" crossorigin />
+  <title>dpi850.com</title>
   <style>
-    /* =======================
-       CSS Variables & Base
-       ======================= */
-    :root {
-      --bg-color: #111111;
-      --text-color: #f5f5f5;
-      --accent-color: #00aaff;
-      --font-sans: 'Inter', sans-serif;
-      --radius: 0.5rem;
-      --transition-fast: 0.3s ease;
-      --terminal-bg: rgba(0, 0, 0, 0.85);
-      --terminal-text: #33ff33;
-      --cursor-trail-color: #ffffff;
-      --terminal-comment: #999; /* Added for ASCII art variations */
-      --terminal-keyword: #ffaa00; /* Added for ASCII art variations */
-    }
-    [data-theme="light"] {
-      --bg-color: #fafafa;
-      --text-color: #46c34c;
-      --accent-color: #0077cc;
-      --terminal-bg: rgba(240, 240, 240, 0.95);
-      --terminal-text: #006600;
-      --terminal-comment: #666;
-      --terminal-keyword: #cc6600;
-    }
-    [data-theme="matrix"] {
-      --bg-color: #000;
-      --text-color: #0f0;
-      --accent-color: #0f0;
-      --terminal-bg: rgba(0, 0, 0, 0.9);
-      --terminal-text: #0f0;
-      --terminal-comment: #0a0;
-      --terminal-keyword: #0c0;
-    }
-    *, *::before, *::after {
-      box-sizing: border-box;
+    /* ===== Base Reset ===== */
+    * {
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
-    html {
-      font-family: var(--font-sans);
-      font-size: 17px;
-      scroll-behavior: smooth;
-      background-color: var(--bg-color);
-      color: var(--text-color);
-      transition: background-color 0.5s ease, color 0.5s ease;
-    }
+
     body {
-      min-height: 100vh;
-      line-height: 1.5;
-      position: relative;
-      overflow-x: hidden;
+      font-family: "Segoe UI", system-ui, sans-serif;
+      background: #f9fafc;
+      color: #1a1a1a;
+      line-height: 1.6;
+      padding: 20px;
     }
+
     a {
-      color: var(--accent-color);
       text-decoration: none;
-      position: relative;
+      color: #3b82f6;
     }
-    a:focus, button:focus, input:focus, textarea:focus {
-      outline: 2px dashed var(--accent-color);
-      outline-offset: 2px;
-    }
-    img {
-      max-width: 100%;
-      height: auto;
-      display: block;
-    }
-    .container {
-      width: 90%;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    section {
-      padding: 3rem 0;
-    }
+
     h1, h2, h3 {
-      margin-bottom: 1rem;
       font-weight: 600;
-      line-height: 1.2;
-    }
-    h1 { font-size: 2.5rem; }
-    h2 { font-size: 2rem; }
-    h3 { font-size: 1.5rem; }
-    p { margin-bottom: 1rem; }
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      border: 2px solid var(--accent-color);
-      border-radius: var(--radius);
-      font-weight: 600;
-      transition: transform var(--transition-fast), background-color var(--transition-fast), color var(--transition-fast);
-    }
-    .btn:hover, .btn:focus {
-      background-color: var(--accent-color);
-      color: var(--bg-color);
-      transform: scale(1.05);
     }
 
-    /* =======================
-       Skip Link
-       ======================= */
-    .skip-link {
-      position: absolute;
-      top: -40px;
-      left: 1rem;
-      background: var(--accent-color);
-      color: var(--bg-color);
-      padding: 0.5rem 1rem;
-      z-index: 2000;
-      transition: top 0.3s ease;
-    }
-    .skip-link:focus {
-      top: 1rem;
+    /* ===== Section Wrapper ===== */
+    section {
+      max-width: 900px;
+      margin: 0 auto 3rem auto;
+      background: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     }
 
-    /* =======================
-       Scroll Progress Bar
-       ======================= */
-    #scrollProgress {
-      position: fixed;
-      top: 0; left: 0;
-      height: 3px;
-      background: var(--accent-color);
-      width: 0%;
-      z-index: 1500;
-      transition: width 0.1s ease;
-    }
-
-    /* =======================
-       Header & Hamburger
-       ======================= */
-    header {
-      position: relative;
-      z-index: 1100;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 1rem 0;
-    }
-    #menuToggle {
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 0.5rem;
-      color: var(--text-color);
-    }
-    .hamburger, .hamburger::before, .hamburger::after {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--text-color);
-      transition: transform 0.3s ease;
-      position: relative;
-    }
-    .hamburger::before, .hamburger::after {
-      content: '';
-      position: absolute;
-      left: 0;
-    }
-    .hamburger::before { top: -8px; }
-    .hamburger::after { top: 8px; }
-
-    /* Fullscreen overlay menu */
-    #overlayMenu {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(17,17,17,0.95);
-      backdrop-filter: blur(5px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.4s ease;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-direction: column;
-      z-index: 1000;
-    }
-    #overlayMenu.open {
-      opacity: 1;
-      pointer-events: all;
-    }
-    #overlayMenu ul {
-      list-style: none;
-      text-align: center;
-    }
-    #overlayMenu li {
-      margin: 1rem 0;
-    }
-    #overlayMenu a {
-      color: var(--text-color);
-      font-size: 2rem;
-      transition: transform var(--transition-fast);
-    }
-    #overlayMenu a:hover, #overlayMenu a:focus {
-      transform: scale(1.1);
-    }
-    #menuClose {
-      position: absolute;
-      top: 1rem; right: 1rem;
-      background: none;
-      border: none;
-      font-size: 2rem;
-      color: var(--text-color);
-      cursor: pointer;
-    }
-
-    /* =======================
-       Hero: Terminal + Binary Rain
-       ======================= */
-    #hero {
-      position: relative;
-      width: 100%;
-      height: 100vh;
-      overflow: hidden;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background: var(--bg-color);
-    }
-    #matrixCanvas {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      z-index: 0;
-    }
-    .terminal-window {
-      position: relative;
-      background: var(--terminal-bg);
-      border-radius: var(--radius);
-      padding: 1rem;
-      width: 90%;
-      max-width: 600px;
-      color: var(--terminal-text);
-      font-family: monospace;
-      font-size: 1rem;
-      line-height: 1.4;
-      z-index: 1;
-      box-shadow: 0 0 20px rgba(0,0,0,0.5);
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 1s ease, transform 1s ease;
-    }
-    .terminal-output {
-      max-height: 200px;
-      overflow-y: auto;
-      white-space: pre-wrap;
-      word-break: break-word;
+    /* ===== Headings ===== */
+    h1 {
+      font-size: 2.2rem;
       margin-bottom: 0.5rem;
-    }
-    .terminal-input-line {
-      display: flex;
-      align-items: center;
-    }
-    .terminal-prompt {
-      margin-right: 0.5rem;
-    }
-    .terminal-input {
-      background: transparent;
-      border: none;
-      color: var(--terminal-text);
-      flex: 1;
-      font-family: inherit;
-      font-size: inherit;
-    }
-    /* Help hint in terminal */
-    #helpHint {
-      position: absolute;
-      bottom: 2rem;
-      right: 50%;
-      transform: translateX(50%);
-      background: var(--terminal-bg);
-      color: var(--terminal-text);
-      padding: 0.3rem 0.6rem;
-      border-radius: var(--radius);
-      font-size: 0.85rem;
-      opacity: 0.7;
-      animation: fadeOutHint 8s ease forwards;
-      z-index: 2;
-    }
-    @keyframes fadeOutHint {
-      0%,50% { opacity: 0.7; }
-      80% { opacity: 0.3; }
-      100% { opacity: 0; display: none; }
+      color: #1e3a8a;
     }
 
-    /* =======================
-       Projects grid + filter
-       ======================= */
-    #projects .grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-    }
-    .project-card {
-      position: relative;
-      overflow: hidden;
-      border-radius: var(--radius);
-      background-color: #1a1a1a;
-      transition: transform 0.3s ease;
-    }
-    .project-card:focus-within, .project-card:hover {
-      transform: translateY(-5px);
-    }
-    .project-card img {
-      display: block;
-      width: 100%;
-      height: auto;
-      transition: transform 0.5s ease;
-    }
-    .project-card:focus-within img, .project-card:hover img {
-      transform: scale(1.05);
-    }
-    .card-overlay {
-      position: absolute;
-      bottom: 0; left: 0;
-      width: 100%;
-      background: rgba(17,17,17,0.8);
-      color: var(--text-color);
-      transform: translateY(100%);
-      transition: transform 0.4s ease;
-      padding: 1rem;
-      font-family: inherit;
-    }
-    .project-card:focus-within .card-overlay, .project-card:hover .card-overlay {
-      transform: translateY(0);
-    }
-    #projectFilter {
-      width: 100%;
-      max-width: 400px;
-      padding: 0.5rem;
-      background: #222;
-      border: 1px solid #444;
-      border-radius: var(--radius);
-      color: var(--text-color);
-      margin-bottom: 1.5rem;
-    }
-    #projectFilter::placeholder {
-      color: #888;
-    }
-
-    /* =======================
-       Media Section (autoplay muted)
-       ======================= */
-    .video-container {
-      position: relative;
-      padding-bottom: 56.25%;
-      height: 0;
-      overflow: hidden;
-      border-radius: var(--radius);
-      background: #000;
-      margin-top: 1rem;
-    }
-    .video-container iframe {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    /* =======================
-       About Section ASCII logo
-       ======================= */
-
-
-    /* Playground */
-    .playground {
-      margin-top: 1rem;
-      background: var(--terminal-bg);
-      padding: 1rem;
-      border-radius: var(--radius);
-      font-family: monospace;
-    }
-    .playground textarea {
-      width: 100%;
-      height: 100px;
-      background: #222;
-      color: var(--text-color);
-      border: 1px solid #444;
-      border-radius: var(--radius);
-      font-family: inherit;
-      padding: 0.5rem;
-    }
-    .playground button {
-      margin-top: 0.5rem;
-    }
-    .playground pre {
-      margin-top: 0.5rem;
-      background: #111;
-      color: var(--text-color);
-      padding: 0.5rem;
-      border-radius: var(--radius);
-      max-height: 150px;
-      overflow-y: auto;
-    }
-
-    /* =======================
-       Footer
-       ======================= */
-    footer {
-      background: #0d0d0d;
-      padding: 2rem 0;
+    h2 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
       text-align: center;
-    }
-    .footer-content p {
-      margin: 0.5rem 0;
-      font-size: 0.9rem;
-      color: #888;
+      color: #1e3a8a;
+      position: relative;
     }
 
-    /* =======================
-       Back-to-top Button
-       ======================= */
-    #backToTop {
-      position: fixed;
-      bottom: 2rem;
-      right: 2rem;
-      background: var(--terminal-bg);
-      color: var(--terminal-text);
-      border: 1px solid var(--accent-color);
-      border-radius: 50%;
-      width: 3rem;
-      height: 3rem;
-      font-size: 1.2rem;
-      cursor: pointer;
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.3s ease, transform 0.3s ease;
+    h2::after {
+      content: "";
+      display: block;
+      width: 80px;
+      height: 4px;
+      background: #3b82f6;
+      margin: 0.5rem auto 0 auto;
+      border-radius: 2px;
+    }
+
+    /* ===== Bio Section ===== */
+    .bio {
       display: flex;
       align-items: center;
-      justify-content: center;
-      z-index: 1200;
-    }
-    #backToTop.show {
-      opacity: 1;
-      pointer-events: all;
-    }
-    #backToTop:hover {
-      transform: scale(1.2);
+      gap: 1.5rem;
+      flex-wrap: wrap;
     }
 
-    /* =======================
-       Theme Toggle Button
-       ======================= */
-    #themeToggle {
-      position: fixed;
-      bottom: 2rem;
-      left: 2rem;
-      background: var(--terminal-bg);
-      color: var(--terminal-text);
-      border: 1px solid var(--accent-color);
+    .bio img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
       border-radius: 50%;
-      width: 3rem;
-      height: 3rem;
-      cursor: pointer;
-      z-index: 1200;
-      opacity: 0.7;
-      transition: opacity 0.3s ease, transform 0.3s ease;
+      border: 4px solid #e2e8f0;
+    }
+
+    .bio-text {
+      flex: 1;
+    }
+
+    .bio-text p {
+      margin-bottom: 1rem;
+    }
+
+    /* ===== Video Grid Section ===== */
+    .video-grid {
+      display: grid;
+      gap: 1.5rem;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .video-card {
+      background: #f1f5f9;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
       display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    #themeToggle:hover {
-      opacity: 1;
-      transform: scale(1.1);
-    }
-    /* Inline SVG icon styling */
-    #themeToggle svg {
-      width: 1.2rem;
-      height: 1.2rem;
-      fill: var(--text-color);
+      flex-direction: column;
     }
 
-    /* =======================
-       Section Reveal on Scroll
-       ======================= */
-    .reveal {
-      opacity: 0;
-      transform: translateY(20px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
+    .video-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
     }
 
-    /* =======================
-       Section Label
-       ======================= */
-    #sectionLabel {
-      position: fixed;
-      top: 1rem;
-      left: 50%;
-      transform: translateX(-50%);
-      background: var(--terminal-bg);
-      color: var(--terminal-text);
-      padding: 0.25rem 0.5rem;
-      border-radius: var(--radius);
-      font-size: 0.9rem;
-      opacity: 0;
-      transition: opacity 0.3s ease;
-      z-index: 1200;
-    }
-    #sectionLabel.show {
-      opacity: 0.8;
+    .video-card iframe {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      border: 0;
+      display: block;
     }
 
-    /* =======================
-       Custom Scrollbar
-       ======================= */
-    body::-webkit-scrollbar {
-      width: 8px;
-    }
-    body::-webkit-scrollbar-track {
-      background: #222;
-    }
-    body::-webkit-scrollbar-thumb {
-      background: var(--accent-color);
-      border-radius: 4px;
-    }
-    body::-webkit-scrollbar-thumb:hover {
-      background: var(--text-color);
-    }
-    html {
-      scrollbar-width: thin;
-      scrollbar-color: var(--accent-color) #222;
+    .video-title {
+      padding: 0.8rem 1rem;
+      font-size: 1rem;
+      color: #1e293b;
+      text-align: center;
+      background: #e2e8f0;
+      font-weight: 500;
     }
 
-
-    /* =======================
-       Cursor Trail Dot
-       ======================= */
-    .cursor-trail-dot {
-      position: fixed;
-      width: 6px;
-      height: 6px;
-      border-radius: 50%;
-      pointer-events: none;
-      background: var(--cursor-trail-color);
-      will-change: transform, opacity;
-      opacity: 1;
-    }
-
-    /* =======================
-       Responsive & Reduced Motion
-       ======================= */
+    /* ===== Responsive ===== */
     @media (max-width: 600px) {
-      .terminal-window { font-size: 0.9rem; }
-      #overlayMenu a { font-size: 1.5rem; }
-      #backToTop, #themeToggle {
-        bottom: 1rem; right: 1rem; left: auto;
-        width: 2.5rem; height: 2.5rem;
+      .bio {
+        text-align: center;
+        flex-direction: column;
+      }
+      .bio img {
+        margin-bottom: 1rem;
       }
     }
-    @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
-      }
-    }
-	
-	.icon-link {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 0.4em;
-    text-decoration: none;
-    color: inherit;
-  }
-
-    .icon-link img {
-    width: 60px;
-    height: 60px;
-    flex-shrink: 0;
-    object-fit: contain;
-    filter: grayscale(100%) brightness(70%) drop-shadow(0 0 1px white);
-  }
-
-   .icon-list {
-   list-style: none;
-   padding-left: 0;
-   display: flex; /* Add this line */
-   justify-content: center; /* Add this line */
-   flex-wrap: wrap; /* Add this line if you want items to wrap on smaller screens */
-   gap: 1em; /* Adjust gap as needed for spacing between icons */
-}
-
-  .icon-list li {
-    margin-bottom: 0.5em;
-  }
-
-
   </style>
 </head>
-
 <body>
-  <a href="#main-content" class="skip-link">Skip to content</a>
 
-  <div id="scrollProgress"></div>
-
-  <header class="container">
-    <button id="menuToggle" aria-label="Open menu" aria-expanded="false">
-      <span class="hamburger"></span>
-    </button>
-  </header>
-
-  <nav id="overlayMenu" aria-hidden="true">
-    <button id="menuClose" aria-label="Close menu">×</button>
-    <ul>
-      <li><a href="#hero">Home</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#contact">About</a></li>
-    </ul>
-  </nav>
-
-  <button id="themeToggle" aria-label="Toggle theme" data-tooltip="Toggle theme">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"></circle></svg>
-  </button>
-
-  <button id="backToTop" aria-label="Back to top">↑</button>
-
-  <div id="sectionLabel"></div>
-
-  <main id="main-content">
-    <section id="hero">
-      <canvas id="matrixCanvas"></canvas>
-      <div class="terminal-window container" aria-label="Interactive terminal interface">
-        <div class="terminal-output" id="terminalOutput">
-        </div>
-        <div class="terminal-input-line">
-          <span class="terminal-prompt">></span>
-          <input type="text" id="terminalInput" class="terminal-input" autocomplete="off" aria-label="Terminal command input" />
-        </div>
-        <div id="helpHint">Type “help” and press Enter</div>
+  <!-- ===== Bio Section ===== -->
+  <section>
+    <div class="bio">
+      <img src="https://yt3.ggpht.com/kzrp_dExfihe166iINojYki5GtdoCH9P_KNkxVzpl8bczMLgGaW_lF5-RYpXvCgpOu3dAS5v-0M=s600-c-k-c0x00ffffff-no-rj-rp-mo" alt="Your Name">
+      <div class="bio-text">
+        <h1>dpi850.com</h1>
+        <p>
+          I'm known as dpi850, a web designer and content creator.  
+          I build clean, responsive websites and share knowledge  
+          through videos. I play video games every now and then.
+        </p>
+        <p>
+          Check out my latest projects and subscribe to my 
+          <a href="https://youtube.com/dpi-850" target="_blank">YouTube channel</a>
+          for more content.
+        </p>
       </div>
-    </section>
-
-    <section id="projects" class="reveal">
-      <div class="container">
-        <h2>Featured Projects</h2>
-        <div class="grid" id="projectsGrid">
-            </a>
-          </div>
-          <div class="project-card" data-owner="dpi850" data-repo="850NetTool" data-tags="network python" data-description="850NetTool is a user-level network utility written in Python for various network diagnostics.">
-            <a href="https://github.com/dpi850/850NetTool" class="card-link" target="_blank" rel="noopener">
-              <img src="https://raw.githubusercontent.com/dpi850/dpi850.com/refs/heads/main/images/networkutil_1.PNG" alt="850NetTool screenshot" loading="lazy" />
-              <div class="card-overlay">
-                <h3>850NetTool</h3>
-                <p>User-level network utility in Python.</p>
-                <div class="repo-info" style="font-size:0.9rem; margin-top:0.5rem;">Loading...</div>
-              </div>
-            </a>
-          </div>
-		    <div class="project-card" data-owner="dpi850" data-repo="850NetTool" data-tags="weather app" data-description="A simple weather application displaying current weather conditions.">
-            <a href="https://bsky.app/profile/dpi850.com/post/3lrvno4ykm22r" class="card-link" target="_blank" rel="noopener">
-              <img src="https://cdn.bsky.app/img/feed_fullsize/plain/did:plc:hj3dpglfcdiipso23d4ie7uy/bafkreibo7m3djdgxuc6kt55p5eceppg3amuwwkb2o3peer3ry2m7ryqgpm@jpeg" alt="850NetTool screenshot" loading="lazy" />
-              <div class="card-overlay">
-                <h3>Weather App</h3>
-                <p>Appp</p>
-                <div class="repo-info" style="font-size:0.9rem; margin-top:0.5rem;">Loading...</div>
-              </div>
-            </a>
-          </div>
-          </div>
-      </div>
-    </section>
-
-    <section id="media" class="reveal">
-      <div class="container">
-        <h2>Featured Video</h2>
-        <div class="video-container">
-          </div>
-      </div>
-    </section>
-
-    <section id="about" class="reveal">
-      <div class="container">
-        <h2>About dpi850</h2>
-        <div class="ascii-logo" id="asciiLogoContainer">
-          <pre id="interactiveAsciiLogo">
-
-          </pre>
-        </div>
-        <p style="margin-top:1rem;">Name comes from my gaming roots—850 DPI was the perfect balance: fast enough to compete, precise enough to control. That same mindset now powers my code: efficient, purposeful, and lightweight by design.
-		<h1>Key Features</h1>
-		<p>If you prefer clarity over clutter, speed over bloat, and results over buzzwords—you’re in the right place. Everything here reflects a love for clean code, practical simplicity, and no-nonsense tools that just work. I use technologies like Git and lightweight JavaScript libraries only when they serve a real purpose. My approach to design favors minimalist UI with functional elegance.This site itself was hand-built to showcase that philosophy.</p>
-		<h2>Skills & Stack</h2>
-		<p>Python development with PyQt5 for UI</p>
-		<p>HTML5, CSS3, JavaScript (ES6+)</p>
-		<p>Tailwind CSS & responsive design</p>
-		<p>End-to-end site design and deployment</p>
-        <div id="playground" class="playground" style="display:none;">
-          <textarea id="codeInput" placeholder="// write JS here"></textarea>
-          <button id="runCode" class="btn">Run</button>
-          <pre id="codeOutput"></pre>
-    
     </div>
-<h1>Links</h1>
-<p>Say hello via:</p>
-<ul class="icon-list">
-  <li>
-    <a href="https://github.com/dpi850" target="_blank" rel="noopener" class="icon-link">
-      <img src="https://cdn-icons-png.flaticon.com/512/25/25231.png" alt="GitHub icon" />
+  </section>
 
-    </a>
-  </li>
-
-  <li>
-    <a href="https://www.youtube.com/@dpi-850" target="_blank" rel="noopener" class="icon-link">
-      <img src="https://cdn-icons-png.flaticon.com/512/1384/1384060.png" alt="YouTube icon" />
-
-    </a>
-  </li>
-
-  <li>
-    <a href="https://bsky.app/profile/dpi850.com" target="_blank" rel="noopener" class="icon-link">
-      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Bluesky_butterfly-logo.svg/600px-Bluesky_butterfly-logo.svg.png?20240211144751" alt="BlueSky butterfly logo" />
-    </a>
-  </li>
-
-  <li>
-    <a href="https://bsky.app/profile/dpi850.com" target="_blank" rel="noopener" class="icon-link">
-    </a>
-  </li>
-</ul>
-    </section>
-	
-	
-  </main>
+  <!-- ===== Video Gallery Section ===== -->
+  <section>
+    <h2>Videos</h2>
+    <div class="video-grid">
+      <!-- Video 1 -->
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/iM8GiMlAqzQ?si=3oV0MaIuti48qxAf" allowfullscreen loading="lazy"></iframe>
+        <div class="video-title">Hello Browse TXT, Bye Browser bloat</div>
+      </div>
+      <!-- Video 2 -->
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/1CZDIR9GM4k?si=o42rceafhQL0PKNA" allowfullscreen loading="lazy"></iframe>
+        <div class="video-title">I Solved the Creepy Clay Statue Mystery | Children of Clay Playthrough</div>
+      </div>
+      <!-- Video 3 -->
+      <div class="video-card">
+        <iframe src="https://www.youtube.com/embed/C5NipbdyH_E?si=qSfaWO9SarkFfYVr" allowfullscreen loading="lazy"></iframe>
+        <div class="video-title">Linux Mint: The Windows Alternative You NEED</div>
+      </div>
+      <!-- Video 4 -->
+      <div class="video-card">
+        <iframe src="https://www.youtube-nocookie.com/embed/0E48mKDjRlw" allowfullscreen loading="lazy"></iframe>
+        <div class="video-title">Coffee Made Easy | Cuisinart® </div>
+      </div>
+    </div>
+  </section>
+  
+  <!-- ===== Footer Section ===== -->
   <footer>
-    <div class="container footer-content">
-      <p>©<span id="currentYear"></span> Design by dpi850. All rights reserved.</p>
-      <p>Last updated: <time datetime="2025-06-20" id="lastUpdated">June 20, 2025</time></p>
-      <p><a href="https://github.com/dpi850/dpi850.com" target="_blank" rel="noopener">View Source on GitHub</a></p>
-    </div>
+    <p>&copy; <span id="year"></span> Deisgn by dpi850. All rights reserved.</p>
+    <p>Follow me on <a href="https://instagram.com/dpi85_" target="_blank">Instagram</a> | <a href="https://github.com/dpi850" target="_blank">GitHub</a></p>
   </footer>
-  <script>
-    /***** THEME PERSISTENCE *****/
-    (function() {
-      const html = document.documentElement;
-      const saved = localStorage.getItem('dpi850-theme');
-      function applyTheme(t) {
-        html.setAttribute('data-theme', t);
-      }
-      if (saved) {
-        applyTheme(saved);
-      } else {
-        applyTheme('dark');
-      }
-      window.setTheme = function(t) {
-        applyTheme(t);
-        localStorage.setItem('dpi850-theme', t);
-      };
-    })();
 
-    /***** OVERLAY MENU LOGIC *****/
-    (function() {
-      const menuToggle = document.getElementById('menuToggle');
-      const overlayMenu = document.getElementById('overlayMenu');
-      const menuClose = document.getElementById('menuClose');
-      function openMenu() {
-        menuToggle.setAttribute('aria-expanded', 'true');
-        overlayMenu.classList.add('open');
-        overlayMenu.setAttribute('aria-hidden', 'false');
-        const firstLink = overlayMenu.querySelector('a');
-        if (firstLink) firstLink.focus();
-      }
-      function closeMenu() {
-        menuToggle.setAttribute('aria-expanded', 'false');
-        overlayMenu.classList.remove('open');
-        overlayMenu.setAttribute('aria-hidden', 'true');
-        menuToggle.focus();
-      }
-      menuToggle.addEventListener('click', () => {
-        const expanded = menuToggle.getAttribute('aria-expanded') === 'true';
-        expanded ? closeMenu() : openMenu();
-      });
-      menuClose.addEventListener('click', closeMenu);
-      overlayMenu.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeMenu();
-      });
-      overlayMenu.querySelectorAll('a').forEach(link => {
-        link.addEventListener('click', closeMenu);
-      });
-    })();
-
-    /***** SCROLL PROGRESS BAR *****/
-    (function() {
-      const bar = document.getElementById('scrollProgress');
-      function update() {
-        const doc = document.documentElement;
-        const scrollTop = window.scrollY || doc.scrollTop;
-        const height = doc.scrollHeight - window.innerHeight;
-        const pct = height > 0 ? (scrollTop / height) * 100 : 0;
-        bar.style.width = pct + '%';
-      }
-      window.addEventListener('scroll', update, { passive: true });
-      window.addEventListener('resize', update);
-      window.addEventListener('load', update);
-    })();
-
-    /***** BACK-TO-TOP BUTTON *****/
-    (function() {
-      const btn = document.getElementById('backToTop');
-      function check() {
-        if (window.scrollY > window.innerHeight) {
-          btn.classList.add('show');
-        } else {
-          btn.classList.remove('show');
-        }
-      }
-      btn.addEventListener('click', () => {
-        window.scrollTo({ top: 0, behavior: 'smooth' });
-      });
-      window.addEventListener('scroll', check, { passive: true });
-      window.addEventListener('load', check);
-    })();
-
-    /***** THEME TOGGLE BUTTON *****/
-    (function() {
-      const btn = document.getElementById('themeToggle');
-      btn.addEventListener('click', () => {
-        const current = document.documentElement.getAttribute('data-theme') || 'dark';
-        const next = current === 'dark' ? 'light' : current === 'light' ? 'matrix' : 'dark';
-        window.setTheme(next);
-      });
-    })();
-
-    /***** DYNAMIC FOOTER DATES *****/
-    (function() {
-      const yearEl = document.getElementById('currentYear');
-      if (yearEl) {
-        yearEl.textContent = new Date().getFullYear();
-      }
-    })();
-
-    /***** TERMINAL INTERFACE *****/
-    (function() {
-      const outputEl = document.getElementById('terminalOutput');
-      const inputEl = document.getElementById('terminalInput');
-      const projectsGrid = document.getElementById('projectsGrid');
-      const cards = () => Array.from(projectsGrid.querySelectorAll('.project-card'));
-      let cursorTrailEnabled = false;
-      let soundEnabled = false;
-      let konamiBuffer = [];
-      const konamiSeq = ['ArrowUp','ArrowUp','ArrowDown','ArrowDown','ArrowLeft','ArrowRight','ArrowLeft','ArrowRight','b','a','Enter'];
-
-      function beep() {
-        if (!soundEnabled) return;
-        try {
-          const ctx = new (window.AudioContext||window.webkitAudioContext)();
-          const osc = ctx.createOscillator();
-          osc.type = 'square';
-          osc.frequency.setValueAtTime(440, ctx.currentTime);
-          osc.connect(ctx.destination);
-          osc.start();
-          osc.stop(ctx.currentTime + 0.1);
-        } catch {}
-      }
-      function appendOutput(text) {
-        const lines = text.split('\n');
-        for (const line of lines) {
-          const div = document.createElement('div');
-          div.textContent = line;
-          outputEl.appendChild(div);
-        }
-        outputEl.scrollTop = outputEl.scrollHeight;
-        beep();
-      }
-      function checkOffline() {
-        if (!navigator.onLine) {
-          appendOutput('⚠ You appear offline. Some features may not work.');
-        }
-      }
-
-      const commands = {
-        help: `Available commands:
-  help             Show this help
-  projects         List project names
-  projectinfo [name] Get description for a project
-  go [section]     Navigate to section (projects, about, hero)
-  clear            Clear the terminal output
-  portcheck [port] Simulate port check (demo)
-  theme [dark|light|matrix]
-                   Switch theme
-  playground        Toggle code playground
-  stats            Show site stats
-  sound [on|off]   Toggle terminal sound
-  github [owner/repo]
-                   Fetch stars and last update for a GitHub repo
-`,
-        clear: () => { outputEl.innerHTML = ''; return ''; },
-        projects: () => {
-          const names = cards().map(card => card.querySelector('h3')?.textContent.trim()).filter(Boolean);
-          return 'Projects:\n  ' + names.join('\n  ');
-        },
-        projectinfo: (args) => {
-          const projectName = args.slice(1).join(' ').toLowerCase();
-          if (!projectName) {
-            return 'Usage: projectinfo [project name]';
-          }
-
-          const projectCard = cards().find(card =>
-            card.querySelector('h3')?.textContent.toLowerCase() === projectName
-          );
-
-          if (projectCard) {
-            const description = projectCard.dataset.description;
-            if (description) {
-              return `${projectCard.querySelector('h3').textContent}:\n  ${description}`;
-            } else {
-              return `No description available for "${projectName}".`;
-            }
-          } else {
-            return `Project "${projectName}" not found. Type "projects" to list all projects.`;
-          }
-        },
-        go: (args) => {
-          const section = args[1]?.toLowerCase();
-          const valid = ['projects','media','about','contact','home','hero'];
-          if (valid.includes(section)) {
-            const targetId = (section === 'home' ? 'hero' : section); // Corrected 'home' to target 'hero' section
-            const target = document.getElementById(targetId);
-            if (target) {
-              appendOutput(`Navigating to ${section}...`);
-              target.scrollIntoView({ behavior: 'smooth' });
-              return '';
-            }
-            return `Section "${section}" not found.`;
-          }
-          return 'Usage: go [section]';
-        },
-        portcheck: (args) => {
-          const port = args[1] || '80';
-          const open = Math.random() > 0.5;
-          return `Port ${port} is ${open ? 'open' : 'closed'} (demo).`;
-        },
-        theme: (args) => {
-          const t = args[1];
-          if (['dark','light','matrix'].includes(t)) {
-            window.setTheme(t);
-            return `Theme set to ${t}.`;
-          }
-          return 'Usage: theme [dark|light|matrix]';
-        },
-        playground: () => {
-          const pg = document.getElementById('playground');
-          if (pg.style.display === 'none') {
-            pg.style.display = 'block';
-            return 'Playground shown.';
-          } else {
-            pg.style.display = 'none';
-            return 'Playground hidden.';
-          }
-        },
-        stats: () => {
-          const count = cards().length;
-          const lastUpdate = document.getElementById('lastUpdated')?.textContent || '';
-          return `Site stats:\n  Projects listed: ${count}\n  Last update: ${lastUpdate}`;
-        },
-        cursor: (args) => {
-          const v = args[1];
-          if (v === 'on' || v === 'off') {
-            cursorTrailEnabled = (v === 'on');
-            if (!cursorTrailEnabled) {
-              document.querySelectorAll('.cursor-trail-dot').forEach(d => d.remove());
-            }
-            return `Cursor trail ${v}.`;
-          }
-          return 'Usage: cursor [on|off]';
-        },
-        sound: (args) => {
-          const v = args[1];
-          if (v === 'on' || v === 'off') {
-            soundEnabled = (v === 'on');
-            return `Sound ${v}.`;
-          }
-          return 'Usage: sound [on|off]';
-        },
-        github: async (args) => {
-          const repo = args[1];
-          if (!repo || !repo.includes('/')) return 'Usage: github [owner/repo]';
-          try {
-            appendOutput('Fetching GitHub info...');
-            const res = await fetch(`https://api.github.com/repos/${repo}`);
-            if (!res.ok) throw new Error();
-            const data = await res.json();
-            const stars = data.stargazers_count;
-            const updated = new Date(data.pushed_at).toLocaleDateString();
-            return `Repo ${repo}: ⭐ ${stars}, last updated ${updated}`;
-          } catch {
-            return 'Failed to fetch GitHub info (rate limit or network).';
-          }
-        }
-      };
-
-      inputEl.addEventListener('keydown', async (e) => {
-        // Konami detection
-        konamiBuffer.push(e.key);
-        if (konamiBuffer.slice(-konamiSeq.length).join('') === konamiSeq.join('')) {
-          appendOutput('🎉 Easter egg unlocked🎉');
-          appendOutput('✨ ✨ ✨ GG! ✨ ✨ ✨');
-        }
-        if (e.key === 'Enter') {
-          const raw = inputEl.value.trim();
-          appendOutput('> ' + raw);
-          inputEl.value = '';
-          if (!raw) { appendOutput(''); return; }
-          const parts = raw.split(/\s+/);
-          const cmd = parts[0].toLowerCase();
-          if (commands[cmd] !== undefined) {
-            try {
-              const result = typeof commands[cmd] === 'function'
-                ? commands[cmd](parts)
-                : commands[cmd];
-              if (result instanceof Promise) {
-                const res = await result;
-                if (res) appendOutput(res);
-              } else if (result) {
-                appendOutput(result);
-              }
-            } catch {
-              appendOutput('Error executing command.');
-            }
-          } else {
-            appendOutput(`Unknown command: ${cmd}. Type "help" for available commands.`);
-          }
-        }
-      });
-
-      window.addEventListener('load', () => {
-        const term = document.querySelector('.terminal-window');
-        if (term) {
-          term.style.opacity = '1';
-          term.style.transform = 'translateY(0)';
-        }
-        inputEl.focus();
-        checkOffline();
-      });
-
-      // Cursor trail effect
-      document.addEventListener('mousemove', (e) => {
-        if (!cursorTrailEnabled) return;
-        const dot = document.createElement('div');
-        dot.className = 'cursor-trail-dot';
-        document.body.appendChild(dot);
-        const x = e.clientX, y = e.clientY;
-        dot.style.transform = `translate(${x - 3}px, ${y - 3}px)`;
-        setTimeout(() => { dot.style.opacity = '0'; }, 50);
-        setTimeout(() => dot.remove(), 500);
-      });
-    })();
-
-
-    /***** VIDEO EMBED MUTED AUTOPLAY ON LOAD *****/
-    (function() {
-      const container = document.querySelector('.video-container');
-      if (!container) return;
-      window.addEventListener('load', () => {
-        // If you want to respect reduced-motion, uncomment:
-        // if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        if (container.querySelector('iframe')) return;
-        const videoId = 'iM8GiMlAqzQ'; // your YouTube ID
-        const iframe = document.createElement('iframe');
-        // autoplay=1&mute=1 ensures browsers allow autoplay
-        iframe.src = `https://www.youtube-nocookie.com/embed/${videoId}?autoplay=1&mute=1&rel=0`;
-        iframe.title = 'YouTube video player';
-        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-        iframe.allowFullscreen = true;
-        container.appendChild(iframe);
-      });
-    })();
-
-    /***** PLAYGROUND RUN CODE *****/
-    (function() {
-      const runBtn = document.getElementById('runCode');
-      const codeInput = document.getElementById('codeInput');
-      const codeOutput = document.getElementById('codeOutput');
-      if (runBtn) {
-        runBtn.addEventListener('click', () => {
-          codeOutput.textContent = '';
-          const code = codeInput.value;
-          try {
-            const result = Function('"use strict";return (' + code + ')')();
-            codeOutput.textContent = String(result);
-          } catch (err) {
-            codeOutput.textContent = 'Error: ' + err.message;
-          }
-        });
-      }
-    })();
-
-    /***** SMOOTH SCROLL for anchor links *****/
-    (function() {
-      document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', (e) => {
-          const href = a.getAttribute('href');
-          if (href.length > 1) {
-            e.preventDefault();
-            const id = href.substring(1);
-            const target = document.getElementById(id);
-            if (target) {
-              target.scrollIntoView({ behavior: 'smooth' });
-            }
-          }
-        });
-      });
-    })();
-
-    /***** SECTION REVEAL ON SCROLL *****/
-    (function() {
-      const elems = document.querySelectorAll('.reveal');
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            obs.unobserve(entry.target);
-          }
-        });
-      }, { threshold: 0.1 });
-      elems.forEach(el => obs.observe(el));
-    })();
-
-    /***** SECTION LABEL DISPLAY *****/
-    (function() {
-      const label = document.getElementById('sectionLabel');
-      if (!label) return;
-      const sections = document.querySelectorAll('section[id]');
-      const obs = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            const name = entry.target.querySelector('h2')?.textContent || entry.target.id;
-            label.textContent = name;
-            label.classList.add('show');
-            clearTimeout(label._hideTimeout);
-            label._hideTimeout = setTimeout(() => label.classList.remove('show'), 2000);
-          }
-        });
-      }, { threshold: 0.5 });
-      sections.forEach(sec => obs.observe(sec));
-    })();
-
-    /***** OFFLINE DETECTION *****/
-    window.addEventListener('offline', () => {
-      const termOut = document.getElementById('terminalOutput');
-      if (termOut) {
-        const div = document.createElement('div');
-        div.textContent = '⚠ You are offline.';
-        termOut.appendChild(div);
-      }
-    });
-
-    /***** BACKGROUND PERFORMANCE GUARD *****/
-    (function() {
-      const isLowPower = navigator.deviceMemory && navigator.deviceMemory < 2;
-      if (isLowPower || navigator.connection?.saveData) {
-        const matrix = document.getElementById('matrixCanvas');
-        if (matrix) matrix.remove();
-      }
-    })();
-
-    /***** SKIP-LINK FOCUS Fix *****/
-    (function() {
-      const skip = document.querySelector('.skip-link');
-      skip.addEventListener('click', () => {
-        const target = document.getElementById('main-content');
-        if (target) target.focus();
-      });
-    })();
-
-    /***** INTERACTIVE ASCII LOGO LOGIC *****/
-    (function() { // Wrap in an IIFE to keep scope clean
-      const asciiLogoElement = document.getElementById('interactiveAsciiLogo');
-      if (!asciiLogoElement) return;
-
-      // Store the original content before wrapping characters
-      const originalAsciiContent = asciiLogoElement.textContent.trim();
-
-      let newHtml = '';
-      // Wrap each meaningful character in a span
-      for (let i = 0; i < originalAsciiContent.length; i++) {
-        const char = originalAsciiContent[i];
-        if (char === '\n') {
-          newHtml += '<br>'; // Preserve line breaks
-        } else if (char === ' ') {
-          newHtml += ' '; // Use   for spaces if you want them to be individual interactable elements
-        } else {
-          newHtml += `<span class="ascii-char">${char}</span>`;
-        }
-      }
-      asciiLogoElement.innerHTML = newHtml;
-
-      const chars = asciiLogoElement.querySelectorAll('.ascii-char');
-
-      asciiLogoElement.addEventListener('mouseover', () => {
-        chars.forEach((char, index) => {
-          // Different effects based on character type or position
-          if (char.textContent.match(/[_-]/)) { // For underscores and hyphens (the "lines")
-            char.style.color = 'var(--text-color)'; // Maybe a darker shade or highlight
-            char.style.transform = `translateY(${Math.random() * 2 - 1}px)`; // Subtle vertical wiggle
-          } else if (char.textContent === '/') { // For the forward slashes
-            char.style.color = 'var(--terminal-comment)'; // A secondary color from your theme
-            char.style.transform = `scaleX(${1 + Math.random() * 0.05})`; // Slight stretch
-          } else if (char.textContent === '\\') { // For the backslashes
-            char.style.color = 'var(--terminal-keyword)'; // Another secondary color from your theme
-            char.style.transform = `scaleX(${1 + Math.random() * 0.05})`; // Slight stretch
-          } else if (char.textContent.match(/[a-zA-Z0-9]/)) { // For actual letters/numbers in the art
-            char.style.color = `hsl(${Math.random() * 360}, 100%, 70%)`; // Random bright colors for accent
-            char.style.transform = `scale(${1 + Math.random() * 0.05})`; // Subtle pop
-          } else { // For other characters like '(', ')', ',', etc.
-            char.style.color = 'var(--accent-color)'; // Default accent
-            char.style.transform = `translateY(${Math.random() * 1 - 0.5}px)`; // Very subtle movement
-          }
-        });
-      });
-
-      asciiLogoElement.addEventListener('mouseout', () => {
-        chars.forEach((char) => {
-          // Reset styles when not hovering
-          char.style.color = ''; // Reset to CSS default (from var(--accent-color) on parent)
-          char.style.transform = ''; // Reset transform
-        });
-      });
-    })();
-  </script>
 </body>
 </html>
