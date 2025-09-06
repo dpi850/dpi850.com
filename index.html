@@ -19,6 +19,7 @@ body {
   color: #1a1a1a;
   line-height: 1.6;
   overflow-x: hidden;
+  scroll-behavior: smooth;
 }
 
 /* ===== Links ===== */
@@ -30,7 +31,7 @@ a {
 }
 a:hover {
   color: #1e40af;
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.05);
 }
 
 /* ===== Hero/Bio Section ===== */
@@ -48,6 +49,7 @@ section.bio {
   box-shadow: 0 20px 40px rgba(0,0,0,0.1);
   position: relative;
   overflow: hidden;
+  animation: fadeInUp 1s ease forwards;
 }
 
 .bio img {
@@ -56,11 +58,13 @@ section.bio {
   object-fit: cover;
   border-radius: 50%;
   border: 4px solid rgba(255,255,255,0.3);
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
+  cursor: pointer;
 }
 .bio img:hover {
   transform: scale(1.1) rotate(3deg);
   box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+  filter: brightness(1.1);
 }
 
 .bio-text {
@@ -73,6 +77,11 @@ section.bio {
   line-height: 1.1;
   margin-bottom: 1rem;
   text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+  cursor: default;
+  transition: transform 0.3s ease;
+}
+.bio-text h1:hover {
+  transform: scale(1.05);
 }
 .bio-text p {
   font-size: 1.1rem;
@@ -86,6 +95,9 @@ h2 {
   text-align: center;
   color: #1e3a8a;
   position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards 0.5s;
 }
 h2::after {
   content: "";
@@ -95,11 +107,15 @@ h2::after {
   background: #3b82f6;
   margin: 0.5rem auto 0 auto;
   border-radius: 2px;
-  animation: slideIn 1s ease forwards;
+  animation: slideIn 1s ease forwards 0.8s;
 }
 @keyframes slideIn {
   from {width:0;}
   to {width:80px;}
+}
+@keyframes fadeInUp {
+  from {opacity:0; transform: translateY(20px);}
+  to {opacity:1; transform: translateY(0);}
 }
 
 /* ===== Video Grid Section ===== */
@@ -123,19 +139,23 @@ section.video-gallery {
   transition: transform 0.5s ease, box-shadow 0.5s ease;
   display: flex;
   flex-direction: column;
+  cursor: pointer;
+  position: relative;
 }
 .video-card:hover {
   transform: translateY(-8px) scale(1.03);
   box-shadow: 0 12px 40px rgba(0,0,0,0.15);
 }
-
+.video-card:hover iframe {
+  transform: scale(1.02);
+}
 .video-card iframe {
   width: 100%;
   aspect-ratio: 16 / 9;
   border: 0;
   display: block;
+  transition: transform 0.3s ease;
 }
-
 .video-title {
   padding: 1rem;
   font-size: 1rem;
@@ -143,10 +163,11 @@ section.video-gallery {
   text-align: center;
   background: #e2e8f0;
   font-weight: 500;
-  transition: background 0.3s ease;
+  transition: background 0.3s ease, transform 0.3s ease;
 }
 .video-card:hover .video-title {
   background: #dbeafe;
+  transform: scale(1.02);
 }
 
 /* ===== Footer Section ===== */
@@ -155,22 +176,33 @@ footer {
   margin: 3rem auto 1rem auto;
   text-align: center;
   font-size: 0.95rem;
-  color: #475569;
+  color: #fff;
   padding: 2rem 1rem;
   border-radius: 12px;
   background: rgba(30,30,30,0.9);
-  color: #fff;
+  position: relative;
 }
 footer p {
   margin: 0.3rem 0;
 }
 footer a {
   color: #3b82f6;
+  transition: color 0.3s ease, transform 0.3s ease;
 }
 footer a:hover {
   color: #9333ea;
   transform: translateY(-2px) scale(1.05);
-  transition: all 0.3s ease;
+}
+
+/* ===== Scroll-triggered fade-in ===== */
+[data-animate] {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+[data-animate].active {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* ===== Responsive ===== */
@@ -191,7 +223,7 @@ footer a:hover {
 <body>
 
 <!-- ===== Hero/Bio Section ===== -->
-<section class="bio">
+<section class="bio" data-animate>
   <img src="https://yt3.ggpht.com/kzrp_dExfihe166iINojYki5GtdoCH9P_KNkxVzpl8bczMLgGaW_lF5-RYpXvCgpOu3dAS5v-0M=s600-c-k-c0x00ffffff-no-rj-rp-mo" alt="Your Name">
   <div class="bio-text">
     <h1>dpi850.com</h1>
@@ -204,26 +236,26 @@ footer a:hover {
 </section>
 
 <!-- ===== Video Gallery Section ===== -->
-<section class="video-gallery">
+<section class="video-gallery" data-animate>
   <h2>Videos</h2>
   <div class="video-grid">
     <!-- Video 1 -->
-    <div class="video-card">
+    <div class="video-card" data-animate>
       <iframe src="https://www.youtube.com/embed/iM8GiMlAqzQ?si=3oV0MaIuti48qxAf" allowfullscreen loading="lazy"></iframe>
       <div class="video-title">Hello Browse TXT, Bye Browser bloat</div>
     </div>
     <!-- Video 2 -->
-    <div class="video-card">
+    <div class="video-card" data-animate>
       <iframe src="https://www.youtube.com/embed/1CZDIR9GM4k?si=o42rceafhQL0PKNA" allowfullscreen loading="lazy"></iframe>
       <div class="video-title">I Solved the Creepy Clay Statue Mystery | Children of Clay Playthrough</div>
     </div>
     <!-- Video 3 -->
-    <div class="video-card">
+    <div class="video-card" data-animate>
       <iframe src="https://www.youtube.com/embed/C5NipbdyH_E?si=qSfaWO9SarkFfYVr" allowfullscreen loading="lazy"></iframe>
       <div class="video-title">Linux Mint: The Windows Alternative You NEED</div>
     </div>
     <!-- Video 4 -->
-    <div class="video-card">
+    <div class="video-card" data-animate>
       <iframe src="https://www.youtube-nocookie.com/embed/0E48mKDjRlw" allowfullscreen loading="lazy"></iframe>
       <div class="video-title">Coffee Made Easy | Cuisinart® </div>
     </div>
@@ -231,7 +263,7 @@ footer a:hover {
 </section>
 
 <!-- ===== Footer Section ===== -->
-<footer>
+<footer data-animate>
   <p>&copy; <span id="year"></span> Design by dpi850. All rights reserved.</p>
   <p>Follow me on <a href="https://www.instagram.com/dpi850_" target="_blank">Instagram</a> | <a href="https://github.com/dpi850" target="_blank">GitHub</a></p>
 </footer>
@@ -239,7 +271,17 @@ footer a:hover {
 <script>
 // Set current year
 document.getElementById("year").textContent = new Date().getFullYear();
-</script>
 
+// Scroll-triggered animations
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('active');
+    }
+  });
+},{threshold: 0.1});
+
+document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
