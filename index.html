@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>dpi850.com</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 <style>
 /* ===== Base Reset ===== */
 * {
@@ -194,6 +195,18 @@ footer a:hover {
   transform: translateY(-2px) scale(1.05);
 }
 
+/* ===== YouTube Icon Styling ===== */
+footer .bi-youtube {
+  color: #ff0000;
+  font-size: 1.2rem;
+  margin-right: 4px;
+  transition: transform 0.3s ease;
+}
+footer a:hover .bi-youtube {
+  transform: scale(1.2);
+  color: #cc0000;
+}
+
 /* ===== Scroll-triggered fade-in ===== */
 [data-animate] {
   opacity: 0;
@@ -230,66 +243,63 @@ footer a:hover {
     <p>
       Bio: I'm known as dpi850, a web designer and content creator.  
       I build responsive websites and share knowledge through videos. 
-      I also play video games every now and then.</p>
-	  
-	  <p>Skills:</p>
-	  
-	  <p>Mobile Responsive Web Design</p>
-	  <p>TailWind CSS</p>
-	  <p>JavaScript</p>
-	  <p>HTML/CSS</p>
-	  <p>Python</p>
+      I also play video games every now and then.
     </p>
+    <p>Skills:</p>
+    <p>Mobile Responsive Web Design</p>
+    <p>TailWind CSS</p>
+    <p>JavaScript</p>
+    <p>HTML/CSS</p>
+    <p>Python</p>
   </div>
 </section>
-
 
 <!-- ===== Video Gallery Section ===== -->
 <section class="video-gallery" data-animate>
 
-
   <div>
-  <h2>Gamez Xploration</h2>
-    <!-- Video -->
+    <h2>Gamez Xploration</h2>
     <div class="video-card" data-animate>
       <iframe src="https://www.youtube.com/embed/1CZDIR9GM4k?si=NVuG2lgNJY8deBU4" allowfullscreen loading="lazy"></iframe>
       <div class="video-title">I Solved the Creepy Clay Statue Mystery | Children of Clay Playthrough</div>
     </div>
-
     <div class="video-card" data-animate>
       <iframe src="https://www.youtube.com/embed/hAa2TAlNrJ8?si=x5eA8vzFmhbttOb5" allowfullscreen loading="lazy"></iframe>
       <div class="video-title">Raiden III | An Epic Shmup Experience | PS2 Playthrough</div>
-    </div>  
-  
+    </div>
+  </div>
+
   <div>
-  <h2>Programming</h2>
-    <!-- Video -->
+    <h2>Programming</h2>
     <div class="video-card" data-animate>
       <iframe src="https://www.youtube.com/embed/iM8GiMlAqzQ?si=3oV0MaIuti48qxAf" allowfullscreen loading="lazy"></iframe>
       <div class="video-title">Introducing BrowseTXT!</div>
     </div>
-	
+  </div>
   
-	<div>
-	<h2>Virtual Labz</h2>
-    <!-- Video -->
+  <div>
+    <h2>Virtual Labz</h2>
     <div class="video-card" data-animate>
       <iframe src="https://www.youtube.com/embed/C5NipbdyH_E?si=qSfaWO9SarkFfYVr" allowfullscreen loading="lazy"></iframe>
       <div class="video-title">Linux Mint: The Windows Alternative You NEED</div>
     </div>
-	
-    <!-- Video -->
     <div class="video-card" data-animate>
       <iframe src="https://www.youtube-nocookie.com/embed/0E48mKDjRlw" allowfullscreen loading="lazy"></iframe>
       <div class="video-title">Coffee Made Easy | Cuisinart® </div>
     </div>
   </div>
+
 </section>
 
 <!-- ===== Footer Section ===== -->
 <footer data-animate>
-  <p>&copy; <span id="year"></span> Design by dpi850. All rights reserved.</p>
-  <p>Follow me on <a href="https://www.instagram.com/dpi850_" target="_blank">Instagram</a> | <a href="https://github.com/dpi850" target="_blank">GitHub</a></p>
+  <p>&copy; <span id="year"></span> Designed by dpi850. All rights reserved.</p>
+  <p>
+    Follow me on 
+    <a href="https://www.instagram.com/dpi850_" target="_blank">Instagram</a> | 
+    <a href="https://github.com/dpi850" target="_blank">GitHub</a> | 
+    <a href="https://www.youtube.com/@dpi-850" target="_blank"><i class="bi bi-youtube"></i> YouTube</a>
+  </p>
 </footer>
 
 <script>
@@ -309,5 +319,4 @@ document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
-
 
