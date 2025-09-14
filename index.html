@@ -94,6 +94,70 @@ section.bio {
   text-shadow: 0 1px 2px rgba(0,0,0,0.3);
 }
 
+/* ===== Follow Buttons Section ===== */
+section.follow-buttons {
+  max-width: 960px;
+  margin: 2rem auto;
+  text-align: center;
+}
+
+/* unified button style */
+.follow-buttons .btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: white;
+  text-decoration: none;
+  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
+  margin: 0.4rem;
+  font-size: 1rem;
+}
+.follow-buttons .btn:active { transform: translateY(1px); }
+
+/* platform colors */
+.btn-x {
+  background: #000; /* X (black) */
+}
+.btn-x .icon {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:28px;height:28px;border-radius:50%;
+  background: rgba(255,255,255,0.06);
+}
+.btn-ig {
+  background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4);
+}
+.btn-ig .icon {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:28px;height:28px;border-radius:50%;
+  background: rgba(255,255,255,0.08);
+}
+.btn-yt {
+  background: #FF0000; /* YouTube red */
+}
+.btn-yt .icon {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  width:28px;height:28px;border-radius:50%;
+  background: rgba(255,255,255,0.06);
+}
+
+/* hover states */
+.follow-buttons .btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  opacity: 0.98;
+}
+
 /* ===== Section Headings ===== */
 h2 {
   font-family: 'Poppins', sans-serif;
@@ -252,8 +316,6 @@ footer a:hover {
   color: #9333ea;
   transform: translateY(-2px) scale(1.05);
 }
-
-/* ===== YouTube Icon Styling ===== */
 footer .bi-youtube {
   color: #ff0000;
   font-size: 1.2rem;
@@ -291,6 +353,7 @@ footer a:hover .bi-youtube {
   h2 {
     font-size: 1.5rem;
   }
+  .follow-buttons .btn { width: 100%; justify-content: center; }
 }
 </style>
 </head>
@@ -303,6 +366,28 @@ footer a:hover .bi-youtube {
     <h1>dpi850.com</h1>
     <p>Bio: I'm known as dpi850, a web designer and content creator. I build responsive websites and share knowledge through videos. I also play video games every now and then.</p>
   </div>
+</section>
+
+<!-- ===== Follow Buttons Section (UNIFIED) ===== -->
+<section class="follow-buttons" data-animate aria-label="Follow buttons">
+  <!-- X (formerly Twitter) -->
+  <a class="btn btn-x" href="https://x.com/dpi850_" target="_blank" rel="noopener noreferrer" aria-label="Follow dpi850_ on X">
+    <span class="icon" aria-hidden="true"><i class="bi bi-twitter-x" style="font-size:15px;"></i></span>
+    <span>Follow @dpi850_</span>
+  </a>
+
+  <!-- Instagram -->
+  <a class="btn btn-ig" href="https://instagram.com/dpi850_" target="_blank" rel="noopener noreferrer" aria-label="Follow dpi850_ on Instagram">
+    <span class="icon" aria-hidden="true"><i class="bi bi-instagram" style="font-size:15px;"></i></span>
+    <span>Follow on Instagram</span>
+  </a>
+
+  <!-- YouTube (subscribe prompt) -->
+  <!-- Using the ?sub_confirmation=1 parameter so visitors are shown the subscribe confirmation -->
+  <a class="btn btn-yt" href="https://www.youtube.com/@dpi-850" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to dpi-850 on YouTube">
+    <span class="icon" aria-hidden="true"><i class="bi bi-youtube" style="font-size:15px;"></i></span>
+    <span>Follow on YouTube</span>
+  </a>
 </section>
 
 <!-- ===== Skills Section ===== -->
@@ -369,24 +454,24 @@ footer a:hover .bi-youtube {
 
 </section>
 
+<!-- ===== Footer Section ===== -->
 <footer data-animate>
   <p>&copy; <span id="year"></span> Designed by dpi850. All rights reserved. Encrypted by Let's Encrypt.</p>
   <p>
     Follow me on 
-    <a href="https://www.instagram.com/dpi850_" target="_blank"><i class="bi bi-instagram"></i> Instagram</a> | 
-    <a href="https://github.com/dpi850" target="_blank"><i class="bi bi-github"></i> GitHub</a> | 
-    <a href="https://www.youtube.com/@dpi-850" target="_blank"><i class="bi bi-youtube"></i> YouTube</a> | 
-    <a href="https://www.reddit.com/user/dpi850_" target="_blank"><i class="bi bi-reddit"></i> Reddit</a> | 
-    <a href="https://retroachievements.org/user/dpi850" target="_blank"><i class="bi bi-trophy"></i> RetroAchievements</a> |
-    <a href="https://x.com/dpi850_" target="_blank"><i class="bi bi-twitter-x"></i> Official</a>
+    <a href="https://www.instagram.com/dpi850_" target="_blank" rel="noopener noreferrer"><i class="bi bi-instagram"></i> Instagram</a> | 
+    <a href="https://github.com/dpi850" target="_blank" rel="noopener noreferrer"><i class="bi bi-github"></i> GitHub</a> | 
+    <a href="https://www.youtube.com/@dpi-850" target="_blank" rel="noopener noreferrer"><i class="bi bi-youtube"></i> YouTube</a> | 
+    <a href="https://www.reddit.com/user/dpi850_" target="_blank" rel="noopener noreferrer"><i class="bi bi-reddit"></i> Reddit</a> | 
+    <a href="https://retroachievements.org/user/dpi850" target="_blank" rel="noopener noreferrer"><i class="bi bi-trophy"></i> RetroAchievements</a> |
+    <a href="https://x.com/dpi850_" target="_blank" rel="noopener noreferrer"><i class="bi bi-twitter-x"></i> Official</a>
   </p>
 </footer>
 
+<!-- ===== Scripts ===== -->
 <script>
-// Set current year
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Scroll-triggered animations
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if(entry.isIntersecting){
