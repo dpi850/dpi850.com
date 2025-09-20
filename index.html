@@ -4,10 +4,6 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>dpi850.com</title>
-
-<!-- Bing verification meta tag -->
-<meta name="msvalidate.01" content="3E94964ED7AEC90E95A13FB30F431E61" />
-
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 <style>
@@ -125,7 +121,7 @@ section.follow-buttons {
 
 /* platform colors */
 .btn-x {
-  background: #000; /* X (black) */
+  background: #000;
 }
 .btn-x .icon {
   display:inline-flex;
@@ -145,7 +141,7 @@ section.follow-buttons {
   background: rgba(255,255,255,0.08);
 }
 .btn-yt {
-  background: #FF0000; /* YouTube red */
+  background: #FF0000;
 }
 .btn-yt .icon {
   display:inline-flex;
@@ -241,7 +237,7 @@ section.skills {
   flex-grow: 1;
 }
 
-/* ===== Video Grid Section ===== */
+/* ===== Video Gallery Section ===== */
 section.video-gallery {
   max-width: 960px;
   margin: 3rem auto;
@@ -250,43 +246,43 @@ section.video-gallery {
 
 .video-grid {
   display: grid;
-  gap: 1.8rem;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  justify-items: center;
 }
 
 .video-card {
-  background: rgba(255,255,255,0.1);
+  background: rgba(255,255,255,0.05);
   backdrop-filter: blur(12px);
   border-radius: 16px;
   overflow: hidden;
-  transition: transform 0.5s ease, box-shadow 0.5s ease;
   display: flex;
   flex-direction: column;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
   cursor: pointer;
-  position: relative;
+  max-width: 400px; /* smaller size */
+  width: 100%;
 }
 .video-card:hover {
-  transform: translateY(-8px) scale(1.03);
-  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
-}
-.video-card:hover iframe {
-  transform: scale(1.02);
+  transform: translateY(-6px) scale(1.03);
+  box-shadow: 0 12px 35px rgba(0,0,0,0.15);
 }
 .video-card iframe {
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 16/9;
   border: 0;
-  display: block;
   transition: transform 0.3s ease;
+}
+.video-card:hover iframe {
+  transform: scale(1.02);
 }
 .video-title {
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 1rem;
-  letter-spacing: 0.25px;
-  padding: 1rem;
-  color: #1e293b;
+  padding: 0.8rem;
   text-align: center;
+  color: #1e293b;
   background: #e2e8f0;
   transition: background 0.3s ease, transform 0.3s ease;
 }
@@ -301,7 +297,7 @@ footer {
   margin: 3rem auto 1rem auto;
   text-align: center;
   font-size: 0.95rem;
-  color: #1877F2;
+  color: #fff;
   padding: 2rem 1rem;
   border-radius: 12px;
   background: rgba(30,30,30,0.9);
@@ -313,22 +309,12 @@ footer p {
 footer a {
   font-family: 'Poppins', sans-serif;
   font-weight: 500;
-  color: #fff;
+  color: #3b82f6;
   transition: color 0.3s ease, transform 0.3s ease;
 }
 footer a:hover {
   color: #9333ea;
   transform: translateY(-2px) scale(1.05);
-}
-footer .bi-youtube {
-  color: #f5f5f5;
-  font-size: 1.2rem;
-  margin-right: 4px;
-  transition: transform 0.3s ease;
-}
-footer a:hover .bi-youtube {
-  transform: scale(1.2);
-  color: #cc0000;
 }
 
 /* ===== Scroll-triggered fade-in ===== */
@@ -358,6 +344,7 @@ footer a:hover .bi-youtube {
     font-size: 1.5rem;
   }
   .follow-buttons .btn { width: 100%; justify-content: center; }
+  .video-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -368,95 +355,66 @@ footer a:hover .bi-youtube {
   <img src="https://yt3.ggpht.com/kzrp_dExfihe166iINojYki5GtdoCH9P_KNkxVzpl8bczMLgGaW_lF5-RYpXvCgpOu3dAS5v-0M=s600-c-k-c0x00ffffff-no-rj-rp-mo" alt="Your Name">
   <div class="bio-text">
     <h1>dpi850.com</h1>
-    <p>Bio: I’m dpi850, sharing gameplay, strategies, and stories from the gaming universe. Enjoy the ride with me!</p>
+    <p>I'm known as dpi850, a web designer and content creator. I build responsive websites and share knowledge through videos. I also play video games every now and then.</p>
   </div>
 </section>
 
-<!-- ===== Follow Buttons Section (UNIFIED) ===== -->
-<section class="follow-buttons" data-animate aria-label="Follow buttons">
-  <!-- X (formerly Twitter) -->
-  <a class="btn btn-x" href="https://x.com/dpi850_" target="_blank" rel="noopener noreferrer" aria-label="Follow dpi850_ on X">
-    <span class="icon" aria-hidden="true"><i class="bi bi-twitter-x" style="font-size:15px;"></i></span>
-    <span>Follow @dpi850_</span>
-  </a>
-
-  <!-- Instagram -->
-  <a class="btn btn-ig" href="https://instagram.com/dpi850_" target="_blank" rel="noopener noreferrer" aria-label="Follow dpi850_ on Instagram">
-    <span class="icon" aria-hidden="true"><i class="bi bi-instagram" style="font-size:15px;"></i></span>
-    <span>Follow on Instagram</span>
-  </a>
-
-  <!-- YouTube (subscribe prompt) -->
-  <!-- Using the ?sub_confirmation=1 parameter so visitors are shown the subscribe confirmation -->
-  <a class="btn btn-yt" href="https://www.youtube.com/@dpi-850" target="_blank" rel="noopener noreferrer" aria-label="Subscribe to dpi-850 on YouTube">
-    <span class="icon" aria-hidden="true"><i class="bi bi-youtube" style="font-size:15px;"></i></span>
-    <span>Follow on YouTube</span>
-  </a>
+<!-- ===== Follow Buttons ===== -->
+<section class="follow-buttons" data-animate>
+  <a class="btn btn-x" href="https://x.com/dpi850_" target="_blank"><span class="icon"><i class="bi bi-twitter-x" style="font-size:15px;"></i></span>Follow @dpi850_</a>
+  <a class="btn btn-ig" href="https://instagram.com/dpi850_" target="_blank"><span class="icon"><i class="bi bi-instagram" style="font-size:15px;"></i></span>Follow on Instagram</a>
+  <a class="btn btn-yt" href="https://www.youtube.com/@dpi-850" target="_blank"><span class="icon"><i class="bi bi-youtube" style="font-size:15px;"></i></span>Follow on YouTube</a>
 </section>
 
 <!-- ===== Skills Section ===== -->
 <section class="skills" data-animate>
-  <h2>My Skills</h2>
+  <h2>Skills</h2>
   <div class="skills-grid">
     <div class="skill-card">
       <i class="bi bi-phone"></i>
       <h3>Responsive Design</h3>
-      <p>Builds websites that adapt seamlessly to mobile, tablet, and desktop devices.</p>
+      <p>Websites that adapt seamlessly to mobile, tablet, and desktop.</p>
     </div>
     <div class="skill-card">
       <i class="bi bi-code-slash"></i>
       <h3>HTML, CSS & JavaScript</h3>
-      <p>Builds modern, interactive, and accessible web interfaces.</p>
+      <p>Modern, interactive, and accessible web interfaces.</p>
     </div>
     <div class="skill-card">
       <i class="bi bi-braces"></i>
       <h3>Python</h3>
-      <p>Develops automation scripts, data tools, and backend logic.</p>
+      <p>Automation scripts, data tools, and backend logic.</p>
     </div>
     <div class="skill-card">
       <i class="bi bi-pencil-square"></i>
       <h3>Content Creation</h3>
-      <p>Tutorials, gaming videos, and engaging contents.</p>
+      <p>Tutorials, gaming videos, and engaging content.</p>
     </div>
   </div>
 </section>
 
 <!-- ===== Video Gallery Section ===== -->
 <section class="video-gallery" data-animate>
-
-  <div>
-    <h2>Gamez Xploration</h2>
-    <div class="video-card" data-animate>
-      <iframe src="https://www.youtube.com/embed/1CZDIR9GM4k?si=NVuG2lgNJY8deBU4" allowfullscreen loading="lazy"></iframe>
-      <div class="video-title">I Solved the Creepy Clay Statue Mystery | Children of Clay Playthrough</div>
+  <h2>Videos</h2>
+  <div class="video-grid">
+	<div class="video-card" data-animate>
+      <iframe src="https://www.youtube-nocookie.com/embed/kdU-ih5A9xU?si=_1N8WYLmJwrM7VJd" allowfullscreen loading="lazy"></iframe>
+      <div class="video-title"></div>
     </div>
-    <div class="video-card" data-animate>
-      <iframe src="https://www.youtube.com/embed/hAa2TAlNrJ8?si=x5eA8vzFmhbttOb5" allowfullscreen loading="lazy"></iframe>
-      <div class="video-title">Raiden III | An Epic Shmup Experience | PS2 Playthrough</div>
-    </div>
-  </div>
-  <div class="video-card" data-animate>
-      <iframe src="https://www.youtube.com/embed/kdU-ih5A9xU?si=LiTgFVatxAsKqKRN" allowfullscreen loading="lazy"></iframe>
-      <div class="video-title">Raiden IV Overkill — Additional Mode Full Run</div>
-    </div>
-  </div>
-
-  <div>
-  
-  <div>
-    <h2>Virtual Labz</h2>
     <div class="video-card" data-animate>
       <iframe src="https://www.youtube-nocookie.com/embed/C5NipbdyH_E?si=qSfaWO9SarkFfYVr" allowfullscreen loading="lazy"></iframe>
-      <div class="video-title">Linux Mint: The Windows Alternative You NEED</div>
+      <div class="video-title"></div>
     </div>
-    <div class="video-card" data-animate>
+	<div class="video-card" data-animate>
+      <iframe src="https://www.youtube-nocookie.com/embed/1CZDIR9GM4k?si=9b2rU1jn0tHTSnuM" allowfullscreen loading="lazy"></iframe>
+      <div class="video-title"></div>
+    </div>
+  <div class="video-card" data-animate>
       <iframe src="https://www.youtube-nocookie.com/embed/0E48mKDjRlw" allowfullscreen loading="lazy"></iframe>
-      <div class="video-title">Coffee Made Easy | Cuisinart® Nonsponsored</div>
+      <div class="video-title"></div>
     </div>
-  </div>
-
-</section>
-
+</section>	
+  
 <!-- ===== Footer Section ===== -->
 <footer data-animate>
   <p>&copy; <span id="year"></span> Designed by dpi850. All rights reserved. Encrypted by Let's Encrypt.</p>
@@ -487,6 +445,7 @@ document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
 </script>
 </body>
 </html>
+
 
 
 
