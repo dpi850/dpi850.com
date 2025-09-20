@@ -8,174 +8,44 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
 <style>
 /* ===== Base Reset ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'Inter', sans-serif;
-  font-size: 1.125rem; /* 18px */
-  line-height: 1.8;
-  color: #1a1a1a;
-  background: #f0f4f8;
-  overflow-x: hidden;
-  scroll-behavior: smooth; /* smooth scroll easing */
-}
-
-/* ===== Links ===== */
-a {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-  text-decoration: none;
-  color: #3b82f6;
-  transition: all 0.3s ease;
-}
-a:hover {
-  color: #1e40af;
-  transform: translateY(-2px) scale(1.05);
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: 'Inter', sans-serif; font-size: 1.125rem; line-height: 1.8; color: #1a1a1a; background: #f0f4f8; overflow-x: hidden; scroll-behavior: smooth; }
+a { font-family: 'Poppins', sans-serif; font-weight: 500; text-decoration: none; color: #3b82f6; transition: all 0.3s ease; }
+a:hover { color: #1e40af; transform: translateY(-2px) scale(1.05); }
 
 /* ===== Hero/Bio Section ===== */
-section.bio {
-  background: linear-gradient(135deg, #3b82f6, #9333ea);
-  background-size: 400% 400%;
-  animation: gradientShift 20s ease infinite; /* subtle gradient shift */
-  color: #fff;
-  padding: 5rem 2rem;
-  border-radius: 16px;
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 2rem;
-  max-width: 960px;
-  margin: 2rem auto;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-  position: relative;
-  overflow: hidden;
-  animation: fadeInUp 1s ease forwards;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-.bio img {
-  width: 160px;
-  height: 160px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 4px solid rgba(255,255,255,0.3);
-  transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease;
-  cursor: pointer;
-  animation: float 4s ease-in-out infinite;
-}
-.bio img:hover {
-  transform: scale(1.1) rotate(3deg);
-  box-shadow: 0 8px 25px rgba(0,0,0,0.3);
-  filter: brightness(1.1);
-}
-@keyframes float {
-  0%,100% { transform: translateY(0); }
-  50% { transform: translateY(-6px); }
-}
-
-.bio-text {
-  flex: 1;
-}
-.bio-text h1 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 3rem;
-  font-weight: 700;
-  line-height: 1.1;
-  margin-bottom: 1rem;
-  text-shadow: 0 2px 8px rgba(0,0,0,0.3);
-  cursor: default;
-  letter-spacing: 0.5px;
-  transition: transform 0.3s ease;
-}
+section.bio { background: linear-gradient(135deg, #3b82f6, #9333ea); background-size: 400% 400%; animation: gradientShift 20s ease infinite; color: #fff; padding: 5rem 2rem; border-radius: 16px; display: flex; flex-wrap: wrap; align-items: center; gap: 2rem; max-width: 960px; margin: 2rem auto; box-shadow: 0 20px 40px rgba(0,0,0,0.1); position: relative; overflow: hidden; animation: fadeInUp 1s ease forwards; }
+@keyframes gradientShift { 0% { background-position: 0% 50%; } 50% { background-position: 100% 50%; } 100% { background-position: 0% 50%; } }
+.bio img { width: 160px; height: 160px; object-fit: cover; border-radius: 50%; border: 4px solid rgba(255,255,255,0.3); transition: transform 0.4s ease, box-shadow 0.4s ease, filter 0.4s ease; cursor: pointer; animation: float 4s ease-in-out infinite; }
+.bio img:hover { transform: scale(1.1) rotate(3deg); box-shadow: 0 8px 25px rgba(0,0,0,0.3); filter: brightness(1.1); }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-6px); } }
+.bio-text { flex: 1; }
+.bio-text h1 { font-family: 'Poppins', sans-serif; font-size: 3rem; font-weight: 700; line-height: 1.1; margin-bottom: 1rem; text-shadow: 0 2px 8px rgba(0,0,0,0.3); cursor: default; letter-spacing: 0.5px; transition: transform 0.3s ease; }
 .bio-text h1:hover { transform: scale(1.05); }
-.bio-text p {
-  font-size: 1.125rem;
-  color: rgba(255,255,255,0.95);
-  margin-bottom: 0.75rem;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.3);
-}
+.bio-text p { font-size: 1.125rem; color: rgba(255,255,255,0.95); margin-bottom: 0.75rem; text-shadow: 0 1px 2px rgba(0,0,0,0.3); }
 
 /* ===== Follow Buttons Section ===== */
-section.follow-buttons {
-  max-width: 960px;
-  margin: 2rem auto;
-  text-align: center;
-}
-.follow-buttons .btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 18px;
-  border-radius: 999px;
-  font-family: 'Poppins', sans-serif;
-  font-weight: 700;
-  color: white;
-  text-decoration: none;
-  box-shadow: 0 8px 22px rgba(0,0,0,0.08);
-  transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease;
-  margin: 0.4rem;
-  font-size: 1rem;
-}
+section.follow-buttons { max-width: 960px; margin: 2rem auto; text-align: center; }
+.follow-buttons .btn { display: inline-flex; align-items: center; gap: 10px; padding: 10px 18px; border-radius: 999px; font-family: 'Poppins', sans-serif; font-weight: 700; color: white; text-decoration: none; box-shadow: 0 8px 22px rgba(0,0,0,0.08); transition: transform 0.18s ease, box-shadow 0.18s ease, opacity 0.18s ease; margin: 0.4rem; font-size: 1rem; }
 .follow-buttons .btn:active { transform: translateY(1px); }
-
-/* platform colors */
 .btn-x { background: #000; }
 .btn-x .icon { display:inline-flex; align-items:center; justify-content:center; width:28px;height:28px;border-radius:50%; background: rgba(255,255,255,0.06); }
 .btn-ig { background: linear-gradient(45deg, #f58529, #dd2a7b, #8134af, #515bd4); }
 .btn-ig .icon { display:inline-flex; align-items:center; justify-content:center; width:28px;height:28px;border-radius:50%; background: rgba(255,255,255,0.08); }
 .btn-yt { background: #FF0000; }
 .btn-yt .icon { display:inline-flex; align-items:center; justify-content:center; width:28px;height:28px;border-radius:50%; background: rgba(255,255,255,0.06); }
-
 .follow-buttons .btn:hover { transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0,0,0,0.12); opacity: 0.98; }
 
 /* ===== Section Headings ===== */
-h2 {
-  font-family: 'Poppins', sans-serif;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  margin-bottom: 2rem;
-  text-align: center;
-  color: #1e3a8a;
-  position: relative;
-  opacity: 0;
-  transform: translateY(20px);
-  animation: fadeInUp 0.8s ease forwards 0.5s;
-}
-h2::after {
-  content: "";
-  display: block;
-  width: 80px;
-  height: 4px;
-  background: #3b82f6;
-  margin: 0.5rem auto 0 auto;
-  border-radius: 2px;
-  animation: slideIn 1s ease forwards 0.8s;
-}
+h2 { font-family: 'Poppins', sans-serif; font-size: 2rem; font-weight: 700; letter-spacing: 0.5px; margin-bottom: 2rem; text-align: center; color: #1e3a8a; position: relative; opacity: 0; transform: translateY(20px); animation: fadeInUp 0.8s ease forwards 0.5s; }
+h2::after { content: ""; display: block; width: 80px; height: 4px; background: #3b82f6; margin: 0.5rem auto 0 auto; border-radius: 2px; animation: slideIn 1s ease forwards 0.8s; }
 @keyframes slideIn { from {width:0;} to {width:80px;} }
 @keyframes fadeInUp { from {opacity:0; transform: translateY(20px);} to {opacity:1; transform: translateY(0);} }
 
 /* ===== Skills Section ===== */
 section.skills { max-width: 960px; margin: 3rem auto; padding: 0 1rem; }
 .skills-grid { display: grid; gap: 1.8rem; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); justify-items: center; }
-.skill-card {
-  background: #fff; border-radius: 16px;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
-  padding: 2rem; text-align: center;
-  display: flex; flex-direction: column; align-items: center;
-  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease, transform 0.6s ease;
-  opacity: 0; transform: translateY(20px);
-}
+.skill-card { background: #fff; border-radius: 16px; box-shadow: 0 8px 20px rgba(0,0,0,0.1); padding: 2rem; text-align: center; display: flex; flex-direction: column; align-items: center; transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.6s ease; opacity: 0; transform: translateY(20px); }
 .skill-card.active { opacity: 1; transform: translateY(0); }
 .skill-card:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 12px 30px rgba(0,0,0,0.15); }
 .skill-card i { font-size: 2rem; color: #3b82f6; margin-bottom: 1rem; transition: transform 0.3s ease; }
@@ -186,24 +56,13 @@ section.skills { max-width: 960px; margin: 3rem auto; padding: 0 1rem; }
 /* ===== Video Gallery Section ===== */
 section.video-gallery { max-width: 960px; margin: 3rem auto; padding: 0 1rem; }
 .video-grid { display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); justify-items: center; }
-.video-card {
-  background: rgba(255,255,255,0.05); backdrop-filter: blur(12px);
-  border-radius: 16px; overflow: hidden;
-  display: flex; flex-direction: column; transition: transform 0.4s ease, box-shadow 0.4s ease;
-  cursor: pointer; max-width: 400px; width: 100%; position: relative;
-}
+.video-card { background: rgba(255,255,255,0.05); backdrop-filter: blur(12px); border-radius: 16px; overflow: hidden; display: flex; flex-direction: column; transition: transform 0.4s ease, box-shadow 0.4s ease; cursor: pointer; max-width: 400px; width: 100%; position: relative; }
 .video-card iframe { width: 100%; aspect-ratio: 16/9; border: 0; transition: transform 0.3s ease; }
 .video-card:hover iframe { transform: scale(1.02); }
 .video-card:hover { transform: translateY(-6px) scale(1.03); box-shadow: 0 12px 35px rgba(0,0,0,0.15); }
-.video-card::before {
-  content: ''; position: absolute; top:0; left:0; width:100%; height:100%;
-  background: rgba(0,0,0,0); transition: background 0.3s ease; border-radius:16px; z-index:1;
-}
+.video-card::before { content: ''; position: absolute; top:0; left:0; width:100%; height:100%; background: rgba(0,0,0,0); transition: background 0.3s ease; border-radius:16px; z-index:1; pointer-events: none; }
 .video-card:hover::before { background: rgba(0,0,0,0.2); }
-.video-card .play-icon {
-  position: absolute; top:50%; left:50%; transform: translate(-50%,-50%) scale(0);
-  color:#fff; font-size:2rem; opacity:0; transition: transform 0.3s ease, opacity 0.3s ease; z-index:2;
-}
+.video-card .play-icon { position: absolute; top:50%; left:50%; transform: translate(-50%,-50%) scale(0); color:#fff; font-size:2rem; opacity:0; transition: transform 0.3s ease, opacity 0.3s ease; z-index:2; pointer-events: none; }
 .video-card:hover .play-icon { transform: translate(-50%,-50%) scale(1); opacity:1; }
 .video-title { font-family:'Inter',sans-serif; font-weight:500; font-size:1rem; padding:0.8rem; text-align:center; color:#1e293b; background:#e2e8f0; transition: background 0.3s ease, transform 0.3s ease; }
 .video-card:hover .video-title { background:#dbeafe; transform: scale(1.02); }
@@ -265,7 +124,7 @@ footer a:hover { color:#9333ea; transform: translateY(-2px) scale(1.05); }
     <div class="skill-card">
       <i class="bi bi-pencil-square"></i>
       <h3>Content Creation</h3>
-      <p>Crates gaming videos, and engaging content.</p>
+      <p>Creates gaming videos, and engaging content.</p>
     </div>
   </div>
 </section>
@@ -277,22 +136,18 @@ footer a:hover { color:#9333ea; transform: translateY(-2px) scale(1.05); }
     <div class="video-card" data-animate>
       <iframe src="https://www.youtube-nocookie.com/embed/kdU-ih5A9xU?si=_1N8WYLmJwrM7VJd" allowfullscreen loading="lazy"></iframe>
       <div class="video-title"></div>
-      <i class="bi bi-play-circle-fill play-icon"></i>
     </div>
     <div class="video-card" data-animate>
       <iframe src="https://www.youtube-nocookie.com/embed/C5NipbdyH_E?si=qSfaWO9SarkFfYVr" allowfullscreen loading="lazy"></iframe>
       <div class="video-title"></div>
-      <i class="bi bi-play-circle-fill play-icon"></i>
     </div>
     <div class="video-card" data-animate>
       <iframe src="https://www.youtube-nocookie.com/embed/1CZDIR9GM4k?si=9b2rU1jn0tHTSnuM" allowfullscreen loading="lazy"></iframe>
       <div class="video-title"></div>
-      <i class="bi bi-play-circle-fill play-icon"></i>
     </div>
     <div class="video-card" data-animate>
       <iframe src="https://www.youtube-nocookie.com/embed/0E48mKDjRlw" allowfullscreen loading="lazy"></iframe>
       <div class="video-title"></div>
-      <i class="bi bi-play-circle-fill play-icon"></i>
     </div>
   </div>
 </section>  
@@ -315,7 +170,7 @@ footer a:hover { color:#9333ea; transform: translateY(-2px) scale(1.05); }
 <script>
 document.getElementById("year").textContent = new Date().getFullYear();
 
-// Scroll-triggered fade-in for bio, follow buttons, video sections
+// Scroll-triggered fade-in
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
     if(entry.isIntersecting){
@@ -323,26 +178,36 @@ const observer = new IntersectionObserver(entries => {
     }
   });
 },{threshold: 0.1});
-
 document.querySelectorAll('[data-animate]').forEach(el => observer.observe(el));
 
-// Staggered animation for skills cards
-const skillsCards = document.querySelectorAll('.skill-card');
-const skillsObserver = new IntersectionObserver((entries, observer) => {
-  entries.forEach(entry => {
-    if(entry.isIntersecting){
-      skillsCards.forEach((card, index) => {
-        setTimeout(() => {
-          card.classList.add('active');
-        }, index * 150); // stagger 150ms
-      });
-      observer.disconnect(); // animate only once
-    }
-  });
-},{ threshold: 0.2 });
+// Animate skill cards individually
+document.querySelectorAll('.skill-card').forEach((card, index) => {
+  const cardObserver = new IntersectionObserver((entries, obs) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        setTimeout(() => card.classList.add('active'), index * 150);
+        obs.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.2 });
+  cardObserver.observe(card);
+});
 
-skillsObserver.observe(document.querySelector('.skills-grid'));
+// Click-to-play muted YouTube videos
+const videos = document.querySelectorAll('.video-card iframe');
+document.querySelectorAll('.video-card').forEach((card, index) => {
+  card.addEventListener('click', () => {
+    videos.forEach((vid, i) => {
+      const srcBase = vid.src.split('?')[0];
+      if(i === index){
+        vid.src = srcBase + '?autoplay=1&mute=1&controls=1';
+      } else {
+        vid.src = srcBase + '?autoplay=0&mute=1&controls=1';
+      }
+    });
+  });
+});
 </script>
+
 </body>
 </html>
-
